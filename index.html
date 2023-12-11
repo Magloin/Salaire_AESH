@@ -1,0 +1,162 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <script src="scripts.js" defer></script>
+    <h1>Vérificateur de fiche de paie AESH</h1>
+    
+    <h2>Quel est votre salaire Brut ETP ?</h2>
+
+    <h3>Quel est votre coefficient ?</h3>
+   
+   
+    <form>
+        <input type="radio" name="coef" id="coef" value="366" checked/>
+        <label for="coef">Ech1 (366)</label>
+        <input type="radio" name="coef" id="coef" value="370"/> 
+        <label for="coef">Ech2 (370)</label>
+        <input type="radio" name="coef" id="coef" value="375"/>
+        <label for="coef">Ech3 (375)</label>
+        <input type="radio" name="coef" id="coef" value="380"/>
+        <label for="coef">Ech4 (380)</label>
+        <input type="radio" name="coef" id="coef" value="390"/>
+        <label for="coef">Ech5 (390)</label><br>
+        <input type="radio" name="coef" id="coef" value="400"/> 
+        <label for="coef">Ech6 (400)</label>
+        <input type="radio" name="coef" id="coef" value="410"/>
+        <label for="coef">Ech7 (410)</label>
+        <input type="radio" name="coef" id="coef" value="420"/>
+        <label for="coef">Ech8 (420)</label>
+        <input type="radio" name="coef" id="coef" value="430"/>
+        <label for="coef">Ech9 (430)</label>
+        <input type="radio" name="coef" id="coef" value="440"/> 
+        <label for="coef">Ech10 (440)</label>
+        <input type="radio" name="coef" id="coef" value="450"/> 
+        <label for="coef">Ech11 (450)</label>
+    </form> 
+    
+    <input type="number" id="coef" name="coef" required value="366" min="100" max="999"/>
+    <button type="button" onclick="compute()">Calculer</button>
+    
+    <div id="resultat"> </div>
+    <input type="number" id="salaireBrut" hidden />
+    
+    <h2>
+        Quel est votre traitement Brut  ?
+    </h2>
+    
+    <h3> Quelle est votre quotité ?</h3>
+    <label for="traitBrut">Quel est votre quotité horaire :</label>
+    <input type="number" id="quotite" name="quotite" required min="50" max="100" value="62"/> <br>
+     Avez-vous eu des arrêts maladie ?
+    <input type="radio" id="carence" name="carence" onclick="toggleArretSection(false)"><label for="carence">Oui</label>
+    <input type="radio" id="carence1" name="carence" checked onclick="toggleArretSection(true)"/> <label for="carence">Non</label> <br>
+    <div id="nbArretSection" hidden>
+        <label for="nbArret"> Nombre d'arrets totaux : </label><input type="number" id="nbArret" name="nbArret" value="1"> 
+    </div>
+
+   <br><button type="button" onclick="compute2()">Calculer</button> 
+ 
+   
+   
+    <form >
+        <input type="radio" id="quotite" name="quotite" value="50"/>
+        <label for="50%">50 %</label>
+        <input type="radio" id="quotite" name="quotite" value="52"/>
+        <label for="52%">52 %</label>
+        <input type="radio" id="quotite" name="quotite" value="57"/>
+        <label for="57%">57 %</label><br><br>
+        <input type="radio" id="quotite" name="quotite" value="60"/>
+        <label for="60%">60 %</label>
+        <input type="radio" id="quotite" name="quotite" value="62" checked/>
+        <label for="62%">62 %</label>
+        <input type="radio" id="quotite" name="quotite" value="66"/>
+        <label for="66%">66 %</label><br><br>
+        <input type="radio" id="quotite" name="quotite" value="70"/>
+        <label for="70%">70 %</label>
+        <input type="radio" id="quotite" name="quotite" value="80"/>
+        <label for="80%">80 %</label>
+        <input type="radio" id="quotite" name="quotite" value="100"/>
+        <label for="100%">100 %</label>
+    </form>
+   
+
+    <h3><label for="Rep"> Etes-vous en établissment REP ? </label></h3>
+
+    <input type="radio" id="rep" name="rep" value="true"/> 
+    <label for="oui">OUI</label>
+    <input type="radio" id="rep" name="rep" value="false" checked/>
+    <label for="non" >NON</label>
+    <div>
+    <h3>En REP + ?</h3>
+        <input type="radio" id="rep+" name="rep+" value="true"/>
+        <label for="REP+">Oui en REP+</label> <br>
+        <input type="radio" id="rep+" name="rep+" value="false">
+        <label for="rep+">Non en REP</label> <br> <br>
+    </div>
+    
+    
+    -->
+
+
+
+    <div id="traitBrut"> </div>
+    
+    <h2>Montants des indemnites Perçues :</h2>
+    <div id="traitBrut2"> </div>
+    <div id="indeSalariale"></div>
+    <div id="indFonct"></div>
+    <div id="primRep"></div>
+    <h3>
+         <div id="totalPer"></div>
+    </h3>
+    
+    
+    <h2>Montants retenues salariales :</h2>
+    <div id="resultCarence"></div>
+    <div id="cotSalViePla"></div>
+    <div id="csgNonDed"></div>
+    <div id="csgDed"></div>
+    <div id="crds"></div>
+    <div id="cotSalVieiDepla"></div>
+    <div id="cotSalIrcantrA"></div>
+    
+    <h3>
+        <div id="totalRetenu"></div>
+    </h3>
+    
+    
+    <h2>Montant charges patronales</h2>
+    <div id="cotPatAlloFam"></div>
+    <div id="cotPatAfMaj"></div>
+    <div id="cotPatAccTra"></div>
+    <div id="cotPatFnalDepl"></div>
+    <div id="cotPatVieiPlaf"></div>
+    <div id="cotPatVieilDepl"></div>
+    <div id="contSolAuto"></div>
+    <div id="cotPatMalDepla"></div>
+    <div id="cotPatMalMaj"></div>
+    <div id="cotPatIrcTraA"></div>
+    <div id="cotPatVstMob"></div>
+    
+    <h3>
+        <div id="totalCharPatr"></div>
+    </h3>
+   
+    <h2 id="recapi"hidden>Récapitulatif</h2>
+   
+    <div id="recapPercu"></div>
+    <div id="recapRetenu"></div>
+    <div id="emote" class="emote" hidden>⬇️</div>
+    <div id="NetAPayer" class="NetaPayer" hidden ></div>
+    <h2 hidden>Net à payer</h2>
+   
+
+    
+
+</body>
+</html>
