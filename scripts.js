@@ -19,7 +19,9 @@ function toggleArretSection(hide){
 /* Calcul du salaire brut en fonction du coefficient*/
 function compute() {
     
-    const coefficient = document.getElementById("coef").value
+    const coefficient = quotite = Number(document.querySelector('input[name="coef"]:checked').value);
+
+    //const coefficient = document.getElementById("coef").value
     
     if (isNaN(coefficient)) {
         document.getElementById("resultat").innerText = 'Merci de rentrer un entier'
@@ -44,13 +46,9 @@ function compute2() {
     
    /* selecteur  par bouton radio*/
     let quotite = 0
-    console.log(quotite)
+   
     quotite = Number(document.querySelector('input[name="quotite"]:checked').value);
-    //  quoti = document.getElementById('quotit').value;
-    //let nbArret = document.getElementById('nbArret').value
-    
-
-
+   
     //let quotite = Number(document.getElementById("quotite").value)
     if (isNaN(quotite)) {
         document.getElementById("traitBrut").innerText = 'Merci de rentrer un entier sans le pourcentage'
@@ -62,14 +60,11 @@ function compute2() {
         document.getElementById("traitBrut").innerText = 'Merci de rentrer une quotité comprise entre 50 et 100 sans le pourcentage'
         return
     }
-    console.log(quotite)
+   
     let salaireBrut = Number(document.getElementById("salaireBrut").value)
-    /*console.log(document.getElementById("salaireBrut").value)*/
     
-       let traiteBrut = (quoti/100)*salaireBrut
+       let traiteBrut = (quotite/100)*salaireBrut
     
-    //let traiteBrut = (quotite/100) * salaireBrut
-    //console.log(traiteBrut)
     
     /* Numéro ligne fiche de paie : 101000*/
     document.getElementById("traitBrut").innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`
@@ -94,7 +89,6 @@ function compute2() {
         
         document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div><div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div><div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div></span>`
         
-        //console.log (`Votre journee de carence vous coûte ${carence.toFixed(2)}`)
     }
     /*Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
