@@ -1,31 +1,51 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;400&family=Roboto+Mono&family=Tangerine:wght@400;700&display=swap');
 
+:root {
+    --boddy-bg-color : lightblue;
+    --button-bg-color : #DDCA7D;
+    --button-font-color :#DC493A;
+    --h1-bg-color : black;
+    --h1-font-color : white;
+    --h2-bg-color: black;
+    --h2-font-color :white;
+    
+}
+
 body {
-    background-color: lightblue;
+    background-color: var(--boddy-bg-color);
+    font-family: 'Roboto Mono', monospace, sans-serif;
 }
 
 h1{
     font-family: 'Roboto Mono', monospace, sans-serif;
     font-size : 50px;
     text-align : center;
-    background-color: black;
-    color: white;
+    background-color: var(--h1-bg-color);
+    color: var(--h1-font-color);
 }
-
+sub{
+    font-size: 12px;
+    color :rgb(226, 226, 5);
+}
 h2{
     font-family: 'Roboto Mono', monospace, sans-serif;
     font-size : 40px;
-    background-color: black;
+    background-color: var(--h2-bg-color);
     color: white;
+    width:60%;
+    text-align: end;
 }
-
+#recapi {
+    width: 100%;
+    text-align: center;
+}
 h3{
     font-family: 'Roboto Mono', monospace, sans-serif;
     font-size : 25px;
     text-decoration: underline dashed  black;
 }
-label {
+label, #resultat, #nbArret {
     font-family: 'Roboto Mono', monospace, sans-serif;
     font-size : 15px;
 }
@@ -40,13 +60,34 @@ label {
     font-size : 25px;
     font-weight: bolder;
 }
+button{
+    background-color: var(--button-bg-color) ;
+    color: var(--button-font-color);
+    padding : 15px 32 px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+   }
+   button:hover {
+       background-color: var(--button-font-color);
+       color: var(--button-bg-color);
+   }
 
-#recapPercu, #recapRetenu, .emote{
+#recapPercu, #recapRetenu, .arrow{
     text-align : center;
-    width: 17%;
-    font-weight: bolder;
-    margin:auto;
-    
+    width: 100%;
+    font-weight: bolder;   
+}
+.img{
+    text-align: center;
+}
+.arrow {
+    height: 90px;
+    width: auto;
+    text-align: center;
 }
 #recapPercu, #recapRetenu{
     font-size: 30px;
@@ -56,4 +97,20 @@ label {
 }
 #recapRetenu{
     color: red;
+}
+#traitBrut2, #indeSalariale, #indFonct{
+    width: 40%;
+    text-align: end;
+}
+.explicationCarence{
+    text-indent: 20px;
+    font-style: italic;
+    color: blue;
+    
+}
+.explicationCarence1{
+    text-indent: 42px;
+    font-style: italic;
+    color: blue;
+    
 }

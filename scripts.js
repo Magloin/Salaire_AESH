@@ -1,3 +1,11 @@
+//circulaire coefficient indemnite de residence
+// https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
+
+
+// Methode calcul SFT
+// https://www.fonction-publique.gouv.fr/files/files/Publications/Publications%20DGAFP/2022/guide_SFT.pdf
+
+
 // valeur des constantes
 const pointDIndice = 4.9227
 const ValPrimFonct = 1529
@@ -26,17 +34,24 @@ function compute() {
     }
     
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100
-    document.getElementById("resultat").innerText = `Votre Salaire Brut pour le coefficient ${coef} est de : ${salaireBrut} € en équivalent temps plein (ETP)`
+    document.getElementById("resultat").innerHTML = `Votre Salaire Brut pour le coefficient <span style='color:red;font-weight:bold'> ${coef} </span> est de :<span style='font-weight : bolder;'> ${salaireBrut} </span> € ETP`
     document.getElementById("salaireBrut").value = salaireBrut
 }
 
 /* Calcul*/
 
 function compute2() {
-    let quotite = Number(document.getElementById("quotite").value)
-
-    //var valeur = document.querySelector('input[name=choix]:checked').value;
     
+   /* selecteur  par bouton radio*/
+    let quotite = 0
+    console.log(quotite)
+    quotite = Number(document.querySelector('input[name="quotite"]:checked').value);
+    //  quoti = document.getElementById('quotit').value;
+    //let nbArret = document.getElementById('nbArret').value
+    
+
+
+    //let quotite = Number(document.getElementById("quotite").value)
     if (isNaN(quotite)) {
         document.getElementById("traitBrut").innerText = 'Merci de rentrer un entier sans le pourcentage'
         return
@@ -47,17 +62,21 @@ function compute2() {
         document.getElementById("traitBrut").innerText = 'Merci de rentrer une quotité comprise entre 50 et 100 sans le pourcentage'
         return
     }
-    
+    console.log(quotite)
     let salaireBrut = Number(document.getElementById("salaireBrut").value)
     /*console.log(document.getElementById("salaireBrut").value)*/
-    let traiteBrut = (quotite/100) * salaireBrut
+    
+       let traiteBrut = (quoti/100)*salaireBrut
+    
+    //let traiteBrut = (quotite/100) * salaireBrut
     //console.log(traiteBrut)
     
     /* Numéro ligne fiche de paie : 101000*/
-    document.getElementById("traitBrut").innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut <span style='color: red;font-weight : bold;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`
+    document.getElementById("traitBrut").innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`
     
     
     /* Indemnite de résidence*/
+    // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
     let indRes = traiteBrut *(1/100)
     
     /* Indemnité de fonction*/
@@ -65,15 +84,17 @@ function compute2() {
     
     
     // Jour de carence
-    // formule utilisé : Traitement brut /30
-    //let carence1 = document.getElementById('carence1').checked = true
+    // formule utilisée : (Traitement brut /30)
     let carence = 0
     if (document.getElementById('carence').checked){
         let nbArret = document.getElementById('nbArret').value
-        carence = (traiteBrut / 30) * nbArret
+        carence = (traitBrut / 30) * nbArret
         document.getElementById('resultCarence').hidden=false    
-        document.getElementById('resultCarence').innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} €`
-        console.log (`Votre journee de carence vous coûte ${carence.toFixed(2)}`)
+        document.getElementById('resultCarence').innerHTML = `<span id="nome" style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `
+        
+        document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div><div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div><div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div></span>`
+        
+        //console.log (`Votre journee de carence vous coûte ${carence.toFixed(2)}`)
     }
     /*Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
@@ -153,7 +174,7 @@ function compute2() {
     
     // Affichage des indemnités perçues
     
-    document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000</span> Traitement Brut <span style='color: red;font-weight : bold;'>${traiteBrut.toFixed(2)} €</span> `
+    document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;text-align:end;'>${traiteBrut.toFixed(2)} €</span> `
 
     /* Numéro ligne fiche de paie : 102000*/
     document.getElementById('indeSalariale').innerHTML = `<span style="font-weight:bold;">102000</span> Indemnite de résidence :</span> ${indRes.toFixed(2)} €`
@@ -176,19 +197,19 @@ function compute2() {
     document.getElementById('cotSalViePla').innerHTML = `<span style="font-weight:bold;">401112</span> Cotisation salariale viellesse plafonnée : ${cotSalViePla.toFixed(2)} €`
     
     /* Numero ligne fiche de paie : 401210 CSG non Déductible */
-    document.getElementById('csgNonDed').innerHTML = `<span style="font-weight:bold;">401210</span> C.S.G non déductible ${csgNonDed.toFixed(2)} €`
+    document.getElementById('csgNonDed').innerHTML = `<span style="font-weight:bold;">401210</span> C.S.G non déductible : ${csgNonDed.toFixed(2)} €`
     
     /* Numéro de ligne fiche de paie :  401310 CSG déductible */
-    document.getElementById('csgDed').innerHTML = `<span style="font-weight:bold;">401210</span> C.S.G déductible ${csgDed.toFixed(2)} €`
+    document.getElementById('csgDed').innerHTML = `<span style="font-weight:bold;">401210</span> C.S.G déductible : ${csgDed.toFixed(2)} €`
     
     /* Numéro de ligne fiche de paie :  401510 CRDS */
-    document.getElementById('crds').innerHTML = `<span style="font-weight:bold;">401510</span> C.S.G non déductible ${crds.toFixed(2)} €`
+    document.getElementById('crds').innerHTML = `<span style="font-weight:bold;">401510</span> C.S.G non déductible : ${crds.toFixed(2)} €`
 
     // numéro de ligne  fiche de paie  : 402112 Cot Sal Vieillesse Déplafonné
-    document.getElementById('cotSalVieiDepla').innerHTML =`<span style="font-weight:bold;">402212</span> cot SAL Viellesse Deplaf ${cotSalVieiDepla.toFixed(2)} €`
+    document.getElementById('cotSalVieiDepla').innerHTML =`<span style="font-weight:bold;">402212</span> cot SAL Viellesse Deplaf : ${cotSalVieiDepla.toFixed(2)} €`
     
     /* Numéro de ligne fiche de paie : 501010 Cotisation salariale IRCANTEX tranche A */
-    document.getElementById('cotSalIrcantrA').innerHTML = `<span style="font-weight:bold;">501010</span> Cot Sal IRCANTEC TR.A ${cotSalIrcanTrA.toFixed(2)} €`
+    document.getElementById('cotSalIrcantrA').innerHTML = `<span style="font-weight:bold;">501010</span> Cot Sal IRCANTEC TR.A : ${cotSalIrcanTrA.toFixed(2)} €`
     
     
     /* Calcul du total Percu Brut*/
@@ -242,7 +263,7 @@ function compute2() {
     // Calcul net à payer
     let NetAPayer = (totalPercu - totalRetenu)
     document.getElementById('NetAPayer').hidden=false
-    document.getElementById('NetAPayer').innerHTML = `<span style="font-weight:bold;">Net à Payer :</span> ${NetAPayer.toFixed(2)}`
+    document.getElementById('NetAPayer').innerHTML = `<span style="font-weight:bold;">Net à Payer :</span> ${NetAPayer.toFixed(2)} €`
 
     // récapitulatif (REvenue - Charges salariale)
     document.getElementById('recapi').hidden=false
@@ -251,7 +272,7 @@ function compute2() {
     
 
     document.getElementById('recapRetenu').innerHTML=`- Total Brut : ${totalRetenu.toFixed(2)} €`
-    document.getElementById('emote').hidden=false
+    document.getElementById('arrow').hidden=false
 
     
     /* Calcul jour de carence */
