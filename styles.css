@@ -45,6 +45,11 @@ h3{
     font-size : 25px;
     text-decoration: underline dashed  black;
 }
+h4{
+    font-family: 'Roboto Mono', monospace, sans-serif;
+    font-size : 15px;
+    text-decoration: underline black;
+}
 label, #resultat, #nbArret {
     font-family: 'Roboto Mono', monospace, sans-serif;
     font-size : 15px;
@@ -98,19 +103,15 @@ button{
 #recapRetenu{
     color: red;
 }
-#traitBrut2, #indeSalariale, #indFonct, #primRep{
-    width: 40%;
+#traitBrut2, #indeSalariale, #indFonct, #primRep, #showPsc, .retenueSal, .chargesPat,#indFonctCar {
+    width: 50%;
     text-align: end;
 }
-.explicationCarence{
-    text-indent: 20px;
+
+.explicationCarence1,.explicationCarence{
     font-style: italic;
     color: blue;
-    
-}
-.explicationCarence1{
-    text-indent: 42px;
-    font-style: italic;
-    color: blue;
-    
+    font-size: 12px;
+    width:45%;
+    text-align: end;
 }

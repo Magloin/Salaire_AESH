@@ -95,15 +95,14 @@
     <h3>
         Etes-vous en établissment REP ?
     </h3>
-    
     <input type="radio" id="rep" name="rep" value="true" onclick="toggleRepRepPlus(false)"/> 
-    <label for="oui">OUI</label>
+    <label for="oui">Oui</label>
     <input type="radio" id="rep+" name="rep" value="false" checked onclick="toggleRepRepPlus(true) "/>
-    <label for="non" >NON</label>
+    <label for="non" >Non</label>
     <div id="toggleRepRepPlus" hidden>
-        <h3>
+        <h4>
             En REP + ?
-        </h3>
+        </h4>
         <label for="REP+">Oui en REP+</label>
         <input type="radio" id="reep+" name="rep+" value="true"/>
         <br>
@@ -111,48 +110,74 @@
         <input type="radio" id="rep" name="rep+" value="false">
         <br> <br>
     </div>
-    <br>
+
+    <!-- Section demande PSC-->
+
+    <h3 id="PSC"> 
+        Avez vous une demande de remboursement <br/>  de Protection Social Complémentaire ?
+    </h3>
+    <input type="radio" name="psc" id="psc" value="true"/> <label for="psc">Oui </label>
+    <input type="radio" name="psc" id="" value="false" checked> <label for="psc">Non</label>
+
+    
     <br><button type="button" onclick="compute2()">Calculer</button> 
     
+
     
+
+
+
+
+
+    <!-- Section SFT-->
+
+
+
+
     <!-- Affichage du traitement-->
     <div id="traitBrut"> </div>
     
     <h2>Montants des indemnites Perçues :</h2>
     <div id="traitBrut2"> </div>
     <div id="indeSalariale"></div>
+    <div id="showPsc"></div>
     <div id="indFonct"></div>
+    
     <div id="primRep"></div>
+    
     <h3>
         <div id="totalPer"></div>
     </h3>
-    
-    <h2>Montants retenues salariales :</h2>
-    <div id="resultCarence"></div>
-    <div id="explicationCarence"></div>
-    <div id="cotSalViePla"></div>
-    <div id="csgNonDed"></div>
-    <div id="csgDed"></div>
-    <div id="crds"></div>
-    <div id="cotSalVieiDepla"></div>
-    <div id="cotSalIrcantrA"></div>
-    
+   
+    <div>
+        <h2>Montants retenues salariales :</h2>
+        <div id="resultCarence" class="retenueSal"></div>
+        <div id="explicationCarence" class=""></div>
+        <div id="indFonctCar"></div>
+        <div id="indFonctCarExp"></div>
+        <div id="cotSalViePla" class="retenueSal"></div>
+        <div id="csgNonDed" class="retenueSal"></div>
+        <div id="csgDed" class="retenueSal"></div>
+        <div id="crds"class="retenueSal"></div>
+        <div id="cotSalVieiDepla" class="retenueSal"></div>
+        <div id="cotSalIrcantrA" class="retenueSal"></div>
+    </div>
     <h3>
         <div id="totalRetenu"></div>
     </h3>
     
     <h2>Montant charges patronales : </h2>
-    <div id="cotPatAlloFam"></div>
-    <div id="cotPatAfMaj"></div>
-    <div id="cotPatAccTra"></div>
-    <div id="cotPatFnalDepl"></div>
-    <div id="cotPatVieiPlaf"></div>
-    <div id="cotPatVieilDepl"></div>
-    <div id="contSolAuto"></div>
-    <div id="cotPatMalDepla"></div>
-    <div id="cotPatMalMaj"></div>
-    <div id="cotPatIrcTraA"></div>
-    <div id="cotPatVstMob"></div>
+    <div id="cotPatAlloFam" class="chargesPat"></div>
+    <div id="cotPatAfMaj" class="chargesPat"></div>
+    <div id="cotPatAccTra" class="chargesPat"></div>
+    <div id="cotPatFnalDepl" class="chargesPat"></div>
+    <div id="cotPatVieiPlaf" class="chargesPat"></div>
+    <div id="cotPatVieilDepl" class="chargesPat"></div>
+    <div id="contSolAuto" class="chargesPat"></div>
+    <div id="cotPatMalDepla" class="chargesPat"></div>
+    <div id="cotPatMalMaj" class="chargesPat"></div>
+    <div id="cotPatIrcTraA" class="chargesPat"></div>
+    <div id="cotPatVstMob" class="chargesPat"></div>
     
     <h3>
         <div id="totalCharPatr"></div>

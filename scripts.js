@@ -1,3 +1,7 @@
+//Catalogue des établissements
+// https://data.education.gouv.fr/explore/dataset/fr-en-etablissements-ep/table/?disjunctive.ep_2022_2023&disjunctive.type_etablissement&disjunctive.libelle_academie&disjunctive.libelle_departement&disjunctive.nom_commune&disjunctive.libelle_region&disjunctive.uai_tete_de_reseau&disjunctive.qp_a_proximite_o_n&refine.ep_2022_2023=REP%2B
+
+
 //circulaire coefficient indemnite de residence
 // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
 
@@ -23,6 +27,7 @@ const ValPrimFonct = 1529
 let montantPrimRep = 0
 let primeRep =0
 let totalPercu = 0
+let indFonctCar =0
 
 function toggleArretSection(hide){
     document.getElementById('nbArretSection').hidden = hide
@@ -104,12 +109,12 @@ function compute2() {
         if(document.getElementById('reep+').checked){
             montantPrimRep = 3263 //montant REP+
             primeRep = (montantPrimRep * (quotite/100))/12
-            console.log(primeRep)
+            //console.log(primeRep)
             document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
         } else {
             montantPrimRep = 1106 //montant prime REP
             primeRep = (montantPrimRep * (quotite/100))/12
-            console.log(primeRep)
+            //console.log(primeRep)
             document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
         }
     }
@@ -120,15 +125,26 @@ function compute2() {
     if (document.getElementById('carence').checked){
         let nbArret = document.getElementById('nbArret').value
         carence = (traiteBrut / 30) * nbArret
+        indFonctCar = (indFonct/30) *nbArret
+        console.log(indFonct,indFonctCar)
         document.getElementById('resultCarence').hidden=false    
-        document.getElementById('resultCarence').innerHTML = `<span id="nome" style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `
-        document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div><div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div><div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div></span>`
+        document.getElementById('resultCarence').innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `
+        document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`
+        // Calcul retenue jour de carence sur indemnite de fonction
+        // indFonct
+        document.getElementById('indFonctCar').innerHTML= `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`
+        document.getElementById('indFonctCarExp').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct/30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`
     }
-
+    // affichage de la PSC
+    let psc = 15
+    if(document.getElementById('psc').checked){
+        console.log("case validé")
+        document.getElementById('showPsc').innerHTML=`<span  style="font-weight:bold;">202354</span> Participation à la PSC : ${psc.toFixed(2)} €`
+    }
     /*Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
     
-    totalPercu = traiteBrut + indRes + indFonct + primeRep
+    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc
     let cotSalViePla = (totalPercu)*(6.9/100)
     
     /* Calcul CSG non déductible*/
@@ -204,13 +220,13 @@ function compute2() {
     
     // Affichage des indemnités perçues
     
-    document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;text-align:end;'>${traiteBrut.toFixed(2)} €</span> `
+    document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Traitement Brut : <span style='color: red;text-align:end;'>${traiteBrut.toFixed(2)} €</span> `
 
     /* Numéro ligne fiche de paie : 102000*/
-    document.getElementById('indeSalariale').innerHTML = `<span style="font-weight:bold;">102000</span> Indemnite de résidence :</span> ${indRes.toFixed(2)} €`
+    document.getElementById('indeSalariale').innerHTML = `<span style="font-weight:bold;">102000</span> Indemnite de résidence :&nbsp;&nbsp; ${indRes.toFixed(2)} €`
  
     /* Numéro ligne fiche de paie : 202477*/
-    document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction : ${indFonct.toFixed(2)} €`
+    document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;</span> Indemnité de fonction :&nbsp;&nbsp; ${indFonct.toFixed(2)} €`
 
     // Nuléro de ligne fiche de paie : PRIMREP
     //document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
@@ -249,7 +265,7 @@ function compute2() {
      document.getElementById("totalPer").innerHTML = `Total Brut Perçu : ${totalPercu.toFixed(2)} €`
     
     /*Calcul du charge Salariale*/
-    let totalRetenu = cotSalViePla + csgNonDed + csgDed + crds + cotSalIrcanTrA + cotSalVieiDepla + carence
+    let totalRetenu = cotSalViePla + csgNonDed + csgDed + crds + cotSalIrcanTrA + cotSalVieiDepla + carence + indFonctCar
     let pourcentageSal = (totalRetenu / totalPercu) * 100
     document.getElementById("totalRetenu").innerHTML = `<span style="font-weight:bold;">Total retenue Salariale :</span> ${totalRetenu.toFixed(2)} € soit ${pourcentageSal.toFixed(2)} %`
     
