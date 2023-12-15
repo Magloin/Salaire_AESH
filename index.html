@@ -96,19 +96,19 @@
         Etes-vous en établissment REP ?
     </h3>
     
-    <input type="radio" id="rep" name="rep" value="true"/> 
+    <input type="radio" id="rep" name="rep" value="true" onclick="toggleRepRepPlus(false)"/> 
     <label for="oui">OUI</label>
-    <input type="radio" id="rep" name="rep" value="false" checked/>
+    <input type="radio" id="rep+" name="rep" value="false" checked onclick="toggleRepRepPlus(true) "/>
     <label for="non" >NON</label>
-    <div id="toggleRepRep+" hidden>
+    <div id="toggleRepRepPlus" hidden>
         <h3>
             En REP + ?
         </h3>
         <label for="REP+">Oui en REP+</label>
-        <input type="radio" id="rep+" name="rep+" value="true"/>
+        <input type="radio" id="reep+" name="rep+" value="true"/>
         <br>
-        <label for="rep+">Non en REP</label>
-        <input type="radio" id="rep+" name="rep+" value="false">
+        <label for="rep">Non en REP</label>
+        <input type="radio" id="rep" name="rep+" value="false">
         <br> <br>
     </div>
     <br>
@@ -127,7 +127,6 @@
         <div id="totalPer"></div>
     </h3>
     
-    
     <h2>Montants retenues salariales :</h2>
     <div id="resultCarence"></div>
     <div id="explicationCarence"></div>
@@ -141,7 +140,6 @@
     <h3>
         <div id="totalRetenu"></div>
     </h3>
-    
     
     <h2>Montant charges patronales : </h2>
     <div id="cotPatAlloFam"></div>

@@ -98,7 +98,7 @@ button{
 #recapRetenu{
     color: red;
 }
-#traitBrut2, #indeSalariale, #indFonct{
+#traitBrut2, #indeSalariale, #indFonct, #primRep{
     width: 40%;
     text-align: end;
 }

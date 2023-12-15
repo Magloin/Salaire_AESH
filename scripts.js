@@ -6,14 +6,30 @@
 // https://www.fonction-publique.gouv.fr/files/files/Publications/Publications%20DGAFP/2022/guide_SFT.pdf
 
 
+// taux prime REP  et REP+ pour 2023
+// texte reglementtaire :  https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046711260
+// texte reglementaire initiale : https://www.legifrance.gouv.fr/loda/id/JORFTEXT000031113279
+// texte reglementaire avec montant part fixe et part varialble : https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046711303
+// Liste des etablissements classés REP : https://cache.media.education.gouv.fr/file/6/58/8/ensel0057_annexe_listeREP_388588.pdf
+//pour mémoire : En REP 1106 euros bruts annuels pour un temps plein 
+//pour mémoire : En REP+ 3263 euros bruts annuels pour un temps plein
+
+
+
+
 // valeur des constantes
 const pointDIndice = 4.9227
 const ValPrimFonct = 1529
-let primRep = 0
+let montantPrimRep = 0
+let primeRep =0
 let totalPercu = 0
 
 function toggleArretSection(hide){
     document.getElementById('nbArretSection').hidden = hide
+}
+
+function toggleRepRepPlus(hide){
+    document.getElementById('toggleRepRepPlus').hidden = hide
 }
 
 /* Calcul du salaire brut en fonction du coefficient*/
@@ -38,6 +54,7 @@ function compute() {
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100
     document.getElementById("resultat").innerHTML = `Votre Salaire Brut pour le coefficient <span style='color:red;font-weight:bold'> ${coef} </span> est de :<span style='font-weight : bolder;'> ${salaireBrut} </span> € ETP`
     document.getElementById("salaireBrut").value = salaireBrut
+
 }
 
 /* Calcul*/
@@ -49,7 +66,7 @@ function compute2() {
    
     quotite = Number(document.querySelector('input[name="quotite"]:checked').value);
    
-    //let quotite = Number(document.getElementById("quotite").value)
+
     if (isNaN(quotite)) {
         document.getElementById("traitBrut").innerText = 'Merci de rentrer un entier sans le pourcentage'
         return
@@ -63,7 +80,7 @@ function compute2() {
    
     let salaireBrut = Number(document.getElementById("salaireBrut").value)
     
-       let traiteBrut = (quotite/100)*salaireBrut
+    let traiteBrut = (quotite/100)*salaireBrut
     
     
     /* Numéro ligne fiche de paie : 101000*/
@@ -75,24 +92,43 @@ function compute2() {
     let indRes = traiteBrut *(1/100)
     
     /* Indemnité de fonction*/
+    // texte mise en place : https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047826432
+    // texte reglementaire : https://www.legifrance.gouv.fr/loda/id/LEGIARTI000047843858/#LEGIARTI000047843858
     let indFonct = (ValPrimFonct*(quotite/100))/12
     
-    
+    // Calcul de la prime REP ou REP+
+    //document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;">PRIM-REP</span> Prime REP : ${primRep.toFixed(2)} €`
+
+    if(document.getElementById('rep').checked){
+        document.getElementById('toggleRepRepPlus').hidden=false
+        if(document.getElementById('reep+').checked){
+            montantPrimRep = 3263 //montant REP+
+            primeRep = (montantPrimRep * (quotite/100))/12
+            console.log(primeRep)
+            document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
+        } else {
+            montantPrimRep = 1106 //montant prime REP
+            primeRep = (montantPrimRep * (quotite/100))/12
+            console.log(primeRep)
+            document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
+        }
+    }
+
     // Jour de carence
     // formule utilisée : (Traitement brut /30)
     let carence = 0
     if (document.getElementById('carence').checked){
         let nbArret = document.getElementById('nbArret').value
-        carence = (traitBrut / 30) * nbArret
+        carence = (traiteBrut / 30) * nbArret
         document.getElementById('resultCarence').hidden=false    
         document.getElementById('resultCarence').innerHTML = `<span id="nome" style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `
-        
         document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div><div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div><div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div></span>`
-        
     }
+
     /*Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
-    totalPercu = traiteBrut + indRes + indFonct + primRep
+    
+    totalPercu = traiteBrut + indRes + indFonct + primeRep
     let cotSalViePla = (totalPercu)*(6.9/100)
     
     /* Calcul CSG non déductible*/
@@ -175,6 +211,9 @@ function compute2() {
  
     /* Numéro ligne fiche de paie : 202477*/
     document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction : ${indFonct.toFixed(2)} €`
+
+    // Nuléro de ligne fiche de paie : PRIMREP
+    //document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>PRIM-REP</span> Prime REP (part fixe) : ${primeRep.toFixed(2)} €`
     
     //Affichage des Charges
     /* Charges Salariales*/
