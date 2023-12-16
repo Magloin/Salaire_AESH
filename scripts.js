@@ -62,9 +62,15 @@ function compute() {
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100
     document.getElementById("resultat").innerHTML = `Votre Salaire Brut pour le coefficient 
     <span style='font-weight:bolder'> ${coef} </span> est de :
-    <span style='font-weight : bolder;color:rgb(0,128,0);'> ${salaireBrut} €</span> ETP`
+    <span style='font-weight : bolder;color:rgb(0,128,0);'>  
+    ${salaireBrut.toLocaleString('fr-FR',{
+        style:'currency', currency:'EUR'
+    })} </span> ETP`
     document.getElementById("salaireBrut").value = salaireBrut
 
+
+   
+  
 }
 
 /* Calcul*/
@@ -156,6 +162,9 @@ function compute2() {
     Formule utilisée : ((∑ des revenus)* 6.90% */
     
     totalPercu = traiteBrut + indRes + indFonct + primeRep + psc
+    const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR',{
+        style:'currency', currency:'EUR'
+    })}`)
     let cotSalViePla = (totalPercu)*(6.9/100)
     
     /* Calcul CSG non déductible*/
@@ -228,23 +237,27 @@ function compute2() {
     let cotPatVstMob = totalPercu * (2/100)
 
     
-    
     // Affichage des indemnités perçues
-    
+    document.getElementById('h2title').hidden=false
     document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> Traitement Brut : &nbsp;
     <span style='color: rgb(0,128,0);font-weight:bolder;'>${traiteBrut.toFixed(2)} €</span> `
 
-    /* Numéro ligne fiche de paie : 102000*/
+    /* Indemnite de résidence -> Numéro ligne fiche de paie : 102000*/
     document.getElementById('indeSalariale').innerHTML = `<span style="font-weight:bold;">102000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> Indemnité de résidence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indRes.toFixed(2)} €</span>`
  
-    /* Numéro ligne fiche de paie : 202477*/
-    document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+    /*  Indemnite de Fonction -> Numéro ligne fiche de paie : 202477*/
+    if (indFonct>=100){
+        document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+    </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`
+    } else {
+        document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
     </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`
-
+    }
     
     //Affichage des Charges
     /* Charges Salariales*/
@@ -258,31 +271,48 @@ function compute2() {
     // equivaut à 1/30 retenue sur la prime REP+
 
     /*Numéro ligne fiche de paie : 401112 Cotisation salariale vieillesse plafonnée */
-    document.getElementById('cotSalViePla').innerHTML = `<span style="font-weight:bold;">401112</span> Cotisation salariale viellesse plafonnée :&nbsp;&nbsp; ${cotSalViePla.toFixed(2)} €`
+    document.getElementById('cotSalViePla').innerHTML = `<span style="font-weight:bold;">401112&nbsp;</span> 
+    Cotisation salariale viellesse plafonnée :&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalViePla.toFixed(2)} €</span>`
     
     /* Numero ligne fiche de paie : 401210 CSG non Déductible */
-    document.getElementById('csgNonDed').innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> C.S.G non déductible :&nbsp;&nbsp; ${csgNonDed.toFixed(2)} €`
+    document.getElementById('csgNonDed').innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> C.S.G non déductible :&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgNonDed.toFixed(2)} € </span>`
     
     /* Numéro de ligne fiche de paie :  401310 CSG déductible */
-    document.getElementById('csgDed').innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> C.S.G déductible :&nbsp;&nbsp; ${csgDed.toFixed(2)} €`
+    document.getElementById('csgDed').innerHTML = `<span style="font-weight:bold;">401310&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> C.S.G déductible :&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgDed.toFixed(2)} €</span>`
     
     /* Numéro de ligne fiche de paie :  401510 CRDS */
-    document.getElementById('crds').innerHTML = `<span style="font-weight:bold;">401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> C.R.D.S :&nbsp;&nbsp;&nbsp; ${crds.toFixed(2)} €`
+    document.getElementById('crds').innerHTML = `<span style="font-weight:bold;">401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> C.R.D.S :&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${crds.toFixed(2)} €</span>`
 
     // numéro de ligne  fiche de paie  : 402112 Cot Sal Vieillesse Déplafonné
-    document.getElementById('cotSalVieiDepla').innerHTML =`<span style="font-weight:bold;">402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> cot SAL Viellesse Deplaf :&nbsp;&nbsp;&nbsp; ${cotSalVieiDepla.toFixed(2)} €`
+    document.getElementById('cotSalVieiDepla').innerHTML =`<span style="font-weight:bold;">402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> cot SAL Viellesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalVieiDepla.toFixed(2)} € </span>`
     
     /* Numéro de ligne fiche de paie : 501010 Cotisation salariale IRCANTEX tranche A */
-    document.getElementById('cotSalIrcantrA').innerHTML = `<span style="font-weight:bold;">501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Cot Sal IRCANTEC TR.A :&nbsp;&nbsp; ${cotSalIrcanTrA.toFixed(2)} €`
+    document.getElementById('cotSalIrcantrA').innerHTML = `<span style="font-weight:bold;">501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Sal IRCANTEC TR.A :&nbsp;&nbsp; 
+    <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalIrcanTrA.toFixed(2)} €</span>`
     
     
     /* Calcul du total Percu Brut*/
-     document.getElementById("totalPer").innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'>${(totalPercu.toFixed(2))} €</span>`
-    
+     document.getElementById("totalPer").innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'> ${totalPercuFormate} </span>`
+    /*(`${salaireBrut.toLocaleString('fr-FR',{
+        style:'currency', currency:'EUR'
+    })}`)*/
     /*Calcul du charge Salariale*/
     let totalRetenu = cotSalViePla + csgNonDed + csgDed + crds + cotSalIrcanTrA + cotSalVieiDepla + carence + indFonctCar
+    const totalRetenuformate = (`${totalRetenu.toLocaleString('fr-FR',{
+        style:'currency', currency:'EUR'
+    })}`)
     let pourcentageSal = (totalRetenu / totalPercu) * 100
-    document.getElementById("totalRetenu").innerHTML = `<span style="font-weight:bold;">Total retenue Salariale :</span> ${totalRetenu.toFixed(2)} € soit ${pourcentageSal.toFixed(2)} %`
+    document.getElementById("totalRetenu").innerHTML = `<span style="font-weight:bold;">Total retenue Salariale : </span>(${pourcentageSal.toFixed(2)} %) <span style='color:red;'>${totalRetenuformate} </span>`
     
     // Affichage des Charges Patronales
 
@@ -332,10 +362,8 @@ function compute2() {
     // récapitulatif (REvenue - Charges salariale)
     document.getElementById('recapi').hidden=false
     
-    document.getElementById('recapPercu').innerHTML = `Total Brut :  ${totalPercu.toFixed(2)} €`
-    
-
-    document.getElementById('recapRetenu').innerHTML=`- Total Brut : ${totalRetenu.toFixed(2)} €`
+    document.getElementById('recapPercu').innerHTML = `Total Brut :<span style='color: rgb(0,128,0); font-weight:bolder;'>  ${totalPercuFormate}</span>`
+    document.getElementById('recapRetenu').innerHTML=`- Total retenu : ${totalRetenu.toFixed(2)} €&nbsp;&nbsp;&nbsp;&nbsp;`
     document.getElementById('arrow').hidden=false
 
     

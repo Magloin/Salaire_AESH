@@ -117,3 +117,7 @@ button{
     width:45%;
     text-align: end;
 }
+#totalPer, #totalRetenu{
+    text-align: end;
+    width: 60%;
+}
