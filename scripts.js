@@ -25,7 +25,6 @@
 
 
 
-
 // valeur des constantes
 const pointDIndice = 4.9227
 const ValPrimFonct = 1529
@@ -76,10 +75,11 @@ function compute() {
 /* Calcul*/
 
 function compute2() {
-    
+    //document.querySelectorAll('.h2title').hidden=false
+
+
    /* selecteur  par bouton radio*/
     let quotite = 0
-   
     quotite = Number(document.querySelector('input[name="quotite"]:checked').value);
    
 
@@ -141,7 +141,7 @@ function compute2() {
         let nbArret = document.getElementById('nbArret').value
         carence = (traiteBrut / 30) * nbArret
         indFonctCar = (indFonct/30) *nbArret
-        console.log(indFonct,indFonctCar)
+        
         document.getElementById('resultCarence').hidden=false    
         document.getElementById('resultCarence').innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `
         document.getElementById('explicationCarence').innerHTML =`<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut/30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`
@@ -150,10 +150,31 @@ function compute2() {
         document.getElementById('indFonctCar').innerHTML= `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`
         document.getElementById('indFonctCarExp').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct/30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`
     }
+    /*
+        Si prime REP = Oui et arrêt maladie = oui
+            alors
+        Prime REP = (PrimeRep/30)* nbArret 
+        if(document.getElementById('reep+').checked){
+            montantPrimRep = 3263 //montant REP+
+            primeRep = (((montantPrimRep * (quotite/100))/12)/30)* nbArret
+            console.log(`la retenue rep+ est ${primeRep} €`)
+           /* document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
+            </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`
+        } else {
+            montantPrimRep = 1106 //montant prime REP
+            primeRep = (((montantPrimRep * (quotite/100))/12)/30)* nbArret
+            console.log(`la retenue rep est ${primeRep} €`)
+         /*   document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
+            </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
+            <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>` 
+        } */
+    
+    
     // affichage de la PSC
     let psc = 15
     if(document.getElementById('psc').checked){
-        console.log("case validé")
+       // console.log("case validé")
         document.getElementById('showPsc').innerHTML=`<span  style="font-weight:bold;">202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`
@@ -238,7 +259,7 @@ function compute2() {
 
     
     // Affichage des indemnités perçues
-    document.getElementById('h2title').hidden=false
+
     document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> Traitement Brut : &nbsp;
     <span style='color: rgb(0,128,0);font-weight:bolder;'>${traiteBrut.toFixed(2)} €</span> `
@@ -261,7 +282,7 @@ function compute2() {
     
     //Affichage des Charges
     /* Charges Salariales*/
-    
+
     // Numero de ligne de paie : 016052 Total Absence Carence
     // équivaut à 1/30 retenu sur le traitement but
     
@@ -357,7 +378,7 @@ function compute2() {
     // Calcul net à payer
     let NetAPayer = (totalPercu - totalRetenu)
     document.getElementById('NetAPayer').hidden=false
-    document.getElementById('NetAPayer').innerHTML = `<span style="font-weight:bold;">Net à Payer :</span> ${NetAPayer.toFixed(2)} €`
+    document.getElementById('NetAPayer').innerHTML = `<span style="font-weight:bold;">Net à Payer :</span><br/> ${NetAPayer.toFixed(2)} €`
 
     // récapitulatif (REvenue - Charges salariale)
     document.getElementById('recapi').hidden=false
@@ -368,8 +389,6 @@ function compute2() {
 
     
     /* Calcul jour de carence */
-    /* équivaut à 1/30 retenu sur le traitement but */
-    /* équivaut à 1/30 retenu sur l'indemnité de fonction */
     /* equivaut à 1/30 retenue sur la prime REP*/
     /** equivaut à 1/30 retenue sur la prime REP+ **/
     

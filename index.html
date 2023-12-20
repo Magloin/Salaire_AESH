@@ -93,7 +93,7 @@
     <!-- Section indemnitee REP ou REP+-->
     
     <h3>
-        Etes-vous en établissment REP ?
+        Etes-vous en établissement REP ?
     </h3>
     <input type="radio" id="rep" name="rep" value="true" onclick="toggleRepRepPlus(false)"/> 
     <label for="oui">Oui</label>
@@ -104,10 +104,10 @@
             En REP + ?
         </h4>
         <label for="REP+">Oui en REP+</label>
-        <input type="radio" id="reep+" name="rep+" value="true"/>
+        <input type="radio" id="reep+" name="rep+"/>
         <br>
         <label for="rep">Non en REP</label>
-        <input type="radio" id="rep" name="rep+" value="false">
+        <input type="radio" id="rep" name="rep+" >
         <br> <br>
     </div>
 
@@ -137,11 +137,14 @@
     <!-- Affichage du traitement-->
     <div id="traitBrut"> </div>
     
-    <h2 id="h2title" hidden>Montants des indemnites Perçues :</h2>
+    <h2 class="h2title">Montants des indemnites Perçues :</h2>
     <div id="traitBrut2"> </div>
+    <div id="explicationCarence"></div>
+    
     <div id="indeSalariale"></div>
     <div id="showPsc"></div>
     <div id="indFonct"></div>
+    <div id="indFonctCarExp"></div>
     <div id="primRep"></div>
     
     <h3>
@@ -149,7 +152,7 @@
     </h3>
    
     <div>
-        <h2 id="h2title" hidden>Montants retenues salariales :</h2>
+        <h2 class="h2title">Montants retenues salariales :</h2>
         <div id="resultCarence" class="retenueSal"></div>
         <div id="explicationCarence"></div>
         <div id="indFonctCar"></div>
@@ -165,7 +168,7 @@
         <div id="totalRetenu"></div>
     </h3>
     
-    <h2 id="h2title" hidden>Montant charges patronales : </h2>
+    <h2 class="h2title" >Montant charges patronales : </h2>
     <div id="cotPatAlloFam" class="chargesPat"></div>
     <div id="cotPatAfMaj" class="chargesPat"></div>
     <div id="cotPatAccTra" class="chargesPat"></div>
