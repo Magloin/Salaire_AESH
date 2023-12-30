@@ -3,10 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="./img/AESH_Magicien.png" />
+
+    <title>Simulateur Salaire AESH</title>
 </head>
 <body>
     <script src="scripts.js" defer></script>
+    <script src="dist/app.js" defer></script>
     <h1>Vérificateur de fiche de paie AESH</h1>
     <h2>Quel est votre salaire Brut ETP<sup>*</sup> ?<br><sub><sup>*</sup> Equivalent Temps Plein</sub></h2>
     
@@ -99,6 +103,7 @@
     <label for="oui">Oui</label>
     <input type="radio" id="rep+" name="rep" value="false" checked onclick="toggleRepRepPlus(true) "/>
     <label for="non" >Non</label>
+
     <div id="toggleRepRepPlus" hidden>
         <h4>
             En REP + ?
@@ -137,7 +142,7 @@
     <!-- Affichage du traitement-->
     <div id="traitBrut"> </div>
     
-    <h2 class="h2title">Montants des indemnites Perçues :</h2>
+    <h2 class="titleh2"hidden>Montants des indemnites Perçues :</h2>
     <div id="traitBrut2"> </div>
     <div id="explicationCarence"></div>
     
@@ -152,7 +157,7 @@
     </h3>
    
     <div>
-        <h2 class="h2title">Montants retenues salariales :</h2>
+        <h2 class="titleh2"hidden>Montants retenues salariales :</h2>
         <div id="resultCarence" class="retenueSal"></div>
         <div id="explicationCarence"></div>
         <div id="indFonctCar"></div>
@@ -168,7 +173,7 @@
         <div id="totalRetenu"></div>
     </h3>
     
-    <h2 class="h2title" >Montant charges patronales : </h2>
+    <h2 class="titleh2"hidden>Montant charges patronales : </h2>
     <div id="cotPatAlloFam" class="chargesPat"></div>
     <div id="cotPatAfMaj" class="chargesPat"></div>
     <div id="cotPatAccTra" class="chargesPat"></div>

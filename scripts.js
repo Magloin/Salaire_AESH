@@ -75,7 +75,7 @@ function compute() {
 /* Calcul*/
 
 function compute2() {
-    //document.querySelectorAll('.h2title').hidden=false
+    
 
 
    /* selecteur  par bouton radio*/
@@ -150,25 +150,26 @@ function compute2() {
         document.getElementById('indFonctCar').innerHTML= `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`
         document.getElementById('indFonctCarExp').innerHTML =`<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct/30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`
     }
-    /*
-        Si prime REP = Oui et arrêt maladie = oui
-            alors
-        Prime REP = (PrimeRep/30)* nbArret 
+    
+        //Si prime REP = Oui et arrêt maladie = oui
+            //alors
+        //Prime REP = (PrimeRep/30)* nbArret 
         if(document.getElementById('reep+').checked){
+            let nbArret =document.getElementById('nbArret').value
             montantPrimRep = 3263 //montant REP+
-            primeRep = (((montantPrimRep * (quotite/100))/12)/30)* nbArret
+            let primeRep = (((montantPrimRep * (quotite/100))/12)/30)* nbArret
             console.log(`la retenue rep+ est ${primeRep} €`)
-           /* document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
+            document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
             </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`
         } else {
             montantPrimRep = 1106 //montant prime REP
             primeRep = (((montantPrimRep * (quotite/100))/12)/30)* nbArret
             console.log(`la retenue rep est ${primeRep} €`)
-         /*   document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
+          document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
             </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
             <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>` 
-        } */
+        }
     
     
     // affichage de la PSC
@@ -257,8 +258,9 @@ function compute2() {
     //formule utilisée : (∑ des revenus) * 2%
     let cotPatVstMob = totalPercu * (2/100)
 
+   document.querySelectorAll("h2.titleh2").hidden=false
     
-    // Affichage des indemnités perçues
+   // Affichage des indemnités perçues
 
     document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> Traitement Brut : &nbsp;
@@ -338,42 +340,53 @@ function compute2() {
     // Affichage des Charges Patronales
 
     // Numéro de ligne fiche de paie : 403312 Cotisation Patronale Allocation Familliale
-    document.getElementById("cotPatAlloFam").innerHTML = `<span style ="font-weight:bold;">403312</span> Cot Patronn. Alloc Famil : ${cotPatAlloFam.toFixed(2)} € `
+    document.getElementById("cotPatAlloFam").innerHTML = `<span style ="font-weight:bold;">403312&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> 
+    Cot Patronn. Alloc Famil :&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatAlloFam.toFixed(2)}  €</span> `
     
     // Numéro de ligne fiche de paie : 403398 Cotisation Patronale AF Majoration
-    document.getElementById('cotPatAfMaj').innerHTML =`<span style="font-weight:bold;">403398</span> Cot Pat AF Majoration : ${cotPatAfMaj.toFixed(2)} €`
+    document.getElementById('cotPatAfMaj').innerHTML =`<span style="font-weight:bold;">403398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat AF Majoration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAfMaj.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403412 Cotisation Patronale AF Majoration
-    document.getElementById('cotPatAccTra').innerHTML = `<span style="font-weight:bold;">403412</span> Cot Pat Accident Travail : ${cotPatAccTra.toFixed(2)} €`
+    document.getElementById('cotPatAccTra').innerHTML = `<span style="font-weight:bold;">403412&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Accident Travail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAccTra.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403512 Cotisation Patronale FNAL deplafonnée
-    document.getElementById('cotPatFnalDepl').innerHTML = `<span style="font-weight:bold;">403512</span> Cot Pat FNAL DEPLAFONNEE : ${cotPatFnalDepl.toFixed(2)} €`
+    document.getElementById('cotPatFnalDepl').innerHTML = `<span style="font-weight:bold;">403512</span> Cot Pat FNAL Déplafonnée :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatFnalDepl.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403612 Cotisation Patronale Vieillesse Plafonnée
-    document.getElementById('cotPatVieiPlaf').innerHTML = `<span style="font-weight:bold;">403612</span> Cot Pat Vieillesse Plaf : ${cotPatVieiPlaf.toFixed(2)} €`
+    document.getElementById('cotPatVieiPlaf').innerHTML = `<span style="font-weight:bold;">403612&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Vieillesse Plaf :&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieiPlaf.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403712 Cotisation Patronale Vieillesse Déplafonnée
-    document.getElementById('cotPatVieilDepl').innerHTML = `<span style="font-weight:bold;">403712</span> Cot Pat Vieillesse Deplaf  : ${cotPatVieilDepl.toFixed(2)} € `
+    document.getElementById('cotPatVieilDepl').innerHTML = `<span style="font-weight:bold;">403712&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Vieillesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieilDepl.toFixed(2)} €</span> `
 
     // Numéro de ligne fiche de paie : 403812 Contribution Solidarité Autonomie
-    document.getElementById('contSolAuto').innerHTML = `<span style="font-weight:bold;">403812</span> Cont SOLIDARITE AUTONOMIE : ${contSolAuto.toFixed(2)} €`
+    document.getElementById('contSolAuto').innerHTML = `<span style="font-weight:bold;">403812&nbsp;
+    </span> Cont Solidarité Autonomie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${contSolAuto.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 404012 Cotisation Patronale Maladie Deplafonnée
-    document.getElementById('cotPatMalDepla').innerHTML = `<span style="font-weight:bold;">404012</span> Cot Pat MALADIE Deplaf : ${cotPatMalDepla.toFixed(2)} €`
+    document.getElementById('cotPatMalDepla').innerHTML = `<span style="font-weight:bold;">404012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalDepla.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 404098 Cotisation Patronale Mal Majoration
-    document.getElementById('cotPatMalMaj').innerHTML = `<span style="font-weight:bold;">404098</span> Cot Pat Maladie Deplaf : ${cotPatMalMaj.toFixed(2)} €`
+    document.getElementById('cotPatMalMaj').innerHTML = `<span style="font-weight:bold;">404098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalMaj.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 501110 Cotisation Patronale Ircantec Tranche A
-    document.getElementById('cotPatIrcTraA').innerHTML = `<span style="font-weight:bold;">501110</span> Cot Pat Ircantex TR.A : ${cotPatIrcTraA.toFixed(2)} €`
+    document.getElementById('cotPatIrcTraA').innerHTML = `<span style="font-weight:bold;">501110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Ircantex TR.A :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatIrcTraA.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 554500 Cotisation Patronale VST Mobilité
-    document.getElementById('cotPatVstMob').innerHTML = `<span style="font-weight:bold;">554500</span> Cot Pat VST Mobilité :${cotPatVstMob.toFixed(2)} € `
+    document.getElementById('cotPatVstMob').innerHTML = `<span style="font-weight:bold;">554500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat VST Mobilité :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVstMob.toFixed(2)} €</span> `
 
     // Calcul Montant Total Charges Patronales
     let totalCharPatr = (cotPatAlloFam + cotPatAfMaj + cotPatAccTra + cotPatFnalDepl + cotPatVieiPlaf + cotPatVieilDepl + contSolAuto +cotPatMalDepla +cotPatMalMaj + cotPatIrcTraA + cotPatVstMob)
     let PourCharPart = (totalCharPatr /totalPercu) * 100
-    document.getElementById("totalCharPatr").innerHTML = `<span style="font-weight:bold;">Total charges Patronales  :</span> ${totalCharPatr.toFixed(2)} € soit ${PourCharPart.toFixed(2)} %`
+    document.getElementById("totalCharPatr").innerHTML = `<span style="font-weight:bold;">Total charges Patronales  :</span> (${PourCharPart.toFixed(2)} %) <span style="color:#c61ce8;">${totalCharPatr.toFixed(2)} € </span> `
 
     // Calcul net à payer
     let NetAPayer = (totalPercu - totalRetenu)
