@@ -70,7 +70,7 @@ function toggleArretSection({ hide }: { hide: any; }):void{
 }
 function toggleRepRepPlus({ hide }: { hide: any; }):void{
     const divToggleRepRepPlus =document.getElementById('toggleRepRepPlus') as HTMLInputElement
-    if (toggleRepRepPlus < 0 && divtoggleRepRepPlus!=null) {
+    if (toggleRepRepPlus < 0 && divToggleRepRepPlus!=null) {
     divToggleRepRepPlus.hidden = hide
     }
 }
@@ -105,7 +105,7 @@ function compute() {
     ${salaireBrut.toLocaleString('fr-FR',{
         style:'currency', currency:'EUR'
     })} </span> ETP`
-    divSalaireBrut.value = salaireBrut
+    salaireBrut = Number(salaireBrut.valueOf)
 
 
     }

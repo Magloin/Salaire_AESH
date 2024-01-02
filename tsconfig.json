@@ -3,7 +3,7 @@
         "outDir": "dist",
         "lib":["ES6","dom"],
         "target": "ES6",
-        "noEmitOnError": true,
+        "noEmitOnError": false,
         "strict": true
     },
     "files": [

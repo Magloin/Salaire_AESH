@@ -5,6 +5,7 @@ let montantPrimRep = 0;
 let primeRep = 0;
 let totalPercu = 0;
 let indFonctCar = 0;
+const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus');
 function toggleArretSection({ hide }) {
     let nbArretSection = 0;
     const divArretSection = document.getElementById('nbArretSection');
@@ -13,9 +14,9 @@ function toggleArretSection({ hide }) {
     }
 }
 function toggleRepRepPlus({ hide }) {
-    const divtoggleRepRepplus = document.getElementById('toggleRepRepPlus');
-    if (toggleRepRepPlus < 0 && divtoggleRepRepplus != null) {
-        divtoggleRepRepplus.hidden = hide;
+    const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus');
+    if (toggleRepRepPlus < 0 && divToggleRepRepPlus != null) {
+        divToggleRepRepPlus.hidden = hide;
     }
 }
 /* Calcul du salaire brut en fonction du coefficient*/
@@ -43,7 +44,7 @@ function compute() {
     ${salaireBrut.toLocaleString('fr-FR', {
             style: 'currency', currency: 'EUR'
         })} </span> ETP`;
-        divSalaireBrut.value = salaireBrut;
+        salaireBrut = Number(salaireBrut.valueOf);
     }
 }
 /* Calcul*/
@@ -75,13 +76,16 @@ function compute2() {
     let indFonct = (ValPrimFonct * (quotite / 100)) / 12;
     // Calcul de la prime REP ou REP+
     //document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;">PRIM-REP</span> Prime REP : ${primRep.toFixed(2)} €`
-    if (document.getElementById('rep').checked) {
-        document.getElementById('toggleRepRepPlus').hidden = false;
-        if (document.getElementById('reep+').checked) {
+    const divPrimRep = document.getElementById("primRep: number");
+    const divRep = document.getElementById('rep');
+    const divReep = document.getElementById('reep+');
+    if (divRep.checked) {
+        divToggleRepRepPlus.hidden = false;
+        if (divReep.checked) {
             montantPrimRep = 3263; //montant REP+
             primeRep = (montantPrimRep * (quotite / 100)) / 12;
             //console.log(primeRep)
-            document.getElementById('primRep').innerHTML = `<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
+            divPrimRep.innerHTML = `<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
              </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`;
         }
@@ -89,37 +93,42 @@ function compute2() {
             montantPrimRep = 1106; //montant prime REP
             primeRep = (montantPrimRep * (quotite / 100)) / 12;
             //console.log(primeRep)
-            const divPrimRep = document.getElementById("primRep: string");
+            //const divPrimRep = document.getElementById("primRep: string") as HTMLDivElement
             divPrimRep.innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
              </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`;
         }
     }
     // Jour de carence
-    // formule utilisée : (Traitement brut /30)
+    // formule utilisée : (Traitement brut /30)divNbArret
     let carence = 0;
-    if (document.getElementById('carence').checked) {
-        let nbArret = document.getElementById('nbArret').value;
+    const divCarence = document.getElementById('carence');
+    const divNbArret = document.getElementById('nbArret');
+    if (divCarence.checked) {
+        const divResultCarence = document.getElementById('resultCarence');
+        let nbArret = Number(divNbArret.value);
         carence = (traiteBrut / 30) * nbArret;
         indFonctCar = (indFonct / 30) * nbArret;
-        document.getElementById('resultCarence').hidden = false;
-        document.getElementById('resultCarence').innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `;
-        document.getElementById('explicationCarence').innerHTML = `<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`;
+        divResultCarence.hidden = false;
+        divResultCarence.innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `;
+        const divExplicationCarence = document.getElementById('explicationCarence');
+        divExplicationCarence.innerHTML = `<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`;
         // Calcul retenue jour de carence sur indemnite de fonction
         // indFonct
-        document.getElementById('indFonctCar').innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`;
-        document.getElementById('indFonctCarExp').innerHTML = `<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`;
+        const divIndFonctCar = document.getElementById('indFonctCar');
+        divIndFonctCar.innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`;
+        const divIndFonctCarExp = document.getElementById('indFonctCarExp');
+        divIndFonctCarExp.innerHTML = `<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`;
     }
     //Si prime REP = Oui et arrêt maladie = oui
     //alors
     //Prime REP = (PrimeRep/30)* nbArret 
-    const divNbArret = document.getElementById('nbArret');
-    let nbArret = divNbArret.value;
-    if (document.getElementById('reep+').checked) {
+    let nbArret = Number(divNbArret.value);
+    if (divReep.checked) {
         montantPrimRep = 3263; //montant REP+
         let primeRep = (((montantPrimRep * (quotite / 100)) / 12) / 30) * nbArret;
         console.log(`la retenue rep+ est ${primeRep} €`);
-        document.getElementById('primRep').innerHTML = `<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
+        divPrimRep.innerHTML = `<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
              </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`;
     }
@@ -127,7 +136,7 @@ function compute2() {
         montantPrimRep = 1106; //montant prime REP
         primeRep = (((montantPrimRep * (quotite / 100)) / 12) / 30) * nbArret;
         console.log(`la retenue rep est ${primeRep} €`);
-        document.getElementById('primRep').innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
+        divPrimRep.innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
              </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`;
     }
@@ -198,7 +207,8 @@ function compute2() {
     // calcul cotisation patronal VST mobilité
     //formule utilisée : (∑ des revenus) * 2%
     let cotPatVstMob = totalPercu * (2 / 100);
-    document.querySelectorAll("h2.titleh2").hidden = false;
+    const divH2Title = document.querySelectorAll("h2.titleh2");
+    divH2Title.hidden = false;
     // Affichage des indemnités perçues
     const divTraitBrut2 = document.getElementById("traitBrut2");
     divTraitBrut2.innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -239,23 +249,28 @@ function compute2() {
      </span> C.S.G non déductible :&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgNonDed.toFixed(2)} € </span>`;
     /* Numéro de ligne fiche de paie :  401310 CSG déductible */
-    document.getElementById('csgDed').innerHTML = `<span style="font-weight:bold;">401310&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCsgDed = document.getElementById('csgDed');
+    divCsgDed.innerHTML = `<span style="font-weight:bold;">401310&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> C.S.G déductible :&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgDed.toFixed(2)} €</span>`;
     /* Numéro de ligne fiche de paie :  401510 CRDS */
-    document.getElementById('crds').innerHTML = `<span style="font-weight:bold;">401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCrds = document.getElementById('crds');
+    divCrds.innerHTML = `<span style="font-weight:bold;">401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> C.R.D.S :&nbsp;&nbsp;&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${crds.toFixed(2)} €</span>`;
     // numéro de ligne  fiche de paie  : 402112 Cot Sal Vieillesse Déplafonné
-    document.getElementById('cotSalVieiDepla').innerHTML = `<span style="font-weight:bold;">402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotSalVieiDepla = document.getElementById('cotSalVieiDepla');
+    divCotSalVieiDepla.innerHTML = `<span style="font-weight:bold;">402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> cot SAL Viellesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalVieiDepla.toFixed(2)} € </span>`;
     /* Numéro de ligne fiche de paie : 501010 Cotisation salariale IRCANTEX tranche A */
-    document.getElementById('cotSalIrcantrA').innerHTML = `<span style="font-weight:bold;">501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotSalIrcantrA = document.getElementById('cotSalIrcantrA');
+    divCotSalIrcantrA.innerHTML = `<span style="font-weight:bold;">501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Sal IRCANTEC TR.A :&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalIrcanTrA.toFixed(2)} €</span>`;
     /* Calcul du total Percu Brut*/
-    document.getElementById("totalPer").innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'> ${totalPercuFormate} </span>`;
+    const divTotalPer = document.getElementById("totalPer");
+    divTotalPer.innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'> ${totalPercuFormate} </span>`;
     /*(`${salaireBrut.toLocaleString('fr-FR',{
         style:'currency', currency:'EUR'
     })}`)*/
@@ -265,54 +280,72 @@ function compute2() {
         style: 'currency', currency: 'EUR'
     })}`);
     let pourcentageSal = (totalRetenu / totalPercu) * 100;
-    document.getElementById("totalRetenu").innerHTML = `<span style="font-weight:bold;">Total retenue Salariale : </span>(${pourcentageSal.toFixed(2)} %) <span style='color:red;'>${totalRetenuformate} </span>`;
+    const divTotalRetenu = document.getElementById("totalRetenu");
+    divTotalRetenu.innerHTML = `<span style="font-weight:bold;">Total retenue Salariale : </span>(${pourcentageSal.toFixed(2)} %) <span style='color:red;'>${totalRetenuformate} </span>`;
     // Affichage des Charges Patronales
     // Numéro de ligne fiche de paie : 403312 Cotisation Patronale Allocation Familliale
-    document.getElementById("cotPatAlloFam").innerHTML = `<span style ="font-weight:bold;">403312&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatAlloFam = document.getElementById("cotPatAlloFam");
+    divCotPatAlloFam.innerHTML = `<span style ="font-weight:bold;">403312&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> 
      Cot Patronn. Alloc Famil :&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatAlloFam.toFixed(2)}  €</span> `;
     // Numéro de ligne fiche de paie : 403398 Cotisation Patronale AF Majoration
-    document.getElementById('cotPatAfMaj').innerHTML = `<span style="font-weight:bold;">403398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatAfMaj = document.getElementById('cotPatAfMaj');
+    divCotPatAfMaj.innerHTML = `<span style="font-weight:bold;">403398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat AF Majoration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAfMaj.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 403412 Cotisation Patronale AF Majoration
-    document.getElementById('cotPatAccTra').innerHTML = `<span style="font-weight:bold;">403412&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatAccTra = document.getElementById('cotPatAccTra');
+    divCotPatAccTra.innerHTML = `<span style="font-weight:bold;">403412&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Accident Travail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAccTra.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 403512 Cotisation Patronale FNAL deplafonnée
-    document.getElementById('cotPatFnalDepl').innerHTML = `<span style="font-weight:bold;">403512</span> Cot Pat FNAL Déplafonnée :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatFnalDepl.toFixed(2)} €</span>`;
+    const divCotPatFnalDepl = document.getElementById('cotPatFnalDepl');
+    divCotPatFnalDepl.innerHTML = `<span style="font-weight:bold;">403512</span> Cot Pat FNAL Déplafonnée :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatFnalDepl.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 403612 Cotisation Patronale Vieillesse Plafonnée
-    document.getElementById('cotPatVieiPlaf').innerHTML = `<span style="font-weight:bold;">403612&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPasVieiPlaf = document.getElementById('cotPatVieiPlaf');
+    divCotPasVieiPlaf.innerHTML = `<span style="font-weight:bold;">403612&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Vieillesse Plaf :&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieiPlaf.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 403712 Cotisation Patronale Vieillesse Déplafonnée
-    document.getElementById('cotPatVieilDepl').innerHTML = `<span style="font-weight:bold;">403712&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatVieilDepl = document.getElementById('cotPatVieilDepl');
+    divCotPatVieilDepl.innerHTML = `<span style="font-weight:bold;">403712&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Vieillesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieilDepl.toFixed(2)} €</span> `;
     // Numéro de ligne fiche de paie : 403812 Contribution Solidarité Autonomie
-    document.getElementById('contSolAuto').innerHTML = `<span style="font-weight:bold;">403812&nbsp;
+    const divContSolAuto = document.getElementById('contSolAuto');
+    divContSolAuto.innerHTML = `<span style="font-weight:bold;">403812&nbsp;
      </span> Cont Solidarité Autonomie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${contSolAuto.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 404012 Cotisation Patronale Maladie Deplafonnée
-    document.getElementById('cotPatMalDepla').innerHTML = `<span style="font-weight:bold;">404012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatMalDepla = document.getElementById('cotPatMalDepla');
+    divCotPatMalDepla.innerHTML = `<span style="font-weight:bold;">404012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalDepla.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 404098 Cotisation Patronale Mal Majoration
-    document.getElementById('cotPatMalMaj').innerHTML = `<span style="font-weight:bold;">404098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatMalMaj = document.getElementById('cotPatMalMaj');
+    divCotPatMalMaj.innerHTML = `<span style="font-weight:bold;">404098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalMaj.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 501110 Cotisation Patronale Ircantec Tranche A
-    document.getElementById('cotPatIrcTraA').innerHTML = `<span style="font-weight:bold;">501110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatIrcTraA = document.getElementById('cotPatIrcTraA');
+    divCotPatIrcTraA.innerHTML = `<span style="font-weight:bold;">501110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat Ircantex TR.A :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatIrcTraA.toFixed(2)} €</span>`;
     // Numéro de ligne fiche de paie : 554500 Cotisation Patronale VST Mobilité
-    document.getElementById('cotPatVstMob').innerHTML = `<span style="font-weight:bold;">554500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCotPatVstMob = document.getElementById('cotPatVstMob');
+    divCotPatVstMob.innerHTML = `<span style="font-weight:bold;">554500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Cot Pat VST Mobilité :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVstMob.toFixed(2)} €</span> `;
     // Calcul Montant Total Charges Patronales
     let totalCharPatr = (cotPatAlloFam + cotPatAfMaj + cotPatAccTra + cotPatFnalDepl + cotPatVieiPlaf + cotPatVieilDepl + contSolAuto + cotPatMalDepla + cotPatMalMaj + cotPatIrcTraA + cotPatVstMob);
     let PourCharPart = (totalCharPatr / totalPercu) * 100;
-    document.getElementById("totalCharPatr").innerHTML = `<span style="font-weight:bold;">Total charges Patronales  :</span> (${PourCharPart.toFixed(2)} %) <span style="color:#c61ce8;">${totalCharPatr.toFixed(2)} € </span> `;
+    const divTotalCharPatr = document.getElementById("totalCharPatr");
+    divTotalCharPatr.innerHTML = `<span style="font-weight:bold;">Total charges Patronales  :</span> (${PourCharPart.toFixed(2)} %) <span style="color:#c61ce8;">${totalCharPatr.toFixed(2)} € </span> `;
     // Calcul net à payer
     let NetAPayer = (totalPercu - totalRetenu);
-    document.getElementById('NetAPayer').hidden = false;
-    document.getElementById('NetAPayer').innerHTML = `<span style="font-weight:bold;">Net à Payer :</span><br/> ${NetAPayer.toFixed(2)} €`;
+    const divNetAPayer = document.getElementById('NetAPayer');
+    divNetAPayer.hidden = false;
+    divNetAPayer.innerHTML = `<span style="font-weight:bold;">Net à Payer :</span><br/> ${NetAPayer.toFixed(2)} €`;
     // récapitulatif (REvenue - Charges salariale)
-    document.getElementById('recapi').hidden = false;
-    document.getElementById('recapPercu').innerHTML = `Total Brut :<span style='color: rgb(0,128,0); font-weight:bolder;'>  ${totalPercuFormate}</span>`;
-    document.getElementById('recapRetenu').innerHTML = `- Total retenu : ${totalRetenu.toFixed(2)} €&nbsp;&nbsp;&nbsp;&nbsp;`;
-    document.getElementById('arrow').hidden = false;
+    const divRecapi = document.getElementById('recapi');
+    divRecapi.hidden = false;
+    const divRecapPercu = document.getElementById('recapPercu');
+    divRecapPercu.innerHTML = `Total Brut :<span style='color: rgb(0,128,0); font-weight:bolder;'>  ${totalPercuFormate}</span>`;
+    const divRecapRetenu = document.getElementById('recapRetenu');
+    divRecapRetenu.innerHTML = `- Total retenu : ${totalRetenu.toFixed(2)} €&nbsp;&nbsp;&nbsp;&nbsp;`;
+    const divArrow = document.getElementById('arrow');
+    divArrow.hidden = false;
     /* Calcul jour de carence */
     /* equivaut à 1/30 retenue sur la prime REP*/
     /** equivaut à 1/30 retenue sur la prime REP+ **/
