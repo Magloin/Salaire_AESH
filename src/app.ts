@@ -5,6 +5,30 @@ console.log('hello')
 // git push origin main
 
 
+// type script
+    //  initialisation 
+        //npm init -y -> creation d'un fichier package.json
+    // istallation type script
+        // npm install typescript --save-dev -> création fichier nodemodule
+
+    // creation du fichier App.ts
+
+    //taper la commande : npx tsc [nom du fichier] -> npx tsc app.ts => generation du fichier app.js (contenant le même code)
+    // charger le fichier app.js dans le fichier HTML => <script src="dist/app.js"></script>
+    // creer dossier dist
+    // creer dossier src avec le fichier App.ts à l'interieur -> npx tsc src/app.ts --outdir dist
+
+        // création dossier de configuration :
+            // creer dossier tsconfig.json
+            // {
+               // "compilerOptions":{
+                // "outdir":"dist"
+               //} ,
+               // "files": ["src/app.ts"]
+            //}
+
+            //-> pour lancer la compilation taper la commande  : npx tsc
+
 //Catalogue des établissements
 // https://data.education.gouv.fr/explore/dataset/fr-en-etablissements-ep/table/?disjunctive.ep_2022_2023&disjunctive.type_etablissement&disjunctive.libelle_academie&disjunctive.libelle_departement&disjunctive.nom_commune&disjunctive.libelle_region&disjunctive.uai_tete_de_reseau&disjunctive.qp_a_proximite_o_n&refine.ep_2022_2023=REP%2B
 
@@ -28,6 +52,7 @@ console.log('hello')
 
 
 // valeur des constantes
+export{}
 const pointDIndice:number = 4.9227
 const ValPrimFonct :number = 1529
 let montantPrimRep :number = 0
@@ -36,13 +61,17 @@ let totalPercu :number = 0
 let indFonctCar :number =0
 
 function toggleArretSection({ hide }: { hide: any; }):void{
-    let nbArretSection:number=0
-    if (nbArretSection<0) {
-    document.getElementById('nbArretSection').hidden = hide
+    let nbArretSection: number = 0
+    const divArretSection = document.getElementById('nbArretSection')
+    if (nbArretSection < 0 && divArretSection != null) {
+        divArretSection.hidden = hide
     }
 }
 function toggleRepRepPlus({ hide }: { hide: any; }):void{
-    document.getElementById('toggleRepRepPlus').hidden = hide
+    const divtoggleRepRepplus =document.getElementById('toggleRepRepPlus')
+    if (toggleRepRepPlus < 0 && divtoggleRepRepplus!=null) {
+    divtoggleRepRepplus.hidden = hide
+    }
 }
 /* Calcul du salaire brut en fonction du coefficient*/
 function compute() {
@@ -130,7 +159,7 @@ function compute2() {
              montantPrimRep = 1106 //montant prime REP
              primeRep = (montantPrimRep * (quotite/100))/12
              //console.log(primeRep)
-             document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
+             document.getElementById('primRep: string').innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
              </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`
          }
