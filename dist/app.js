@@ -21,42 +21,51 @@ function toggleRepRepPlus({ hide }) {
 /* Calcul du salaire brut en fonction du coefficient*/
 function compute() {
     let quotite = 0;
-    const coefficient = quotite = Number(document.querySelector('input[name="coef"]:checked').value);
+    const divCoef = document.querySelector('input[name="coef"]:checked');
+    const coefficient = quotite = Number(divCoef.value);
+    const divResultat = document.getElementById("resultat");
     if (isNaN(coefficient)) {
-        document.getElementById("resultat").innerText = 'Merci de rentrer un entier';
+        divResultat.innerText = 'Merci de rentrer un entier';
         return;
     }
     const coef = Math.trunc(Number(coefficient));
     if (coef < 100 || coef > 999) {
-        document.getElementById("resultat").innerText = 'Merci de rentrer un coef à 3 chiffre';
+        divResultat.innerText = 'Merci de rentrer un coef à 3 chiffre';
         return;
     }
+    let resultat = 0;
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100;
-    document.getElementById("resultat").innerHTML = `Votre Salaire Brut pour le coefficient 
+    const divSalaireBrut = document.getElementById("salaireBrut");
+    if (resultat < 0 && divResultat != null) {
+        divResultat.innerHTML = `Votre Salaire Brut pour le coefficient 
     <span style='font-weight:bolder'> ${coef} </span> est de :
     <span style='font-weight : bolder;color:rgb(0,128,0);'>  
     ${salaireBrut.toLocaleString('fr-FR', {
-        style: 'currency', currency: 'EUR'
-    })} </span> ETP`;
-    document.getElementById("salaireBrut").value = salaireBrut;
+            style: 'currency', currency: 'EUR'
+        })} </span> ETP`;
+        divSalaireBrut.value = salaireBrut;
+    }
 }
 /* Calcul*/
 function compute2() {
     /* selecteur  par bouton radio*/
     let quotite = 0;
-    quotite = Number(document.querySelector('input[name="quotite"]:checked').value);
+    const inputQuotite = document.querySelector('input[name="quotite"]:checked');
+    quotite = Number(inputQuotite.value);
+    let divTraitBrut = document.getElementById("traitBrut : string");
     if (isNaN(quotite)) {
-        document.getElementById("traitBrut").innerText = 'Merci de rentrer un entier sans le pourcentage';
+        divTraitBrut.innerText = 'Merci de rentrer un entier sans le pourcentage';
         return;
     }
     if (quotite < 50 || quotite > 100) {
-        document.getElementById("traitBrut").innerText = 'Merci de rentrer une quotité comprise entre 50 et 100 sans le pourcentage';
+        divTraitBrut.innerText = 'Merci de rentrer une quotité comprise entre 50 et 100 sans le pourcentage';
         return;
     }
-    let salaireBrut = Number(document.getElementById("salaireBrut").value);
+    const divSalaireBrut = document.getElementById('salaireBrut');
+    let salaireBrut = Number(divSalaireBrut.value);
     let traiteBrut = (quotite / 100) * salaireBrut;
     /* Numéro ligne fiche de paie : 101000*/
-    document.getElementById("traitBrut").innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`;
+    divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`;
     /* Indemnite de résidence*/
     // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
     let indRes = traiteBrut * (1 / 100);
@@ -80,7 +89,8 @@ function compute2() {
             montantPrimRep = 1106; //montant prime REP
             primeRep = (montantPrimRep * (quotite / 100)) / 12;
             //console.log(primeRep)
-            document.getElementById('primRep: string').innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
+            const divPrimRep = document.getElementById("primRep: string");
+            divPrimRep.innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
              </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
              <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`;
         }
@@ -103,8 +113,9 @@ function compute2() {
     //Si prime REP = Oui et arrêt maladie = oui
     //alors
     //Prime REP = (PrimeRep/30)* nbArret 
+    const divNbArret = document.getElementById('nbArret');
+    let nbArret = divNbArret.value;
     if (document.getElementById('reep+').checked) {
-        let nbArret = document.getElementById('nbArret').value;
         montantPrimRep = 3263; //montant REP+
         let primeRep = (((montantPrimRep * (quotite / 100)) / 12) / 30) * nbArret;
         console.log(`la retenue rep+ est ${primeRep} €`);
@@ -122,9 +133,11 @@ function compute2() {
     }
     // affichage de la PSC
     let psc = 15;
-    if (document.getElementById('psc').checked) {
+    const divPsc = document.getElementById('psc');
+    if (divPsc.checked) {
         // console.log("case validé")
-        document.getElementById('showPsc').innerHTML = `<span  style="font-weight:bold;">202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        const divShowPsc = document.getElementById('showPsc');
+        divShowPsc.innerHTML = `<span  style="font-weight:bold;">202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`;
     }
@@ -187,21 +200,24 @@ function compute2() {
     let cotPatVstMob = totalPercu * (2 / 100);
     document.querySelectorAll("h2.titleh2").hidden = false;
     // Affichage des indemnités perçues
-    document.getElementById("traitBrut2").innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divTraitBrut2 = document.getElementById("traitBrut2");
+    divTraitBrut2.innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Traitement Brut : &nbsp;
      <span style='color: rgb(0,128,0);font-weight:bolder;'>${traiteBrut.toFixed(2)} €</span> `;
     /* Indemnite de résidence -> Numéro ligne fiche de paie : 102000*/
-    document.getElementById('indeSalariale').innerHTML = `<span style="font-weight:bold;">102000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divIndeSalariale = document.getElementById('indeSalariale');
+    divIndeSalariale.innerHTML = `<span style="font-weight:bold;">102000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> Indemnité de résidence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indRes.toFixed(2)} €</span>`;
     /*  Indemnite de Fonction -> Numéro ligne fiche de paie : 202477*/
+    const divIndFonct = document.getElementById('indFonct');
     if (indFonct >= 100) {
-        document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
      </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`;
     }
     else {
-        document.getElementById('indFonct').innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
      </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`;
     }
@@ -213,11 +229,13 @@ function compute2() {
     // equivaut à 1/30 retenue sur la prime REP
     // equivaut à 1/30 retenue sur la prime REP+
     /*Numéro ligne fiche de paie : 401112 Cotisation salariale vieillesse plafonnée */
-    document.getElementById('cotSalViePla').innerHTML = `<span style="font-weight:bold;">401112&nbsp;</span> 
+    const divCotSalViePla = document.getElementById('cotSalViePla');
+    divCotSalViePla.innerHTML = `<span style="font-weight:bold;">401112&nbsp;</span> 
      Cotisation salariale viellesse plafonnée :&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalViePla.toFixed(2)} €</span>`;
     /* Numero ligne fiche de paie : 401210 CSG non Déductible */
-    document.getElementById('csgNonDed').innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    const divCsgNonDed = document.getElementById('csgNonDed');
+    divCsgNonDed.innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      </span> C.S.G non déductible :&nbsp;&nbsp; 
      <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgNonDed.toFixed(2)} € </span>`;
     /* Numéro de ligne fiche de paie :  401310 CSG déductible */
