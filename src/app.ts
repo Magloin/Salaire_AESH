@@ -28,22 +28,25 @@ console.log('hello')
 
 
 // valeur des constantes
-const pointDIndice :number = 4.9227
+const pointDIndice:number = 4.9227
 const ValPrimFonct :number = 1529
 let montantPrimRep :number = 0
 let primeRep :number =0
 let totalPercu :number = 0
 let indFonctCar :number =0
 
-function toggleArretSection(hide){
+function toggleArretSection({ hide }: { hide: any; }):void{
+    let nbArretSection:number=0
+    if (nbArretSection<0) {
     document.getElementById('nbArretSection').hidden = hide
+    }
 }
-function toggleRepRepPlus(hide){
+function toggleRepRepPlus({ hide }: { hide: any; }):void{
     document.getElementById('toggleRepRepPlus').hidden = hide
 }
 /* Calcul du salaire brut en fonction du coefficient*/
 function compute() {
-    
+    let quotite:number=0
     const coefficient :number = quotite = Number(document.querySelector('input[name="coef"]:checked').value);
 
     if (isNaN(coefficient)) {
