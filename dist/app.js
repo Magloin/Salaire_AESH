@@ -1,4 +1,4 @@
-console.log('hello');
+//console.log('hello');
 const pointDIndice = 4.9227;
 const ValPrimFonct = 1529;
 let montantPrimRep = 0;
@@ -54,6 +54,7 @@ function compute2() {
     const inputQuotite = document.querySelector('input[name="quotite"]:checked');
     quotite = Number(inputQuotite.value);
     let divTraitBrut = document.getElementById("traitBrut : string");
+    
     if (isNaN(quotite)) {
         divTraitBrut.innerText = 'Merci de rentrer un entier sans le pourcentage';
         return;
@@ -66,7 +67,8 @@ function compute2() {
     let salaireBrut = Number(divSalaireBrut.value);
     let traiteBrut = (quotite / 100) * salaireBrut;
     /* Numéro ligne fiche de paie : 101000*/
-    divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`;
+    divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : 
+    <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`;
     /* Indemnite de résidence*/
     // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
     let indRes = traiteBrut * (1 / 100);
@@ -111,12 +113,15 @@ function compute2() {
         indFonctCar = (indFonct / 30) * nbArret;
         divResultCarence.hidden = false;
         divResultCarence.innerHTML = `<span style="font-weight:bold;">016052</span> Total Absence Carence : ${carence.toFixed(2)} € `;
+        
         const divExplicationCarence = document.getElementById('explicationCarence');
         divExplicationCarence.innerHTML = `<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`;
         // Calcul retenue jour de carence sur indemnite de fonction
         // indFonct
+        
         const divIndFonctCar = document.getElementById('indFonctCar');
         divIndFonctCar.innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence : ${indFonctCar.toFixed(2)} €`;
+        
         const divIndFonctCarExp = document.getElementById('indFonctCarExp');
         divIndFonctCarExp.innerHTML = `<div class="explicationCarence1">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût retenue sur prime d'indemnite de fonction  : ${(indFonct / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur indemnité de fonction  : ${indFonctCar.toFixed(2)} €</div></span>`;
     }
@@ -361,4 +366,4 @@ function compute2() {
     /** equivaut à 1/30 retenue sur la prime REP+ **/
 }
 compute();
-export {};
+

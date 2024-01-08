@@ -1,4 +1,4 @@
-console.log('hello')
+// console.log('hello')
 
 // git add . 
 // git commit -m "third commit"
@@ -70,7 +70,7 @@ function toggleArretSection({ hide }: { hide: any; }):void{
 }
 function toggleRepRepPlus({ hide }: { hide: any; }):void{
     const divToggleRepRepPlus =document.getElementById('toggleRepRepPlus') as HTMLInputElement
-    if (toggleRepRepPlus < 0 && divToggleRepRepPlus!=null) {
+    if (toggleRepRepPlus && divToggleRepRepPlus!=null) {
     divToggleRepRepPlus.hidden = hide
     }
 }
@@ -140,7 +140,8 @@ function compute2() {
      
      
      /* Numéro ligne fiche de paie : 101000*/
-     divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €</span>  pour une quotité de ${quotite} %`
+     divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €
+     </span>  pour une quotité de ${quotite} %`
      
      
      /* Indemnite de résidence*/
@@ -154,7 +155,7 @@ function compute2() {
      
      // Calcul de la prime REP ou REP+
      //document.getElementById('primRep').innerHTML=`<span style='font-weight:bold;">PRIM-REP</span> Prime REP : ${primRep.toFixed(2)} €`
-     const divPrimRep = document.getElementById("primRep: number") as HTMLDivElement
+     const divPrimRep = document.getElementById('primRep') as HTMLInputElement
      const divRep = document.getElementById('rep') as HTMLInputElement
      const divReep = document.getElementById('reep+') as HTMLInputElement
      
@@ -163,7 +164,7 @@ function compute2() {
          if(divReep.checked){
              montantPrimRep = 3263 //montant REP+
              primeRep = (montantPrimRep * (quotite/100))/12
-             //console.log(primeRep)
+             console.log(primeRep)
             
              divPrimRep.innerHTML=`<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
              </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -171,7 +172,7 @@ function compute2() {
          } else {
              montantPrimRep = 1106 //montant prime REP
              primeRep = (montantPrimRep * (quotite/100))/12
-             //console.log(primeRep)
+             console.log(primeRep)
              //const divPrimRep = document.getElementById("primRep: string") as HTMLDivElement
              divPrimRep.innerHTML=`<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
              </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
@@ -242,30 +243,30 @@ function compute2() {
          </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`
      }
-     /*Cotisation salariale vieillesse plafonné : Taux : 6.9%
+     /*40112 Cotisation salariale vieillesse plafonné : Taux : 6.9%
      Formule utilisée : ((∑ des revenus)* 6.90% */
      
      totalPercu = traiteBrut + indRes + indFonct + primeRep + psc
-     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR',{
-         style:'currency', currency:'EUR'
-     })}`)
+     //const totalPercuFormate  = (`${totalPercu.toLocaleString('fr-FR',{
+       //  style:'currency', currency:'EUR'
+    // })}`)
      let cotSalViePla = (totalPercu)*(6.9/100)
      
-     /* Calcul CSG non déductible*/
+     /* 401210 Calcul CSG non déductible*/
      /* Formule utilisée : ((∑ des revenus) * 98.25%) * 2.40% */
      let csgNonDed = (totalPercu * (98.25/100)) * (2.4/100)
      
-     /* Calcul CSG déductible*/
+     /*401310  Calcul CSG déductible*/
      /* Formule utilisée : ((∑ des revenus) * 98.25%) * 6.80% */
      let csgDed = (totalPercu *(98.25/100))*(6.8/100)
      
      
-     /* Calcul CRDS */
+     /* 501510 Calcul CRDS */
      /* formule utilisée : ((∑ des revenus)*98.25%)* 0.50% */
      let crds = ((totalPercu)*(98.25/100))*(0.5/100)
      
  
-     // calcul cotisation salariale vieillesse deplafonné
+     // 402212 calcul cotisation salariale vieillesse deplafonné
      // Formule utilisée : ((∑ des revenus)* 0.4%
     let cotSalVieiDepla = totalPercu * (0.4/100)
      
@@ -397,8 +398,8 @@ function compute2() {
      
      
      /* Calcul du total Percu Brut*/
-     const divTotalPer = document.getElementById("totalPer") as HTMLDivElement
-     divTotalPer.innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'> ${totalPercuFormate} </span>`
+     const divTotalPer = document.getElementById("totalPer") as HTMLInputElement
+     divTotalPer.innerHTML = `Total Brut Perçu : <span style='color:rgb(0,128,0);font-weight:bolder;'> (${(totalPercu)} </span>`
      /*(`${salaireBrut.toLocaleString('fr-FR',{
          style:'currency', currency:'EUR'
      })}`)*/
