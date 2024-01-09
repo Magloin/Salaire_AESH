@@ -151,7 +151,7 @@ function compute2() {
 
 
     /* Indemnite de résidence*/
-    // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
+    // https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20r%C3%A9mun%C3%A9rations/circulaire_fp_12_03_2001_ind_residence.pdf
     let indRes = 0
     const divIndResUnPour = document.querySelector('#indResUnPour') as HTMLInputElement
     if (divIndResUnPour.checked){

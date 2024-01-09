@@ -119,7 +119,7 @@ function compute2() {
     divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €
     </span>  pour une quotité de ${quotite} %`;
     /* Indemnite de résidence*/
-    // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
+    // https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20r%C3%A9mun%C3%A9rations/circulaire_fp_12_03_2001_ind_residence.pdf
     let indRes = 0;
     const divIndResUnPour = document.querySelector('#indResUnPour');
     if (divIndResUnPour.checked) {
@@ -130,6 +130,7 @@ function compute2() {
         indRes = traiteBrut * (3 / 100);
         //console.log (indRes)
     }
+    
     /* Indemnité de fonction*/
     // texte mise en place : https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047826432
     // texte reglementaire : https://www.legifrance.gouv.fr/loda/id/LEGIARTI000047843858/#LEGIARTI000047843858
