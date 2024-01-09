@@ -120,7 +120,16 @@ function compute2() {
     </span>  pour une quotité de ${quotite} %`;
     /* Indemnite de résidence*/
     // https://sgen-cfdt.fr/contenu/uploads/sites/3/2016/12/circulaire_fp_12_03_2001_ind_residence.pdf
-    let indRes = traiteBrut * (1 / 100);
+    let indRes = 0;
+    const divIndResUnPour = document.querySelector('#indResUnPour');
+    if (divIndResUnPour.checked) {
+        indRes = traiteBrut * (1 / 100);
+        //console.log (indRes)
+    }
+    else {
+        indRes = traiteBrut * (3 / 100);
+        //console.log (indRes)
+    }
     /* Indemnité de fonction*/
     // texte mise en place : https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047826432
     // texte reglementaire : https://www.legifrance.gouv.fr/loda/id/LEGIARTI000047843858/#LEGIARTI000047843858

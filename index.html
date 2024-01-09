@@ -82,13 +82,20 @@
             <label for="100%">100 %</label>
         </form>
     </div>
-   
-    
-    <!-- Section  arrêt(s) maladie(s)-->
+
+    <!-- Prime de residence-->
+    <h3>
+        Montant de la prime de résidence
+    </h3>
+        <input type="radio" id="indResUnPour" name="indemRes" checked/><label for="indResUnPour">1%</label>
+        <input type="radio" id="indResTroisPour" name="indemRes"/><label for="inResTroisPour">3%</label > <br/>
+        <a href="https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20r%C3%A9mun%C3%A9rations/circulaire_fp_12_03_2001_ind_residence.pdf" style="text-decoration :#CA1004" target="_blank">Circulaire indemnité de résidence</a>
+        
+        <!-- Section  arrêt(s) maladie(s)-->
     <h3>
         Avez-vous eu des arrêts maladie ?
     </h3>
-    <input type="radio" id="carence" name="carence" onclick="toggleArretSection(false)"><label for="carence">Oui</label>
+    <input type="radio" id="carence" name="Carence" onclick="toggleArretSection(false)"><label for="carence">Oui</label>
     <input type="radio" id="carence1" name="carence" checked onclick="toggleArretSection(true)"/> <label for="carence">Non</label> <br>
     <div id="nbArretSection"hidden>
         <label for="nbArret"> Nombre d'arrets totaux : </label><input type="number" id="nbArret" name="nbArret" value="1"/> 
