@@ -146,7 +146,8 @@ function compute2() {
 
 
     /* Numéro ligne fiche de paie : 101000*/
-    divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span> Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €
+    divTraitBrut.innerHTML = `<span style ="font-weight:bold;">101000</span>
+     Traitement Brut : <span style='color: red;'>${traiteBrut.toFixed(2)} €
     </span>  pour une quotité de ${quotite} %`
 
 
@@ -178,18 +179,19 @@ function compute2() {
         if (divReep.checked) {
             montantPrimRep = 3263 //montant REP+
             primeRep = (montantPrimRep * (quotite / 100)) / 12
-            console.log(primeRep)
-
-            divPrimRep.innerHTML = `<span style='font-weight:bold;'>201882&nbsp;&nbsp;&nbsp;
-            </span>Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            //console.log(primeRep)
+            divPrimRep.innerHTML = `<span style='font-weight:bold;'>
+            201882&nbsp;&nbsp;&nbsp;</span>
+            Ind. sujetion REP+ (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`
         } else {
             montantPrimRep = 1106 //montant prime REP
             primeRep = (montantPrimRep * (quotite / 100)) / 12
-            console.log("Ma prime rep", primeRep)
+            //console.log("Ma prime rep", primeRep)
             //const divPrimRep = document.getElementById("primRep: string") as HTMLDivElement
-            divPrimRep.innerHTML = `<span style='font-weight:bold;'>201883&nbsp; &nbsp; &nbsp; 
-            </span> Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
+            divPrimRep.innerHTML = `<span style='font-weight:bold;'>
+            201883&nbsp; &nbsp; &nbsp; </span> 
+            Ind. Sujetion REP (part fixe) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
             <span style='color:rgb(0,128,0); font-weight:bolder;'>${primeRep.toFixed(2)} €</span>`
         }
     }
@@ -198,7 +200,7 @@ function compute2() {
     // formule utilisée : (Traitement brut /30)divNbArret
     let carence: number = 0
     const divCarence = document.getElementById('carence') as HTMLInputElement
-    const divNbArret = (document.getElementById('nbArret') as HTMLInputElement)
+    const divNbArret = document.getElementById('nbArret') as HTMLInputElement
 
     if (divCarence.checked) {
         const divResultCarence = document.getElementById('resultCarence') as HTMLInputElement
@@ -213,6 +215,8 @@ function compute2() {
         const divExplicationCarence = document.getElementById('explicationCarence') as HTMLDivElement
         divExplicationCarence.innerHTML = `<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`
         // Calcul retenue jour de carence sur indemnite de fonction
+       
+       
         // indFonct
         const divIndFonctCar = document.getElementById('indFonctCar') as HTMLDivElement
         divIndFonctCar.innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence :<span style='color:rgb(255,0,8);font-weight:bolder;'> ${indFonctCar.toFixed(2)} €</span>`
@@ -228,11 +232,11 @@ function compute2() {
     if (divReep.checked) {
         montantPrimRep = 3263 //montant REP+
         primeRepRet = (((montantPrimRep * (quotite / 100)) / 12) / 30) * nbArret
-        console.log(`la retenue rep+ est ${primeRep} €`)
+        //console.log(`la retenue rep+ est ${primeRep} €`)
     } else {
         montantPrimRep = 1106 //montant prime REP
         primeRepRet = (((montantPrimRep * (quotite / 100)) / 12) / 30) * nbArret
-        console.log(`la retenue rep est ${primeRep} €`)
+        //console.log(`la retenue rep est ${primeRep} €`)
     }
 
     if (divCarence.checked && divRep.checked) {
@@ -253,7 +257,8 @@ function compute2() {
     if (divPsc.checked) {
         // console.log("case validé")
         const divShowPsc = document.getElementById('showPsc') as HTMLDivElement
-        divShowPsc.innerHTML = `<span  style="font-weight:bold;">202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        divShowPsc.innerHTML = `<span  style="font-weight:bold;">
+        202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`
     }
@@ -340,25 +345,30 @@ function compute2() {
 
     // Affichage des indemnités perçues
     const divTraitBrut2 = document.getElementById("traitBrut2") as HTMLDivElement
-    divTraitBrut2.innerHTML = `<span style="font-weight:bold;">101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Traitement Brut : &nbsp;
+    divTraitBrut2.innerHTML = `<span style="font-weight:bold;">
+    101000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> 
+    Traitement Brut : &nbsp;
     <span style='color: rgb(0,128,0);font-weight:bolder;'>${traiteBrut.toFixed(2)} €</span> `
 
     /* Indemnite de résidence -> Numéro ligne fiche de paie : 102000*/
     const divIndeSalariale = document.getElementById('indeSalariale') as HTMLDivElement
-    divIndeSalariale.innerHTML = `<span style="font-weight:bold;">102000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Indemnité de résidence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divIndeSalariale.innerHTML = `<span style="font-weight:bold;">
+    102000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+    Indemnité de résidence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indRes.toFixed(2)} €</span>`
 
     /*  Indemnite de Fonction -> Numéro ligne fiche de paie : 202477*/
     const divIndFonct = document.getElementById('indFonct') as HTMLDivElement
     if (indFonct >= 100) {
 
-        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 
+        202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
         </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`
     } else {
-        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
+        divIndFonct.innerHTML = `<span style="font-weight:bold;"> 
+        202477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;
         </span> Indemnité de fonction :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indFonct.toFixed(2)} € </span>`
     }
@@ -380,31 +390,36 @@ function compute2() {
 
     /* Numero ligne fiche de paie : 401210 CSG non Déductible */
     const divCsgNonDed = document.getElementById('csgNonDed') as HTMLDivElement
-    divCsgNonDed.innerHTML = `<span style="font-weight:bold;">401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divCsgNonDed.innerHTML = `<span style="font-weight:bold;">
+    401210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> C.S.G non déductible :&nbsp;&nbsp; 
     <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgNonDed.toFixed(2)} € </span>`
 
     /* Numéro de ligne fiche de paie :  401310 CSG déductible */
     const divCsgDed = document.getElementById('csgDed') as HTMLDivElement
-    divCsgDed.innerHTML = `<span style="font-weight:bold;">401310&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divCsgDed.innerHTML = `<span style="font-weight:bold;">
+    401310&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> C.S.G déductible :&nbsp;&nbsp; 
     <span style='color: rgb(255,0,0); font-weight:bolder;'>${csgDed.toFixed(2)} €</span>`
 
     /* Numéro de ligne fiche de paie :  401510 CRDS */
     const divCrds = document.getElementById('crds') as HTMLDivElement
-    divCrds.innerHTML = `<span style="font-weight:bold;">401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divCrds.innerHTML = `<span style="font-weight:bold;">
+    401510&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> C.R.D.S :&nbsp;&nbsp;&nbsp;&nbsp; 
     <span style='color: rgb(255,0,0); font-weight:bolder;'>${crds.toFixed(2)} €</span>`
 
     // numéro de ligne  fiche de paie  : 402112 Cot Sal Vieillesse Déplafonné
     const divCotSalVieiDepla = document.getElementById('cotSalVieiDepla') as HTMLDivElement
-    divCotSalVieiDepla.innerHTML = `<span style="font-weight:bold;">402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divCotSalVieiDepla.innerHTML = `<span style="font-weight:bold;">
+    402212&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> cot SAL Viellesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp; 
     <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalVieiDepla.toFixed(2)} € </span>`
 
     /* Numéro de ligne fiche de paie : 501010 Cotisation salariale IRCANTEX tranche A */
     const divCotSalIrcantrA = document.getElementById('cotSalIrcantrA') as HTMLDivElement
-    divCotSalIrcantrA.innerHTML = `<span style="font-weight:bold;">501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    divCotSalIrcantrA.innerHTML = `<span style="font-weight:bold;">
+    501010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </span> Cot Sal IRCANTEC TR.A :&nbsp;&nbsp; 
     <span style='color: rgb(255,0,0); font-weight:bolder;'>${cotSalIrcanTrA.toFixed(2)} €</span>`
 
@@ -421,76 +436,99 @@ function compute2() {
     })}`)
     let pourcentageSal = (totalRetenu / totalPercu) * 100
     const divTotalRetenu = document.getElementById("totalRetenu") as HTMLDivElement
-    divTotalRetenu.innerHTML = `<span style="font-weight:bold;">Total retenue Salariale : </span>(${pourcentageSal.toFixed(2)} %) <span style='color:red;'>${totalRetenuformate} </span>`
+    divTotalRetenu.innerHTML = `<span style="font-weight:bold;">
+    Total retenue Salariale : </span>
+    (${pourcentageSal.toFixed(2)} %) <span style='color:red;'>${totalRetenuformate} </span>`
 
     // Affichage des Charges Patronales
 
     // Numéro de ligne fiche de paie : 403312 Cotisation Patronale Allocation Familliale
     const divCotPatAlloFam = document.getElementById("cotPatAlloFam") as HTMLDivElement
-    divCotPatAlloFam.innerHTML = `<span style ="font-weight:bold;">403312&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> 
-    Cot Patronn. Alloc Famil :&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatAlloFam.toFixed(2)}  €</span> `
+    divCotPatAlloFam.innerHTML = `<span style ="font-weight:bold;">
+    403312&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+    Cot Patronn. Alloc Famil :&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatAlloFam.toFixed(2)}  €</span> `
 
     // Numéro de ligne fiche de paie : 403398 Cotisation Patronale AF Majoration
     const divCotPatAfMaj = document.getElementById('cotPatAfMaj') as HTMLDivElement
-    divCotPatAfMaj.innerHTML = `<span style="font-weight:bold;">403398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat AF Majoration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAfMaj.toFixed(2)} €</span>`
+    divCotPatAfMaj.innerHTML = `<span style="font-weight:bold;">
+    403398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+    Cot Pat AF Majoration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatAfMaj.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403412 Cotisation Patronale AF Majoration
     const divCotPatAccTra = document.getElementById('cotPatAccTra') as HTMLDivElement
-    divCotPatAccTra.innerHTML = `<span style="font-weight:bold;">403412&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Accident Travail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatAccTra.toFixed(2)} €</span>`
+    divCotPatAccTra.innerHTML = `<span style="font-weight:bold;">
+    403412&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+    Cot Pat Accident Travail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatAccTra.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403512 Cotisation Patronale FNAL deplafonnée
     const divCotPatFnalDepl = document.getElementById('cotPatFnalDepl') as HTMLDivElement
-    divCotPatFnalDepl.innerHTML = `<span style="font-weight:bold;">403512</span> Cot Pat FNAL Déplafonnée :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatFnalDepl.toFixed(2)} €</span>`
+    divCotPatFnalDepl.innerHTML = `<span style="font-weight:bold;">403512</span> 
+    Cot Pat FNAL Déplafonnée :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatFnalDepl.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403612 Cotisation Patronale Vieillesse Plafonnée
     const divCotPasVieiPlaf = document.getElementById('cotPatVieiPlaf') as HTMLDivElement
-    divCotPasVieiPlaf.innerHTML = `<span style="font-weight:bold;">403612&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Vieillesse Plaf :&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieiPlaf.toFixed(2)} €</span>`
+    divCotPasVieiPlaf.innerHTML = `<span style="font-weight:bold;">
+    403612&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Vieillesse Plaf :&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatVieiPlaf.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 403712 Cotisation Patronale Vieillesse Déplafonnée
     const divCotPatVieilDepl = document.getElementById('cotPatVieilDepl') as HTMLDivElement
-    divCotPatVieilDepl.innerHTML = `<span style="font-weight:bold;">403712&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Vieillesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVieilDepl.toFixed(2)} €</span> `
+    divCotPatVieilDepl.innerHTML = `<span style="font-weight:bold;">
+    403712&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Vieillesse Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatVieilDepl.toFixed(2)} €</span> `
 
     // Numéro de ligne fiche de paie : 403812 Contribution Solidarité Autonomie
 
     const divContSolAuto = document.getElementById('contSolAuto') as HTMLDivElement
     divContSolAuto.innerHTML = `<span style="font-weight:bold;">403812&nbsp;
-    </span> Cont Solidarité Autonomie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${contSolAuto.toFixed(2)} €</span>`
+    </span> Cont Solidarité Autonomie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${contSolAuto.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 404012 Cotisation Patronale Maladie Deplafonnée
 
     const divCotPatMalDepla = document.getElementById('cotPatMalDepla') as HTMLDivElement
-    divCotPatMalDepla.innerHTML = `<span style="font-weight:bold;">404012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalDepla.toFixed(2)} €</span>`
+    divCotPatMalDepla.innerHTML = `<span style="font-weight:bold;">
+    404012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalDepla.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 404098 Cotisation Patronale Mal Majoration
 
     const divCotPatMalMaj = document.getElementById('cotPatMalMaj') as HTMLDivElement
-    divCotPatMalMaj.innerHTML = `<span style="font-weight:bold;">404098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalMaj.toFixed(2)} €</span>`
+    divCotPatMalMaj.innerHTML = `<span style="font-weight:bold;">
+    404098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Maladie Deplaf :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatMalMaj.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 501110 Cotisation Patronale Ircantec Tranche A
 
     const divCotPatIrcTraA = document.getElementById('cotPatIrcTraA') as HTMLDivElement
-    divCotPatIrcTraA.innerHTML = `<span style="font-weight:bold;">501110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat Ircantex TR.A :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='color:#c61ce8;font-weight:bold;'>${cotPatIrcTraA.toFixed(2)} €</span>`
+    divCotPatIrcTraA.innerHTML = `<span style="font-weight:bold;">
+    501110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span> Cot Pat Ircantex TR.A :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatIrcTraA.toFixed(2)} €</span>`
 
     // Numéro de ligne fiche de paie : 554500 Cotisation Patronale VST Mobilité
 
     const divCotPatVstMob = document.getElementById('cotPatVstMob') as HTMLDivElement
     divCotPatVstMob.innerHTML = `<span style="font-weight:bold;">554500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span> Cot Pat VST Mobilité :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:#c61ce8;font-weight:bold;'>${cotPatVstMob.toFixed(2)} €</span> `
+    </span> Cot Pat VST Mobilité :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style='color:#c61ce8;font-weight:bold;'>${cotPatVstMob.toFixed(2)} €</span> `
 
     // Calcul Montant Total Charges Patronales
     let totalCharPatr: number = (cotPatAlloFam + cotPatAfMaj + cotPatAccTra + cotPatFnalDepl + cotPatVieiPlaf + cotPatVieilDepl + contSolAuto + cotPatMalDepla + cotPatMalMaj + cotPatIrcTraA + cotPatVstMob)
     let PourCharPart: number = (totalCharPatr / totalPercu) * 100
 
     const divTotalCharPatr = document.getElementById("totalCharPatr") as HTMLDivElement
-    divTotalCharPatr.innerHTML = `<span style="font-weight:bold;">Total charges Patronales  :</span> (${PourCharPart.toFixed(2)} %) <span style="color:#c61ce8;">${totalCharPatr.toFixed(2)} € </span> `
+    divTotalCharPatr.innerHTML = `<span style="font-weight:bold;">
+    Total charges Patronales  :</span> (${PourCharPart.toFixed(2)} %) 
+    <span style="color:#c61ce8;">${totalCharPatr.toFixed(2)} € </span> `
 
     // Calcul net à payer
     let NetAPayer: number = (totalPercu - totalRetenu)
