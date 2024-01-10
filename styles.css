@@ -121,3 +121,7 @@ button{
     text-align: end;
     width: 60%;
 }
+
+@media print{
+    body{display:none}
+}
