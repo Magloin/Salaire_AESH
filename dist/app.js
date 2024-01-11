@@ -3,6 +3,13 @@
 // git add . 
 // git commit -m "third commit"
 // git push origin main
+// creation d'un branche de travail
+//git add .
+// git stash (pour mettre les dernière modificaiton en attente)
+//git checkout -b [nom de la branche] -> sft
+//git stash apply (recupération des modification en attente)
+// realiser le git push avec origine sft
+// git push origin sft
 // type script
 //  initialisation 
 //npm init -y -> creation d'un fichier package.json

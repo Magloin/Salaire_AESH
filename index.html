@@ -131,21 +131,22 @@
     <input type="radio" name="psc" id="psc" value="true"/> <label for="psc">Oui </label>
     <input type="radio" name="psc" id="" value="false" checked> <label for="psc">Non</label>
 
-    
-    <br><button type="button" onclick="compute2()">Calculer</button> 
-    
-
-    
-
-
-
-
 
     <!-- Section SFT-->
+    <div class="container">
+        <h3 id="sft">Supplément familial de traitement </h3>
+        Avez vous des enfants ? <br/>
+        <input type="radio" name="sft" id="sftnon" value="false" checked/> <label for="sft">Non</label>
+        <input type="radio" name="stf" id="sftOui" value="true"/> <label for="sft">Oui</label>
+        <br/><label for="nbEnfant">Combien d'enfants avez vous en charge : </label><input type="number" name="nbEnfant" id="" value="1">
+        <br/><label for="moins20">Combien ont moins de 20 ans ? : </label><input type="number" name="moins20Ans" id="" value="1">
+        <br/><label for="plus20">Combien ont plus de 20 ans ? :</label><input type="number" width=20 name="plus20Ans" id="" value="0">
+    </div>
 
 
 
-
+    <br><button type="button" onclick="compute2()">Calculer</button> 
+    
     <!-- Affichage du traitement-->
     <div id="traitBrut"> </div>
     
