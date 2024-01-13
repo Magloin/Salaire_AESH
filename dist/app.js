@@ -9,7 +9,7 @@
 //git checkout -b [nom de la branche] -> sft
 //git stash apply (recupération des modification en attente)
 // realiser le git push avec origine sft
-// git push origin sft
+// git push origin sftx
 // type script
 //  initialisation 
 //npm init -y -> creation d'un fichier package.json
@@ -225,9 +225,25 @@ function compute2() {
         </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`;
     }
+    //Supplement Familial Traitement (SFT) -> numero ligne de paiement 104000
+    const inputSftOui = document.querySelector('#sftOui');
+    const nbEnfants = (document.querySelector('#nbEnfant'));
+    const inputNbEnfant = Number(nbEnfants.value);
+    const inputMoins20Ans = Number(document.querySelector('moins20Ans'));
+    const divPrimeSft = document.querySelector('#primeSft');
+    let partFixeUnEnf = 2.29;
+    let partVariableUnEnf = 0;
+    let PrimeUnEnfant = partFixeUnEnf + partVariableUnEnf;
+    if (inputSftOui.checked && inputNbEnfant === 1 && inputMoins20Ans == 0) {
+        divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
+        Supplément Familliale traitement
+        <span style='color : rgb(0,128,0); font-weight:bolder;'>${PrimeUnEnfant.toFixed(2)} € </span>`;
+    }
+    else {
+    }
     /*40112 Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
-    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc;
+    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc + PrimeUnEnfant;
     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR', {
         style: 'currency', currency: 'EUR'
     })}`);

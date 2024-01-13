@@ -84,63 +84,56 @@
     </div>
 
     <!-- Prime de residence-->
-    <h3>
-        Montant de la prime de résidence
-    </h3>
+    <div>
+        <h3>Montant de la prime de résidence</h3>
         <input type="radio" id="indResUnPour" name="indemRes" checked/><label for="indResUnPour">1%</label>
         <input type="radio" id="indResTroisPour" name="indemRes"/><label for="inResTroisPour">3%</label > <br/>
         <a href="https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20r%C3%A9mun%C3%A9rations/circulaire_fp_12_03_2001_ind_residence.pdf" style="text-decoration :#CA1004" target="_blank">Circulaire indemnité de résidence</a>
-        
+    </div>    
         <!-- Section  arrêt(s) maladie(s)-->
-    <h3>
-        Avez-vous eu des arrêts maladie ?
-    </h3>
-    <input type="radio" id="carence" name="Carence" onclick="toggleArretSection(false)"><label for="carence">Oui</label>
-    <input type="radio" id="carence1" name="carence" checked onclick="toggleArretSection(true)"/> <label for="carence">Non</label> <br>
-    <div id="nbArretSection"hidden>
-        <label for="nbArret"> Nombre d'arrets totaux : </label><input type="number" id="nbArret" name="nbArret" value="1"/> 
+    <div>
+        <h3>Avez-vous eu des arrêts maladie ?</h3>
+        <input type="radio" id="carence" name="Carence" onclick="toggleArretSection(false)"><label for="carence">Oui</label>
+        <input type="radio" id="carence1" name="carence" checked onclick="toggleArretSection(true)"/> <label for="carence">Non</label> <br>
+        <div id="nbArretSection"hidden>
+            <label for="nbArret"> Nombre d'arrets totaux : </label><input type="number" id="nbArret" name="nbArret" value="1"/> 
+        </div>
     </div>
-    
     <!-- Section indemnitee REP ou REP+-->
-    
-    <h3>
-        Etes-vous en établissement REP ?
-    </h3>
-    <input type="radio" id="rep" name="rep" value="true" onclick="toggleRepRepPlus(false)"/> 
-    <label for="oui">Oui</label>
-    <input type="radio" id="rep+" name="rep" value="false" checked onclick="toggleRepRepPlus(true) "/>
-    <label for="non" >Non</label>
-
-    <div id="toggleRepRepPlus" hidden>
-        <h4>
-            En REP + ?
-        </h4>
-        <label for="REP+">Oui en REP+</label>
-        <input type="radio" id="reep+" name="rep+"/>
-        <br>
-        <label for="rep">Non en REP</label>
-        <input type="radio" id="rep" name="rep+" >
-        <br> <br>
+    <div>
+        <h3>Etes-vous en établissement REP ?</h3>
+        <input type="radio" id="rep" name="rep" value="true" onclick="toggleRepRepPlus(false)"/> 
+        <label for="oui">Oui</label>
+        <input type="radio" id="rep+" name="rep" value="false" checked onclick="toggleRepRepPlus(true) "/>
+        <label for="non" >Non</label>
+        <div id="toggleRepRepPlus" hidden>
+            <h4>En REP + ?</h4>
+            <label for="REP+">Oui en REP+</label>
+            <input type="radio" id="reep+" name="rep+"/>
+            <br>
+            <label for="rep">Non en REP</label>
+            <input type="radio" id="rep" name="rep+" >
+            <br> <br>
+        </div>
     </div>
-
     <!-- Section demande PSC-->
-
-    <h3 id="PSC"> 
-        Avez vous une demande de remboursement <br/>  de Protection Social Complémentaire ?
-    </h3>
-    <input type="radio" name="psc" id="psc" value="true"/> <label for="psc">Oui </label>
-    <input type="radio" name="psc" id="" value="false" checked> <label for="psc">Non</label>
-
+    <div>
+        <h3 id="PSC"> 
+            Avez vous une demande de remboursement <br/>  de Protection Social Complémentaire ?
+        </h3>
+        <input type="radio" name="psc" id="psc" value="true"/> <label for="psc">Oui </label>
+        <input type="radio" name="psc" id="" value="false" checked> <label for="psc">Non</label>
+    </div>
 
     <!-- Section SFT-->
     <div class="container">
         <h3 id="sft">Supplément familial de traitement </h3>
         Avez vous des enfants ? <br/>
         <input type="radio" name="sft" id="sftnon" value="false" checked/> <label for="sft">Non</label>
-        <input type="radio" name="stf" id="sftOui" value="true"/> <label for="sft">Oui</label>
-        <br/><label for="nbEnfant">Combien d'enfants avez vous en charge : </label><input type="number" name="nbEnfant" id="" value="1">
-        <br/><label for="moins20">Combien ont moins de 20 ans ? : </label><input type="number" name="moins20Ans" id="" value="1">
-        <br/><label for="plus20">Combien ont plus de 20 ans ? :</label><input type="number" width=20 name="plus20Ans" id="" value="0">
+        <input type="radio" name="sft" id="sftOui" value="true"/> <label for="sft">Oui</label>
+        <br/><label name="enfant" for="nbEnfant" >Combien d'enfants avez vous en charge : </label><input class="sftWidth" type="number" name="" id="nbEnfant" value="1">
+        <br/><label name="enfant" for="moins20" >Combien ont moins de 20 ans ? : </label><input class="sftWidth" type="number" name="" id="moins20Ans" value="1">
+        <br/><label name="enfant" for="plus20">Combien ont plus de 20 ans ? :</label><input class="sftWidth" type="number" width=20 name="" id="plus20Ans" value="0">
     </div>
 
 
@@ -156,6 +149,7 @@
     
     <div id="indeSalariale"></div>
     <div id="showPsc"></div>
+    <div id="primeSft"></div>
     <div id="indFonct"></div>
     <div id="indFonctCarExp"></div>
     <div id="primRep"></div>

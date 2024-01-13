@@ -13,7 +13,7 @@
     //git stash apply (recupération des modification en attente)
 
     // realiser le git push avec origine sft
-    // git push origin sft
+    // git push origin sftx
 
 
 // type script
@@ -89,6 +89,8 @@ function toggleArretSection({ hide }: { hide: any; }): void {
         divArretSection.hidden = hide
     }
 }
+
+
 //@ts-ignore
 function toggleRepRepPlus({ hide }: { hide: any; }): void {
     const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus') as HTMLInputElement
@@ -224,9 +226,8 @@ function compute2() {
 
         const divExplicationCarence = document.getElementById('explicationCarence') as HTMLDivElement
         divExplicationCarence.innerHTML = `<div class="explicationCarence">Nb d'arrêt(s) : ${nbArret}\n</div> <div class="explicationCarence">x coût d'une journée retenue : ${(traiteBrut / 30).toFixed(2)} €\n</div> <div class="explicationCarence"> = Retenue sur salaire : ${carence.toFixed(2)} €</div> </span>`
+       
         // Calcul retenue jour de carence sur indemnite de fonction
-       
-       
         // indFonct
         const divIndFonctCar = document.getElementById('indFonctCar') as HTMLDivElement
         divIndFonctCar.innerHTML = `<span style="font-weight:bold;"> 202477</span> Indemnité de fonction Carence :<span style='color:rgb(255,0,8);font-weight:bolder;'> ${indFonctCar.toFixed(2)} €</span>`
@@ -272,10 +273,33 @@ function compute2() {
         </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`
     }
+
+    //Supplement Familial Traitement (SFT) -> numero ligne de paiement 104000
+
+    const inputSftOui = document.querySelector('#sftOui') as HTMLInputElement
+    
+    const nbEnfants  = (document.querySelector('#nbEnfant')) as HTMLInputElement
+    const inputNbEnfant = Number(nbEnfants.value)
+    
+    const inputMoins20Ans : number = Number(document.querySelector('moins20Ans'))
+
+    const divPrimeSft = document.querySelector('#primeSft') as HTMLInputElement
+
+        let partFixeUnEnf: number = 2.29
+        let partVariableUnEnf: number = 0
+        let PrimeUnEnfant:number = partFixeUnEnf + partVariableUnEnf
+
+    if (inputSftOui.checked && inputNbEnfant===1 && inputMoins20Ans==0){
+        divPrimeSft.innerHTML =`<span style='font-weight:bolder;'>104000</span>
+        Supplément Familliale traitement
+        <span style='color : rgb(0,128,0); font-weight:bolder;'>${PrimeUnEnfant.toFixed(2)} € </span>`
+    } else {
+
+    }
     /*40112 Cotisation salariale vieillesse plafonné : Taux : 6.9%
     Formule utilisée : ((∑ des revenus)* 6.90% */
 
-    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc
+    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc+ PrimeUnEnfant
     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR', {
         style: 'currency', currency: 'EUR'
     })}`)
@@ -368,6 +392,7 @@ function compute2() {
     Indemnité de résidence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span style='color: rgb(0,128,0); font-weight:bolder;'> ${indRes.toFixed(2)} €</span>`
 
+    
     /*  Indemnite de Fonction -> Numéro ligne fiche de paie : 202477*/
     const divIndFonct = document.getElementById('indFonct') as HTMLDivElement
     if (indFonct >= 100) {

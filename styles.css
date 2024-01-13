@@ -105,7 +105,7 @@ button{
 #recapRetenu{
     color: red;
 }
-#traitBrut2, #indeSalariale, #indFonct, #primRep, #showPsc, .retenueSal, .chargesPat,#indFonctCar, #carenceRep{
+#traitBrut2, #indeSalariale, #indFonct, #primRep, #showPsc, .retenueSal, .chargesPat,#indFonctCar, #carenceRep, #primeSft{
     width: 50%;
     text-align: end;
 }
@@ -120,6 +120,10 @@ button{
 #totalPer, #totalRetenu,#totalCharPatr{
     text-align: end;
     width: 60%;
+}
+
+.sftwidth{
+    width: 60px;
 }
 
 @media print{
