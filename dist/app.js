@@ -231,22 +231,53 @@ function compute2() {
     const inputNbEnfant = Number(nbEnfants.value);
     const inputMoins20Ans = Number(document.querySelector('moins20Ans'));
     const divPrimeSft = document.querySelector('#primeSft');
+    const plus20ans = document.querySelector('#plus20ans');
+    const inputPlus20ans = Number(plus20ans.value);
+    // calcul nombre enfant total Eligible
+    let totalEnfantEligible = inputNbEnfant - inputPlus20ans;
+    console.log(totalEnfantEligible);
+    // refaire saisir les informations 
+    if (totalEnfantEligible < 0) {
+        'Merci de resaisire vos information, il y a une erreur';
+        return;
+    }
+    // fixe et variable  pour un enfant
     let partFixeUnEnf = 2.29;
     let partVariableUnEnf = 0;
-    let PrimeUnEnfant = partFixeUnEnf + partVariableUnEnf;
-    if (inputSftOui.checked && inputNbEnfant === 1 && inputMoins20Ans == 0) {
-        divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
+    let primeUnEnfant = partFixeUnEnf + partVariableUnEnf;
+    // fixe et variable pour deux Enfants    
+    let partFixeDeuxEnf = 0;
+    let partVariableDeuxEnf = 0;
+    let primeDeuxEnfants = partFixeDeuxEnf + partVariableDeuxEnf;
+    // fixe et variable pour trois enfants
+    let partFixeTroisEnf = 0;
+    let partVariableTroisEnf = 0;
+    let primeTroisEnfants = partFixeTroisEnf + partVariableTroisEnf;
+    // fixe et variable pour plus de trois enfant
+    let partfixePlustroisEnf = 0;
+    let partVariablePlusTroisEnf = 0;
+    let primePlusTroisEnfants = partfixePlustroisEnf + partVariablePlusTroisEnf;
+    if (inputSftOui.checked) {
+        if (totalEnfantEligible === 0) {
+            // message affichahe à l'ecran type prompt
+            window.prompt("desolé vous n'etes pas élégible au SFT");
+            return;
+        }
+        else if (totalEnfantEligible === 1) {
+            divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
         Supplément Familliale traitement
-        <span style='color : rgb(0,128,0); font-weight:bolder;'>${PrimeUnEnfant.toFixed(2)} € </span>`;
+        <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeUnEnfant.toFixed(2)} € </span>`;
+        }
     }
     else {
     }
-    /*40112 Cotisation salariale vieillesse plafonné : Taux : 6.9%
-    Formule utilisée : ((∑ des revenus)* 6.90% */
-    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc + PrimeUnEnfant;
+    // somme total perçue formaté au format €uro
+    totalPercu = traiteBrut + indRes + indFonct + primeRep + psc; //ajouter prime SFT
     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR', {
         style: 'currency', currency: 'EUR'
     })}`);
+    /*40112 Cotisation salariale vieillesse plafonné : Taux : 6.9%
+    Formule utilisée : ((∑ des revenus)* 6.90% */
     let cotSalViePla = (totalPercu) * (6.9 / 100);
     /* 401210 Calcul CSG non déductible*/
     /* Formule utilisée : ((∑ des revenus) * 98.25%) * 2.40% */
