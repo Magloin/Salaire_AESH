@@ -59,6 +59,8 @@ let totalPercu = 0;
 let indFonctCar = 0;
 //@ts-ignore
 const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus');
+const divCoef = document.querySelector('input[name="coef"]:checked');
+const coefficient = Number(divCoef.value);
 //@ts-ignore
 function toggleArretSection({ hide }) {
     let nbArretSection = 0;
@@ -67,7 +69,6 @@ function toggleArretSection({ hide }) {
         divArretSection.hidden = hide;
     }
 }
-//@ts-ignore
 function toggleRepRepPlus({ hide }) {
     const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus');
     if (divToggleRepRepPlus != null) {
@@ -77,8 +78,8 @@ function toggleRepRepPlus({ hide }) {
 /* Calcul du salaire brut en fonction du coefficient*/
 //@ts-ignore
 function compute() {
-    const divCoef = document.querySelector('input[name="coef"]:checked');
-    const coefficient = Number(divCoef.value);
+    //const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
+    // const coefficient: number = Number(divCoef.value);
     const divResultat = document.getElementById("resultat");
     if (isNaN(coefficient)) {
         divResultat.innerText = 'Merci de rentrer un entier';
@@ -229,47 +230,94 @@ function compute2() {
     const inputSftOui = document.querySelector('#sftOui');
     const nbEnfants = (document.querySelector('#nbEnfant'));
     const inputNbEnfant = Number(nbEnfants.value);
-    const inputMoins20Ans = Number(document.querySelector('moins20Ans'));
+    const moins20Ans = document.querySelector('#moins20Ans');
+    const inputMoins20Ans = Number(moins20Ans.value);
     const divPrimeSft = document.querySelector('#primeSft');
     const plus20ans = document.querySelector('#plus20ans');
     const inputPlus20ans = Number(plus20ans.value);
     // calcul nombre enfant total Eligible
     let totalEnfantEligible = inputNbEnfant - inputPlus20ans;
     console.log(totalEnfantEligible);
-    // refaire saisir les informations 
-    if (totalEnfantEligible < 0) {
-        'Merci de resaisire vos information, il y a une erreur';
-        return;
-    }
     // fixe et variable  pour un enfant
-    let partFixeUnEnf = 2.29;
+    let partFixeUnEnf = 0;
     let partVariableUnEnf = 0;
-    let primeUnEnfant = partFixeUnEnf + partVariableUnEnf;
     // fixe et variable pour deux Enfants    
     let partFixeDeuxEnf = 0;
     let partVariableDeuxEnf = 0;
-    let primeDeuxEnfants = partFixeDeuxEnf + partVariableDeuxEnf;
     // fixe et variable pour trois enfants
     let partFixeTroisEnf = 0;
     let partVariableTroisEnf = 0;
-    let primeTroisEnfants = partFixeTroisEnf + partVariableTroisEnf;
     // fixe et variable pour plus de trois enfant
     let partfixePlustroisEnf = 0;
     let partVariablePlusTroisEnf = 0;
-    let primePlusTroisEnfants = partfixePlustroisEnf + partVariablePlusTroisEnf;
+    // refaire saisir les informations 
+    //if (totalEnfantEligible < 0 || (inputPlus20ans+ inputMoins20Ans !=inputNbEnfant)){
+    //window.alert("ca fonctionne pas bien")
+    //return
+    // }else {
+    //console.log(`ca fonctionne`)
+    //}
+    // vériciation eligibilité et affichat montant
     if (inputSftOui.checked) {
-        if (totalEnfantEligible === 0) {
+        if (totalEnfantEligible == 0) {
             // message affichahe à l'ecran type prompt
-            window.prompt("desolé vous n'etes pas élégible au SFT");
-            return;
+            window.alert("Désolé vous n'êtes pas éligible au SFT");
         }
         else if (totalEnfantEligible === 1) {
+            partFixeUnEnf = 2.29;
+            partVariableUnEnf = 0;
+            let primeUnEnfant = partFixeUnEnf + partVariableUnEnf;
+            window.alert(`Vous pouvez prétendre au SFT pour un montant de ${primeUnEnfant.toFixed(2)} € qui se décompose comme suit : \n
+            part fixe : ${partFixeUnEnf} € \n
+            part variable : ${partVariableUnEnf} €`);
             divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
-        Supplément Familliale traitement
-        <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeUnEnfant.toFixed(2)} € </span>`;
+            Supplément Familliale traitement
+            <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeUnEnfant.toFixed(2)} € </span>`;
         }
-    }
-    else {
+        else if (totalEnfantEligible === 2) {
+            partFixeDeuxEnf = 10.67;
+            partVariableDeuxEnf = (quotite / 100) * ((3 / 100) * 4.85 * coefficient);
+            let primeDeuxEnfants = partFixeDeuxEnf + partVariableDeuxEnf;
+            window.alert(`Vous pouvez prétendre au SFT pour un montant de ${primeDeuxEnfants.toFixed(2)} € qui se décompose comme suit : \n
+            part fixe : ${partFixeDeuxEnf} € \n
+            part variable : ${partVariableDeuxEnf.toFixed(2)} €`);
+            divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
+            Supplément Familliale traitement
+            <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeDeuxEnfants.toFixed(2)} € </span>`;
+        }
+        else if (totalEnfantEligible === 3) {
+            partFixeTroisEnf = 15.25;
+            partVariableTroisEnf = (quotite / 100) * ((8 / 100) * 4.85 * coefficient);
+            let primeTroisEnfants = partFixeTroisEnf + partVariableTroisEnf;
+            window.alert(`Vous pouvez prétendre au SFT pour un montant de ${primeTroisEnfants.toFixed(2)} € qui se décompose comme suit : \n
+            part fixe : ${partFixeTroisEnf} € \n
+            part variable : ${partVariableTroisEnf.toFixed(2)} €`);
+            divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
+            Supplément Familliale traitement
+            <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeTroisEnfants.toFixed(2)} € </span>`;
+        }
+        else if (totalEnfantEligible > 3) {
+            // part pour 3 enfants
+            partFixeTroisEnf = 15.25;
+            partVariableTroisEnf = (quotite / 100) * ((8 / 100) * 4.85 * coefficient);
+            let primeTroisEnfants = partFixeTroisEnf + partVariableTroisEnf;
+            // addition 1 part par enfant supplémentaire
+            partfixePlustroisEnf = 4.57;
+            partVariablePlusTroisEnf = (quotite / 100) * ((6 / 100) * 4.85 * coefficient);
+            let primePlusTroisEnfants = partfixePlustroisEnf + partVariablePlusTroisEnf;
+            // total global *attention à bien mettre le coefficient du nb d'enfant supplémentaire*
+            let enfSup = totalEnfantEligible - 3;
+            console.log(enfSup);
+            let partFixeTotal = partFixeTroisEnf + (partfixePlustroisEnf * enfSup);
+            let partVariableTotal = partVariableTroisEnf + (partVariablePlusTroisEnf * enfSup);
+            let primeTotal = partFixeTotal + partVariableTotal;
+            window.alert(`Vous pouvez prétendre au SFT pour un montant de ${primeTotal.toFixed(2)} € qui se décompose comme suit : \n
+            part fixe : ${partFixeTotal} € \n
+            part variable : ${partVariableTotal.toFixed(2)} €`);
+            divPrimeSft.innerHTML = `<span style='font-weight:bolder;'>104000</span>
+            Supplément Familliale traitement
+            <span style='color : rgb(0,128,0); font-weight:bolder;'>${primeTotal.toFixed(2)} € </span>`;
+        }
     }
     // somme total perçue formaté au format €uro
     totalPercu = traiteBrut + indRes + indFonct + primeRep + psc; //ajouter prime SFT

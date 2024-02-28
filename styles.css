@@ -33,7 +33,7 @@ h2{
     font-size : 40px;
     background-color: var(--h2-bg-color);
     color: white;
-    width:60%;
+    width:50%;
     text-align: end;
 }
 #recapi {
@@ -106,7 +106,7 @@ button{
     color: red;
 }
 #traitBrut2, #indeSalariale, #indFonct, #primRep, #showPsc, .retenueSal, .chargesPat,#indFonctCar, #carenceRep, #primeSft{
-    width: 50%;
+    width: 40%;
     text-align: end;
 }
 
@@ -119,7 +119,7 @@ button{
 }
 #totalPer, #totalRetenu,#totalCharPatr{
     text-align: end;
-    width: 60%;
+    width: 45%;
 }
 
 .sftwidth{
