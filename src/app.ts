@@ -81,9 +81,6 @@ let indFonctCar: number = 0
 //@ts-ignore
 const divToggleRepRepPlus = document.getElementById('toggleRepRepPlus') as HTMLInputElement
 
-const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
-const coefficient: number = Number(divCoef.value);
-
 //@ts-ignore
 function toggleArretSection({ hide }: { hide: any; }): void {
     let nbArretSection: number = 0
@@ -107,6 +104,11 @@ function compute() {
     //const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
    // const coefficient: number = Number(divCoef.value);
 
+    const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
+    const coefficient: number = Number(divCoef.value);
+
+   console.log("TEST")
+
     const divResultat = document.getElementById("resultat") as HTMLDivElement
     if (isNaN(coefficient)) {
         divResultat.innerText = 'Merci de rentrer un entier'
@@ -120,6 +122,7 @@ function compute() {
     }
 
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100
+    console.log(coef + " - " + pointDIndice + " - " + (coef * pointDIndice * 100))
 
     const divSalaireBrut = document.getElementById("salaireBrut") as HTMLInputElement
 
@@ -133,11 +136,16 @@ function compute() {
     } else {
         divResultat.innerHTML = "Erreur lors du calcul du salaire brut"
     }
+
+    console.log("TEEST", salaireBrut)
 }
 
 /* Calcul*/
 //@ts-ignore
 function compute2() {
+    const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
+    const coefficient: number = Number(divCoef.value);
+
     /* selecteur  par bouton radio*/
     let quotite: number = 0
     const inputQuotite = document.querySelector('input[name="quotite"]:checked') as HTMLInputElement
