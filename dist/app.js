@@ -80,7 +80,6 @@ function compute() {
     // const coefficient: number = Number(divCoef.value);
     const divCoef = document.querySelector('input[name="coef"]:checked');
     const coefficient = Number(divCoef.value);
-    console.log("TEST");
     const divResultat = document.getElementById("resultat");
     if (isNaN(coefficient)) {
         divResultat.innerText = 'Merci de rentrer un entier';
@@ -92,7 +91,7 @@ function compute() {
         return;
     }
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100;
-    console.log(coef + " - " + pointDIndice + " - " + (coef * pointDIndice * 100));
+    //console.log(coef + " - " + pointDIndice + " - " + (coef * pointDIndice * 100))
     const divSalaireBrut = document.getElementById("salaireBrut");
     if (salaireBrut > 0) {
         divResultat.innerHTML = `Votre Salaire Brut pour le coefficient 
@@ -110,6 +109,7 @@ function compute() {
 /* Calcul*/
 //@ts-ignore
 function compute2() {
+    let psc = 0;
     const divCoef = document.querySelector('input[name="coef"]:checked');
     const coefficient = Number(divCoef.value);
     /* selecteur  par bouton radio*/
@@ -221,10 +221,10 @@ function compute2() {
         <span style='color:rgb(255,0,8); font-weight:bolder;'> ${primeRepRet.toFixed(2)} € </span>`;
     }
     // affichage de la PSC
-    let psc = 15;
     const divPsc = document.getElementById('psc');
     if (divPsc.checked) {
         // console.log("case validé")
+        let psc = 15;
         const divShowPsc = document.getElementById('showPsc');
         divShowPsc.innerHTML = `<span  style="font-weight:bold;">
         202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -326,6 +326,7 @@ function compute2() {
     }
     // somme total perçue formaté au format €uro
     totalPercu = traiteBrut + indRes + indFonct + primeRep + psc; //ajouter prime SFT
+    console.log(traiteBrut, indRes, indFonct, primeRep, psc);
     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR', {
         style: 'currency', currency: 'EUR'
     })}`);

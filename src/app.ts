@@ -107,7 +107,7 @@ function compute() {
     const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
     const coefficient: number = Number(divCoef.value);
 
-   console.log("TEST")
+  
 
     const divResultat = document.getElementById("resultat") as HTMLDivElement
     if (isNaN(coefficient)) {
@@ -122,7 +122,7 @@ function compute() {
     }
 
     let salaireBrut = Math.round(coef * pointDIndice * 100) / 100
-    console.log(coef + " - " + pointDIndice + " - " + (coef * pointDIndice * 100))
+    //console.log(coef + " - " + pointDIndice + " - " + (coef * pointDIndice * 100))
 
     const divSalaireBrut = document.getElementById("salaireBrut") as HTMLInputElement
 
@@ -143,6 +143,7 @@ function compute() {
 /* Calcul*/
 //@ts-ignore
 function compute2() {
+    let psc:number =0
     const divCoef = document.querySelector('input[name="coef"]:checked') as HTMLInputElement
     const coefficient: number = Number(divCoef.value);
 
@@ -274,17 +275,17 @@ function compute2() {
 
 
     // affichage de la PSC
-    let psc: number = 15
+    
     const divPsc = document.getElementById('psc') as HTMLInputElement
     if (divPsc.checked) {
         // console.log("case validé")
+        let psc: number = 15
         const divShowPsc = document.getElementById('showPsc') as HTMLDivElement
         divShowPsc.innerHTML = `<span  style="font-weight:bold;">
         202354&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </span> Participation à la PSC :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         <span style='color:rgb(0,128,8); font-weight:bolder;'>${psc.toFixed(2)} €</span>`
     }
-
     //Supplement Familial Traitement (SFT) -> numero ligne de paiement 104000
 
     const inputSftOui = document.querySelector('#sftOui') as HTMLInputElement
@@ -403,6 +404,7 @@ function compute2() {
 
     // somme total perçue formaté au format €uro
     totalPercu = traiteBrut + indRes + indFonct + primeRep + psc //ajouter prime SFT
+    console.log(traiteBrut,indRes,indFonct,primeRep,psc )
     const totalPercuFormate = (`${totalPercu.toLocaleString('fr-FR', {
         style: 'currency', currency: 'EUR'
     })}`)
