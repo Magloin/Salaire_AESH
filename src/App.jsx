@@ -37,7 +37,7 @@ function App() {
                         <th scope="col" className="px-6 py-3 w-44">Code</th>
                         <th scope="col" className="px-6 py-3 w-72">Elément</th>
                         <th scope="col" className="px-6 py-3 w-72">A payer (€) </th>
-                        <th scope="col" className="px-6 py-3 w-72"> A déduire (€)</th>
+                        <th scope="col" className="px-6 py-3 w-72">A déduire (€)</th>
                         <th scope="col" className="px-6 py-3 w-72">Pour Information</th>
                       </tr>
                     </thead>
@@ -45,7 +45,7 @@ function App() {
                     <tbody className="font-bold text-black text-base">
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">101000</td>
-                        <td scope="row" className="px-6 py-4 pr-2 text-right"> Traitement Brut :</td>
+                        <td scope="row" className="px-6 py-4 pr-2 text-right">Traitement Brut :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
@@ -96,7 +96,7 @@ function App() {
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">401310</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">C.S.G déductible :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4 "></td>
+                        <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
@@ -117,7 +117,7 @@ function App() {
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">403392</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. Alloc. Familliale :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4 "></td>
+                        <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"> </td>
                       </TableRow>
                       <TableRow>
