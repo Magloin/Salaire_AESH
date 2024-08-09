@@ -1,0 +1,35 @@
+/* 
+
+Definition des couleurs de la charte graphique
+
+Bleu clair (calme et sérénité) : #A7C7E7
+Vert menthe (fraîcheur et bienveillance) : #98FF98
+Lavande (sérénité et apaisement) : #E6E6FA
+Gris clair (neutralité et équilibre) : #D3D3D3
+
+https://data.education.gouv.fr/explore/dataset/fr-en-annuaire-education/map/?disjunctive.type_etablissement&disjunctive.code_postal&disjunctive.nom_commune&disjunctive.code_departement&disjunctive.appartenance_education_prioritaire&disjunctive.libelle_academie&disjunctive.libelle_region&disjunctive.ministere_tutelle&refine.statut_public_prive=Public&refine.type_etablissement=Ecole&refine.type_etablissement=Coll%C3%A8ge&refine.type_etablissement=Lyc%C3%A9e&refine.etat=OUVERT&refine.ministere_tutelle=MINISTERE+DE+L%27EDUCATION+NATIONALE&location=15,49.3418,1.09777&basemap=jawg.streets
+https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20rémunérations/circulaire_fp_12_03_2001_ind_residence.pdf
+
+
+*/
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 900 
+
+.red-hat-display-<uniquifier> {
+  font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing : auto;
+  font-weight : <weight>;
+  font-style : normal;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: "Red Hat Dsipaly", sans-serif;
+    font-style: normal;
+}

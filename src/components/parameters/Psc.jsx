@@ -7,7 +7,7 @@ function Psc () {
     
     return(
         <Card >
-            <h1 className="text-lg text-center font-extrabold">Perception de la PSC</h1>
+            <h2 className="text-lg text-center font-extrabold">Perception de la PSC</h2>
             <Checkbox leftValue={`${leftValue}`} rightValue={`${rightValue}`} />
 
         </Card>)

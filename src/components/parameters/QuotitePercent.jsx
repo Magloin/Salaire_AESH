@@ -10,7 +10,7 @@ function QuotitePercent() {
     })
     
     return <Card>
-        <h1 className="text-lg text-center font-extrabold">Quotité</h1>
+        <h2 className="text-lg text-center font-extrabold">Quotité</h2>
         <div className="text-center pt-1 hover:font-bold"> 
             <select name="quot" defaultValue={defaultValue} id="quotSelect"  className="bg-zinc-200 h-auto mb-2 w-5/6 texte-xs rounded-lg hover:bg-green-400">
                 {

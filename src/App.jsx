@@ -8,9 +8,16 @@ import BuyCoffee from "./components/parameters/BuyCoffee"
 import TableRow from "./components/base/TableRow"
 import TableColumn from "./components/base/TableColumn"
 
+const indPoint = 4.9225
+const divCoef = document.querySelector('input[name="coef"]:checked');
+
+const salaireBrut = indPoint*divCoef
+console.log (salaireBrut)
+
+
 function App() {
   return  (<div >
-      <h1 className="bg-black text-green-700 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal"> Vérificateur de fiche de paie AESH</h1>
+      <h1 className="bg-black text-green-700 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal"> Simulateur de fiche de paie AESH</h1>
     <div className="flex h-full">
       <div className="overflow-scroll flex-col w-1/4">
         <Coef />
@@ -22,14 +29,14 @@ function App() {
         <BuyCoffee></BuyCoffee>
       </div>
       <div className="bg-gray-400 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
-          <h1 className="text-xl bg-zinc-200 border-solid border-2 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md">
-            <p> Vous êtes <span className="font-bold">Echelon 1</span>  avec un un coefficient de <span className="font-bold"> 371</span> soit en équivalent temps plein un salaire de <span className="font-bold">1826,32 € brut</span></p>
+          <h2 className="text-xl bg-zinc-200 border-solid border-2 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md">
+            <p> Vous êtes <span className="font-bold">Echelon 1</span>  avec un un coefficient de <span className="font-bold"> 371</span> soit en équivalent temps plein un salaire de <span className="font-bold">{salaireBrut} 1826,32 € brut</span></p>
             <p> Vous avez une quotité de <span className="font-bold">62%</span> soit un temps d'accompagnement de <span className="font-bold">24h</span> par semaine équivalent à un salaire de <span className="font-bold">1132,32€ brut</span></p>
             <p> Votre prime de résidence est calculée à hauteur de <span className="font-bold">1 %</span> de votre traitement brut</p>
             <p> Vous êtes affecté dans une établissement en <span className="font-bold">REP</span></p>
             <p> Vous avez demandé ou vous percevez la <span className="font-bold">PSC</span></p>
             <p>Vous ne percevez pas la <span className="font-bold">SFT</span></p>
-          </h1>
+          </h2>
           <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2">
                 <table className="w-full text-sm rtl:text-right text-black dark:text-gray-400">
                     <thead className=" text-center font-semibold text-gray-200 uppercase bg-gray-700 dark:bg-gray-700 dark:text-gray-400">
@@ -225,18 +232,18 @@ function App() {
                 <table className="ml-auto text-black dark:text-gray-400">
                     <thead className="dark:bg-gray-700 dark:text-gray-400">
                         <tr className="text-white uppercase text-center font-semibold text-base">
-                            <td scope="col" className=" px-6 py-3 w-96"></td>
-                            <td scope="col" className=" px-6 py-3 w-80"></td>
-                            <td scope="col" className=" px-6 py-3 w-80 bg-gray-700 ">Charges  Salarié :</td>
-                            <td scope="col" className=" px-6 py-3 w-80 bg-gray-700 rounded-tr-md">Charges Patronnales :</td>
+                            <td scope="col" className=" px-1.5 pt-4 w-96 whitespace-nowrap text-lg text-red-700 font-bold align-baseline">Ce simulateur ne remplace pas les informations fournis par le rectorat</td>
+                            <td scope="col" className=" py-3"> </td>
+                            <td scope="col" className=" py-3 w-80 bg-gray-700 ">Charges  Salarié :</td>
+                            <td scope="col" className=" pr-1 py-3 w-80 bg-gray-700 rounded-tr-md">Charges Patronnales :</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className="odd:bg-gray-100  odd:dark:bg-gray-900 even:bg-gray-200 even:dark:bg-gray-800  dark:border-gray-700">
-                            <td scope="row" className="px-6 py-2 text-center text-3xl text-green-700 font-bold  whitespace-nowrap  border-l-gray-700 bg-gray-400"></td>
-                            <td scope="row" className="px-6 py-4 text-center text-xl text-black font-bold whitespace-nowrap  border-l-gray-700 bg-gray-400"></td>
-                            <td scope="row" className="px-6 py-4 text-center text-xl text-black font-bold bg-red-600 rounded-bl-md">XX,XX % </td>
-                            <td scope="row" className="px-6 py-4 text-center text-xl text-black font-bold   bg-purple-500"> XX,XX %</td>    
+                            <td scope="row" className="px-1 text-center text-3xl text-red-700 font-bold align-top text-wrap  border-l-gray-700 bg-gray-400">et n'a qu'un but informatif</td>
+                            <td scope="row" className="px-0 py-3 text-center text-xl text-black font-bold whitespace-nowrap  border-l-gray-700 bg-gray-400"></td>
+                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold bg-red-600 rounded-bl-md">XX,XX % </td>
+                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold   bg-purple-500"> XX,XX %</td>    
                         </tr>
                     </tbody>
                 </table>

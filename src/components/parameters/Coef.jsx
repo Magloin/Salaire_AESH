@@ -10,7 +10,7 @@ function Coef() {
     })
 
     return (<Card>
-        <h1 className=" text-center font-extrabold">Echelon et Coefficient</h1>
+        <h2 className=" text-center font-extrabold">Echelon et Coefficient</h2>
         <div className="text-center pt-1 w-30"> 
             <select name="coef" id="coefEchSelect" defaultValue={defaultValue} className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
                 {
