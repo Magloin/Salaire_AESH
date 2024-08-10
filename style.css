@@ -12,15 +12,15 @@ https://www.fonction-publique.gouv.fr/files/files/Statut%20et%20rémunérations/
 
 
 */
-// <uniquifier>: Use a unique and descriptive class name
+/*/ <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 300 to 900 
 
 .red-hat-display-<uniquifier> {
   font-family: "Red Hat Display", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: auto;
   font-style: normal;
-}
+} */
 
 
 * {
