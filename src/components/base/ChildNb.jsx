@@ -1,6 +1,6 @@
 function ChildNb(props) {
     return (<div className="text-center pt-1 hover:font-bold"> 
-        <select name="ChildNb" id="ChildNumb" defaultValue="2" className="bg-zinc-200  mb-2 h-auto w-5/6 texte-xs rounded-lg hover:bg-green-400">
+        <select name="ChildNb" id="ChildNumb" defaultValue="2" className="bg-zinc-200  mb-3 h-auto w-5/6 texte-xs rounded-lg hover:bg-green-400">
             <option className="text-center" value="">-- Nombre d'enfant(s) --</option>
             <option className="text-center" value="1">1</option>
             <option className="text-center" value="2">2</option>

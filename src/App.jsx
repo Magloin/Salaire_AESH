@@ -7,6 +7,9 @@ import Sft from "./components/parameters/Sft"
 import BuyCoffee from "./components/parameters/BuyCoffee"
 import TableRow from "./components/base/TableRow"
 import TableColumn from "./components/base/TableColumn"
+import RadioButton from "./components/base/RadioButton"
+import UseFetch from "./components/parameters/UseFetch"
+import CodePostal from "./components/parameters/codePostal"
 
 const indPoint = 4.9225
 const divCoef = document.querySelector('input[name="coef"]:checked');
@@ -22,13 +25,16 @@ function App() {
       <div className="overflow-scroll flex-col w-1/4">
         <Coef />
         <QuotitePercent />
+        <CodePostal />
         <PrimeDeRes/>
         <EtabRep/>
         <Psc/>
         <Sft></Sft>
         <BuyCoffee></BuyCoffee>
       </div>
+      
       <div className="bg-gray-400 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
+        <UseFetch/>
           <h2 className="text-xl bg-zinc-200 border-solid border-2 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md">
             <p> Vous êtes <span className="font-bold">Echelon 1</span>  avec un un coefficient de <span className="font-bold"> 371</span> soit en équivalent temps plein un salaire de <span className="font-bold">{salaireBrut} 1826,32 € brut</span></p>
             <p> Vous avez une quotité de <span className="font-bold">62%</span> soit un temps d'accompagnement de <span className="font-bold">24h</span> par semaine équivalent à un salaire de <span className="font-bold">1132,32€ brut</span></p>
