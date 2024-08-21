@@ -8,9 +8,9 @@ import { useEffect, useState } from "react"
 
 
 export function useFetch (url, options= {}) {
-    const [loading, setLoading] = useState (false)
-    const [data, setData] = useState (null)
-    const [errors, setErrors] = useState (null)
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState(null)
+    const [errors, setErrors] = useState(null)
 
     console.log("-B")
 
@@ -34,7 +34,7 @@ export function useFetch (url, options= {}) {
             console.log("C")
             setLoading(false)
         })
-    }, []);
+    }, [url]);
 
 
 

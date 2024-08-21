@@ -9,9 +9,13 @@ import TableRow from "./components/base/TableRow"
 import TableColumn from "./components/base/TableColumn"
 import RadioButton from "./components/base/RadioButton"
 import UseFetch from "./components/parameters/UseFetch"
-import CodePostal from "./components/parameters/codePostal"
+import CodePostal from "./components/parameters/CodePostal"
+import { useState } from "react"
+import Card from "./components/base/Card"
+import EstablissementCard from "./components/parameters/EstablissementCard"
+import DescriptionPoste from "./components/parameters/DescriptionPoste"
 
-const indPoint = 4.9225
+const indPoint = 4.92278
 const divCoef = document.querySelector('input[name="coef"]:checked');
 
 const salaireBrut = indPoint*divCoef
@@ -34,15 +38,18 @@ function App() {
       </div>
       
       <div className="bg-gray-400 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
-        <UseFetch/>
-          <h2 className="text-xl bg-zinc-200 border-solid border-2 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md">
-            <p> Vous êtes <span className="font-bold">Echelon 1</span>  avec un un coefficient de <span className="font-bold"> 371</span> soit en équivalent temps plein un salaire de <span className="font-bold">{salaireBrut} 1826,32 € brut</span></p>
-            <p> Vous avez une quotité de <span className="font-bold">62%</span> soit un temps d'accompagnement de <span className="font-bold">24h</span> par semaine équivalent à un salaire de <span className="font-bold">1132,32€ brut</span></p>
-            <p> Votre prime de résidence est calculée à hauteur de <span className="font-bold">1 %</span> de votre traitement brut</p>
-            <p> Vous êtes affecté dans une établissement en <span className="font-bold">REP</span></p>
-            <p> Vous avez demandé ou vous percevez la <span className="font-bold">PSC</span></p>
-            <p>Vous ne percevez pas la <span className="font-bold">SFT</span></p>
+        <UseFetch />
+        <EstablissementCard/>
+        <DescriptionPoste salaireBrut={salaireBrut} />
+        
+          <h2 className="text-xl bg-zinc-300 border-solid border-4 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md w-3/5">
+            <p>Vous êtes <span className="font-bold">Echelon 2</span></p>
+            <p>Votre coefficient est de  <span className="font-bold"> 375</span> soit en ETP un salaire de <span className="font-bold">{salaireBrut} 1846,04 € BRUT</span></p>
+            <p>Votre temps de service est de  <span className="font-bold">62%</span> </p>
+            <p><span className="font-bold">24h </span>d'accompagnement soit un salaire de <span className="font-bold">1144,55 € BRUT</span></p>
+            <p>Vous êtes affecté dans une établissement en zone <span className="font-bold">REP</span></p>
           </h2>
+        
           <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2">
                 <table className="w-full text-sm rtl:text-right text-black dark:text-gray-400">
                     <thead className=" text-center font-semibold text-gray-200 uppercase bg-gray-700 dark:bg-gray-700 dark:text-gray-400">
