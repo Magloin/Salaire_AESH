@@ -14,6 +14,8 @@ import { useState } from "react"
 import Card from "./components/base/Card"
 import EstablissementCard from "./components/parameters/EstablissementCard"
 import DescriptionPoste from "./components/parameters/DescriptionPoste"
+import AdressEtab from "./components/base/AdressEtab"
+
 
 const indPoint = 4.92278
 const divCoef = document.querySelector('input[name="coef"]:checked');
@@ -24,7 +26,7 @@ console.log (salaireBrut)
 
 function App() {
   return  (<div >
-      <h1 className="bg-black text-green-700 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal"> Simulateur de fiche de paie AESH</h1>
+      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal ">Simulateur de fiche de paie AESH</h1>
     <div className="flex h-full">
       <div className="overflow-scroll flex-col w-1/4">
         <Coef />
@@ -33,23 +35,46 @@ function App() {
         <PrimeDeRes/>
         <EtabRep/>
         <Psc/>
-        <Sft></Sft>
-        <BuyCoffee></BuyCoffee>
+        <Sft/>
+        <BuyCoffee/>
+        <UseFetch />
       </div>
       
-      <div className="bg-gray-400 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
-        <UseFetch />
-        <EstablissementCard/>
+      <div className="bg-gray-00 border-gray-700 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
+        
+        <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
         <DescriptionPoste salaireBrut={salaireBrut} />
+        <EstablissementCard/>
         
-          <h2 className="text-xl bg-zinc-300 border-solid border-4 border-gray-600 mx-2 mt-3 h-auto pl-2 rounded-tr-md w-3/5">
-            <p>Vous êtes <span className="font-bold">Echelon 2</span></p>
-            <p>Votre coefficient est de  <span className="font-bold"> 375</span> soit en ETP un salaire de <span className="font-bold">{salaireBrut} 1846,04 € BRUT</span></p>
-            <p>Votre temps de service est de  <span className="font-bold">62%</span> </p>
-            <p><span className="font-bold">24h </span>d'accompagnement soit un salaire de <span className="font-bold">1144,55 € BRUT</span></p>
-            <p>Vous êtes affecté dans une établissement en zone <span className="font-bold">REP</span></p>
-          </h2>
-        
+        </div>
+        <div className=" m-2 w-1/2"> 
+          <Card>
+            <Card>
+              <div className="bg-zinc-300">
+                <h1 className="text-center text-2xl">Pial de  :<a className="font-bold pl-2">Saint Etienne du rouvray</a> </h1>
+                <h2 className="text-center text-center text-xl font-bold" >Collège Pablo Picasso</h2>
+                <AdressEtab/>
+              </div>
+            </Card>
+            <div className=" flex">
+              <div className="w-1/2">
+                <Card>{/* card second degrés */}
+                  <h2 className=" text-center">Collège <a className="font-bold">Jean Charcot</a></h2>
+                  <h3 className="pl-2"><p>Commune :<a className="font-bold capitalize pl-1">oissel </a></p></h3>
+                </Card>
+              </div>
+              <div className=" pl-2 w-1/2">
+                <Card>
+                  <h2 className="text-center">Primaire <a className="font-bold capitalize">Louis Pasteur</a></h2>
+                  <h3 className="pl-2"><p>Commune :<a className="font-bold capitalize pl-1">oissel </a></p></h3>
+                </Card>
+              </div>
+              </div>
+        </Card>
+        </div>
+
+
+
           <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2">
                 <table className="w-full text-sm rtl:text-right text-black dark:text-gray-400">
                     <thead className=" text-center font-semibold text-gray-200 uppercase bg-gray-700 dark:bg-gray-700 dark:text-gray-400">

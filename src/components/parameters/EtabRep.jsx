@@ -5,7 +5,10 @@ function etabRep () {
     return (<Card>
          <h2 className="text-lg text-center font-extrabold">En établissement REP</h2>
         <Checkbox leftValue={"Non"} rightValue={"Oui"} />
-        <Checkbox leftValue={"Rep"} rightValue={"Rep+"} />
+        <div className="pr-2">
+            <Checkbox leftValue={"Rep+"} rightValue={"Rep"} />
+        </div>
+        
     </Card>)
 }
 export default etabRep
