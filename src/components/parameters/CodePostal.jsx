@@ -17,7 +17,6 @@ function CodePostal() {
             setSchools(schools)
 
             if (schools.length > 0) {
-                console.log("Schools coutn")
                 setSelectedSchool(schools[0])
             }
         })

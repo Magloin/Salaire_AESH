@@ -12,31 +12,22 @@ export function useFetch (url, options= {}) {
     const [data, setData] = useState(null)
     const [errors, setErrors] = useState(null)
 
-    console.log("-B")
-
     useEffect(()=>{
-        console.log("-A")
         fetch(url, {
             ...options,
         headers: {
             'Accept': 'application.json; charset=utf-8',
             ...options.headers
         }
-        }).then(r=>r.json()).then(data=>{
-            console.log("A")
-            console.log("DATA", data.results)
+        }).then(r => r.json()).then(data => {
             setLoading(false)
             setData(data.results)
-        }).catch((e)=>{
-            console.log("B")
+        }).catch((e) => {
             setErrors(e)
-        }).finally(()=>{
-            console.log("C")
+        }).finally(() => {
             setLoading(false)
         })
     }, [url]);
-
-
 
     return {
         loading, data, errors
