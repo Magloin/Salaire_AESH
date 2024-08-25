@@ -8,7 +8,7 @@ function DataServiceCompute(input: InputData): Data {
         addition: input.quotite + input.coef
     }
 
-    return new Data(input, newOutput)
+    return new Data(input, newOutput, [])
 }
 
 export default DataServiceCompute

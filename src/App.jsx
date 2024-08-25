@@ -1,14 +1,14 @@
 import { useReducer } from "react"
 import MainPage from "./components/base/MainPage"
 import dataReducer from "./reducers/DataReducer"
-import Data from "./data/Data"
 import { DataContext, DataDispatchContext } from "./contexts/DataContext"
 import DataServiceCompute from "./services/DataService"
+import InputData from "./data/InputData"
 
 function App() {
   const [data, dispatch] = useReducer(
     dataReducer,
-    DataServiceCompute(new Data())
+    DataServiceCompute(new InputData())
   )
 
   console.log("DATA", data)
