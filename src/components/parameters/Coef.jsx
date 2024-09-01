@@ -6,7 +6,7 @@ function Coef() {
     const data = useContext(DataContext)
     const dispatch = useContext(DataDispatchContext)
 
-    let values = [371, 375, 380, 385, 395, 405, 415, 425, 435, 445, 455]
+    let values = data.input.coefValues
     let defaultValue = data.input.coef
 
     let options = values.map((value, index) => {

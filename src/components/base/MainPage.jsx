@@ -12,15 +12,21 @@ import Card from "../base/Card"
 import EstablissementCard from "../parameters/EstablissementCard"
 import DescriptionPoste from "../parameters/DescriptionPoste"
 import AdressEtab from "../base/AdressEtab"
+import { useContext } from "react"
+import { DataContext } from "../../contexts/DataContext"
+import OutputData from "../../data/OutputData"
 
 const indPoint = 4.92278
 const divCoef = document.querySelector('input[name="coef"]:checked');
 
-const salaireBrut = indPoint*divCoef
+// const salaireBrut = indPoint*divCoef
 
 
 function MainPage() {
-    return (<div >
+  const data = useContext(DataContext)
+  const salaireBrut = data.output.salaireBrut
+
+  return (<div >
       <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal ">Simulateur de fiche de paie AESH</h1>
     <div className="flex h-full">
       <div className="overflow-scroll flex-col w-1/4">
@@ -38,11 +44,11 @@ function MainPage() {
       <div className="bg-gray-00 border-gray-700 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
         
         <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
-        <DescriptionPoste salaireBrut={salaireBrut} />
+        <DescriptionPoste />
         <EstablissementCard/>
         
         </div>
-        <div className=" m-2 w-1/2"> 
+        <div className=" m-2 w-1/2" hidden> 
           <Card>
             <Card>
               <div className="bg-zinc-300">
@@ -86,35 +92,42 @@ function MainPage() {
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">101000</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Traitement Brut :</td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.salaireBrut.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4  whitespace-nowrap">102000</td>
                         <td scope="row" className="px-6 py-4  pr-2 text-right">Indemnité de résidence :</td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.indRes.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4"></td>
+                      </TableRow>
+                      <TableRow>
+                        <td scope="row" className="px-6 py-4  whitespace-nowrap">104000</td>
+                        <td scope="row" className="px-6 py-4  pr-2 text-right">Supp Familial Traitement :</td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.sft.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">201883</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Ind. Sujetion REP (Part fixe) :</td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.montantPrimRep.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">202354</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Participation PSC :</td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.psc.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">202477</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Indem. de fonction :</td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.indFonct.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
@@ -122,35 +135,35 @@ function MainPage() {
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">401112</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Sal. vieillesse Plaf :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotSalViePla.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">401210</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">C.S.G non déductible :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.csgNonDed.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">401310</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">C.S.G déductible :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center"> {data.output.csgDed.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">401510</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">C.R.D.S :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.crds.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">404212</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Sal. vieillesse Déplaf. :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotSalVieDepla.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
@@ -158,69 +171,69 @@ function MainPage() {
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. Alloc. Familliale :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"> </td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatAlloFam.toFixed(2)} </td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">403398</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. Alloc. Fam. Majoration :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatAlMaj.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">403412</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. Accident Travail :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"> </td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatAccTra.toFixed(2)} </td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">403512</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. FNAL déplafonnée :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatFnalDepl.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">403612</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right"> Cotis. Pat. vieillesse Plafonnée :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatViePlaf.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">403712</td>
-                        <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Sal. vieillesse Plafonnée :</td>
+                        <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. vieillesse Deplaf :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatVieDepl.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">403812</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Contrib. Solid. Autonomie :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotSolAuto.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">404012</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. maladie Déplaf. :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatMalDepla.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className="px-6 py-4 whitespace-nowrap">404098</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cot. Pat. Mal. majoration :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatMalMaj.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">501010</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Sal. IRCANTEC Tr.A :</td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotSalIrcTrA.toFixed(2)}</td>
                         <td scope="row" className="px-6 py-4"></td>
                       </TableRow>
                       <TableRow>
@@ -228,14 +241,14 @@ function MainPage() {
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cotis. Pat. IRCANTEC Tr.A :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatIrcTraA.toFixed(2)}</td>
                       </TableRow>
                       <TableRow>
                         <td scope="row" className=" px-6 py-4 whitespace-nowrap">554500</td>
                         <td scope="row" className="px-6 py-4 pr-2 text-right">Cot. Pat. VST mobilité :</td>
                         <td scope="row" className="px-6 py-4"></td>
                         <td scope="row" className="px-6 py-4"></td>
-                        <td scope="row" className="px-6 py-4"></td>
+                        <td scope="row" className="px-6 py-4 text-center">{data.output.cotPatVstMob.toFixed(2)}</td>
                       </TableRow>
                     </tbody>
                 </table>
@@ -253,10 +266,10 @@ function MainPage() {
                     </thead>
                     <tbody>
                         <tr className="odd:bg-gray-100  odd:dark:bg-gray-900 even:bg-gray-200 even:dark:bg-gray-800  dark:border-gray-700">
-                            <td scope="row" className="px-6 py-4 text-center text-green-700  font-bold text-3xl whitespace-nowrap  border-l-gray-700 bg-gray-400">XXX,XX€</td>
-                            <td scope="row" className="px-6 py-4 text-center font-bold text-xl text-black whitespace-nowrap bg-green-700 rounded-bl-md">XXX,XX€</td>
-                            <td scope="row" className="px-6 py-4 text-center text-xl text-white font-bold bg-red-600">XXX,XX €</td>
-                            <td scope="row" className="px-6 py-4 text-center text-xl font-bold  text-black bg-purple-500">XXX,XX €</td>
+                            <td scope="row" className="px-6 py-4 text-center text-green-700  font-bold text-3xl whitespace-nowrap  border-l-gray-700 bg-gray-400">{data.output.aPercevoir.toFixed(2)}</td>
+                            <td scope="row" className="px-6 py-4 text-center font-bold text-xl text-black whitespace-nowrap bg-green-700 rounded-bl-md">{data.output.totalPercu.toFixed(2)}€</td>
+                            <td scope="row" className="px-6 py-4 text-center text-xl text-white font-bold bg-red-600">{data.output.aDeduire.toFixed(2)} €</td>
+                            <td scope="row" className="px-6 py-4 text-center text-xl font-bold  text-black bg-purple-500">{data.output.pourInfo.toFixed(2)} €</td>
                         </tr>
                     </tbody>
                 </table>
@@ -275,8 +288,8 @@ function MainPage() {
                         <tr className="odd:bg-gray-100  odd:dark:bg-gray-900 even:bg-gray-200 even:dark:bg-gray-800  dark:border-gray-700">
                             <td scope="row" className="px-1 text-center text-3xl text-red-700 font-bold align-top text-wrap  border-l-gray-700 bg-gray-400">et n'a qu'un but informatif</td>
                             <td scope="row" className="px-0 py-3 text-center text-xl text-black font-bold whitespace-nowrap  border-l-gray-700 bg-gray-400"></td>
-                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold bg-red-600 rounded-bl-md">XX,XX % </td>
-                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold   bg-purple-500"> XX,XX %</td>    
+                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold bg-red-600 rounded-bl-md">{data.output.percentSalValue.toFixed(2)} % </td>
+                            <td scope="row" className="px-6 py-3 text-center text-xl text-black font-bold   bg-purple-500">{data.output.percentPatValue.toFixed(2)} %</td>    
                         </tr>
                     </tbody>
                 </table>
