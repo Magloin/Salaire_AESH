@@ -1,7 +1,6 @@
 import Coef from "../parameters/Coef"
 import PrimeDeRes from "../parameters/PrimeDeRes"
 import QuotitePercent from "../parameters/QuotitePercent"
-import EtabRep from "../parameters/EtabRep"
 import Psc from "../parameters/Psc"
 import Sft from "../parameters/Sft"
 import BuyCoffee from "../parameters/BuyCoffee"
@@ -9,17 +8,15 @@ import TableRow from "../base/TableRow"
 import UseFetch from "../parameters/UseFetch"
 import CodePostal from "../parameters/CodePostal"
 import Card from "../base/Card"
-import EstablissementCard from "../parameters/EstablissementCard"
+import EtablissementCard from "../parameters/EtablissementCard"
 import DescriptionPoste from "../parameters/DescriptionPoste"
 import AdressEtab from "../base/AdressEtab"
 import { useContext } from "react"
 import { DataContext } from "../../contexts/DataContext"
 import OutputData from "../../data/OutputData"
 
-const indPoint = 4.92278
-const divCoef = document.querySelector('input[name="coef"]:checked');
 
-// const salaireBrut = indPoint*divCoef
+
 
 
 function MainPage() {
@@ -34,7 +31,6 @@ function MainPage() {
         <QuotitePercent />
         <CodePostal />
         <PrimeDeRes/>
-        <EtabRep/>
         <Psc/>
         <Sft/>
         <BuyCoffee/>
@@ -45,10 +41,10 @@ function MainPage() {
         
         <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
         <DescriptionPoste />
-        <EstablissementCard/>
+        <EtablissementCard/>
         
         </div>
-        <div className=" m-2 w-1/2" hidden> 
+        <div className=" m-2 w-1/2"> 
           <Card>
             <Card>
               <div className="bg-zinc-300">

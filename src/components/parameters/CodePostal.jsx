@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Card from "../base/Card"
 import InputSelection from "../base/InputSelection"
+import SchoolData from "../../data/School"
+import { DataDispatchContext } from "../../contexts/DataContext"
 
 function CodePostal() {
+    const dispatch = useContext(DataDispatchContext)
+
     let [postalCode, setPostalCode] = useState("76350")
     let [schools, setSchools] = useState([])
     let [selectedSchool, setSelectedSchool] = useState(null)
@@ -11,13 +15,36 @@ function CodePostal() {
         if (postalCode.length != 5) { return }
 
         fetch(
-            `https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records?where=code_postal%20%3D%20%22${postalCode}%22&limit=100&refine=statut_public_prive%3A%22Public%22&refine=etat%3A%22OUVERT%22&refine=ministere_tutelle%3A%22MINISTERE%20DE%20L%27EDUCATION%20NATIONALE%22`
+            `https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records?where=code_postal%20%3D%20%22${postalCode}%22&limit=100`
         ).then(r => r.json()).then((data) => {
-            let schools = data.results
+            console.log("Results", data.results)
+            let schools = data.results.map((result) => {
+                return new SchoolData(
+                    result["identifiant_de_l_etablissement"],
+                    result["nom_etablissement"],
+                    result["type_etablissement"],
+                    result["statut_public_prive"] === "Public",
+                    result["adresse_1"],
+                    result["adresse_2"],
+                    result["code_postal"],
+                    result["nom_commune"],
+                    result["telephone"],
+                    result["mail"],
+                    result["web"],
+                    result["restauration"] === 1,
+                    result["ulis"] === 1,
+                    result["segpa"] === "1",
+                    result["appartenance_education_prioritaire"] === null ? false : true,
+                    result["appartenance_education_prioritaire"] === "REP+" ? true : false,
+                    result["nombre_d_eleves"]
+                ) 
+            })
             setSchools(schools)
+            console.log("Schools", schools)
 
             if (schools.length > 0) {
                 setSelectedSchool(schools[0])
+                dispatch({ type: "school", value: schools[0] })
             }
         })
         .catch((error) => {
@@ -25,15 +52,16 @@ function CodePostal() {
         })
     }, [postalCode])
     
-    function generateOptions(schoolArray) {
-        return schoolArray.map((school, index) => {
-            return <option key={index} className="text-center" value={school["identifiant_de_l_etablissement"]}>{school["nom_etablissement"]}</option>
+    function generateOptions() {
+        return schools.map((school, index) => {
+            return <option key={index} className="text-center" value={school.uai}>{school.name}</option>
         })
     }
 
-    function findSelectedSchool(schoolArray, idSchool) {
-        let school = schoolArray.find((school) => school["identifiant_de_l_etablissement"] == idSchool)
+    function findSelectedSchool(idSchool) {
+        let school = schools.find((school) => school.uai == idSchool)
         setSelectedSchool(school)
+        dispatch({ type: "school", value: school })
     } 
 
     return (<Card>
@@ -42,18 +70,11 @@ function CodePostal() {
             <InputSelection  textValue={postalCode} updateText={setPostalCode} className="mb-2" />
             </div>
             <div className="text-center">
-            <select onChange={e => findSelectedSchool(schools, e.target.value) } name="school" id="schoolSelect" className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
+            <select onChange={e => findSelectedSchool(e.target.value) } name="school" id="schoolSelect" className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
                 {
-                    generateOptions(schools)
+                    generateOptions()
                 }
             </select>
-            </div>
-            
-            <div>
-                {
-                    selectedSchool && 
-                    JSON.stringify(selectedSchool)
-                }
             </div>
         </Card>
     )   

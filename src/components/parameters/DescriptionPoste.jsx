@@ -6,6 +6,7 @@ import { DataContext } from "../../contexts/DataContext"
 function DescriptionPoste () {
     const data = useContext(DataContext)
     const echelon = (data.input.coefValues.indexOf(data.input.coef) ?? 0) + 1
+    const school = data.input.school
     
     return (<div className="Flex self-center">
         <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-2 rounded-tr-md">
@@ -37,11 +38,11 @@ function DescriptionPoste () {
             </Card>
 
             {
-                data.input.isRep &&
+                school?.isRep === true &&
                 <Card>
                     <div className="Flex items-center" >
                         <p className="text-center">
-                            Vous êtes affecté dans une établissement en zone <span className="font-bold">REP {data.input.isRepPlus ? '+' : ''}</span>
+                            Vous êtes affecté dans une établissement en zone <span className="font-bold">REP {school?.isRepPlus === true ? '+' : ''}</span>
                         </p>
                     </div>
                 </Card>

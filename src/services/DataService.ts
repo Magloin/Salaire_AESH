@@ -9,7 +9,7 @@ function DataServiceCompute(input: InputData): Data {
     const indRes = salaireBrut * (1/100) // Indemnite de résidence
     const indFonct = (input.valPrimFonct/12) * (input.quotite/100) // indemnité de fonction
     const psc = !input.hasPsc ? 0 : 15// montant forfaitaire
-    const montantPrimRep = !input.isRep ? 0 : (input.isRepPlus ? (3263/12) * ((input.quotite)/100) : (1106/12) * ((input.quotite)/100))
+    const montantPrimRep = !input.school?.isRep ? 0 : (input.school?.isRepPlus ? (3263/12) * ((input.quotite)/100) : (1106/12) * ((input.quotite)/100))
     const workTime = ((((input.quotite) / 100) * 1607 ) / 41)
     // const primeRep = (montantPrimRep * (quotite/100))/12
     let sft = 0 //revoir le calcul
