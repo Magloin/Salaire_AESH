@@ -14,8 +14,7 @@ import AdressEtab from "../base/AdressEtab"
 import { useContext } from "react"
 import { DataContext } from "../../contexts/DataContext"
 import OutputData from "../../data/OutputData"
-
-
+import EtablissementCardLight from "../parameters/EtablissementCardLight"
 
 
 
@@ -41,7 +40,7 @@ function MainPage() {
         
         <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
         <DescriptionPoste />
-        <EtablissementCard/>
+        <EtablissementCardLight />
         
         </div>
         <div className=" m-2 w-1/2"> 
@@ -69,7 +68,7 @@ function MainPage() {
               </div>
         </Card>
         </div>
-
+    
 
 
           <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2">

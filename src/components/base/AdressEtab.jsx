@@ -9,12 +9,12 @@ function AdressEtab() {
     }
 
     return(
-        <div className="flex grid grid-cols-2 Border-solid border-t-2 border-gray-500/40 bg-zinc-300  items-center">
+        <div className="flex grid grid-cols-2 Border-solid border-t-2 border-b-2 border-gray-500/40 bg-zinc-300  items-center">
                 <div className="flex-col text-center text-lg" id="police">
-                    <p className="pl-2">
+                    <p className="pl-2 pt-4">
                        {school.adressLine1}
                     </p> {/*"adresse_1" */}
-                    <p className="pl-2">
+                    <p className="pl-2 pb-4">
                        {school.postalCode}, {school.communeName}
                     </p> {/*"code_postal" & "nom_commune" */}
                 </div>
@@ -29,7 +29,7 @@ function AdressEtab() {
 
                     { school.webAdress &&
                         <p className="pl-3 pb-2">Site Internet : 
-                            <a href={school.webAdress}  target="_ blank" className="text-blue-600  visited:text-purple-600  pl-2 text-sm underline decoration-solid">
+                            <a href={school.webAdress}  target="_ blank" className="text-blue-600  visited:text-purple-600  pl-2 text-sm underline decoration-solid pr-2">
                                 {school.name} 
                             </a>
                     </p>

@@ -42,7 +42,7 @@ function DescriptionPoste () {
                 <Card>
                     <div className="Flex items-center" >
                         <p className="text-center">
-                            Vous êtes affecté dans une établissement en zone <span className="font-bold">REP {school?.isRepPlus === true ? '+' : ''}</span>
+                            Vous êtes affecté dans une établissement en zone <span className="font-bold text-red-500">REP {school?.isRepPlus === true ? '+' : ''}</span>
                         </p>
                     </div>
                 </Card>
