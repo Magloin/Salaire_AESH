@@ -16,7 +16,7 @@ function EtablissementCardLight () {
         <div className="Border-solid  border-4 border-gray-600 bg-zinc-300 ml-2 text-center rounded-tr-lg rounded-bl-lg">
            <div className=""> 
                 <h2 className=" text-xl font-bold  m-auto" id="police">{school.name}</h2>
-                <Modal />
+                <Modal uai={school.uai} />
             </div>
             <AdressEtab/>
         </div>

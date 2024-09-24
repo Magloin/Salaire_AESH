@@ -3,11 +3,14 @@
 
 import React, { useState } from "react";
 import EtablissementCard from "./EtablissementCard";
-const Modal = () => {
+import IvacFetcher from "./IvacFetcher";
+const Modal = ({ uai }) => {
   const [showModal, setShowModal] = useState(false);
   
   return (
     <>
+    <IvacFetcher uai={uai} />
+
     <button id="open-modal-btn" 
         className="px-4 py-2 my-2 border-gray-600 bg-indigo-400 text-white rounded-tr-lg rounded-bl-lg" 
         onClick={() => setShowModal(true)}>
