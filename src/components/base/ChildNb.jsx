@@ -4,8 +4,6 @@ import { DataContext, DataDispatchContext } from "../../contexts/DataContext"
 function ChildNb(props) {
     let values = [1,2,3,4,5,6,7,8]
 
-    console.log("DEFAULT VALUE", props.defaultValue)
-
     if (props.handleZero) {
         values.unshift(0)
     }

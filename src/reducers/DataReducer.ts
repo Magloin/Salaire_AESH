@@ -4,7 +4,7 @@ import DataServiceCompute from "../services/DataService";
 
 function dataReducer(data: Data, action) {
     const newInput = { ...data.input }
-
+    
     if (action.type === "coef") {
         let numberValue = Number(action.value)
         newInput.coef = numberValue
@@ -19,6 +19,12 @@ function dataReducer(data: Data, action) {
     }
     if (action.type === "school") {
         newInput.school = action.value
+    }
+    if (action.type === "ips") {
+        newInput.school.ips = action.value
+    }
+    if (action.type === "ivac") {
+        newInput.school.ivac = action.value
     }
     if (action.type === "residenceValue") {
         newInput.residenceValue = action.value

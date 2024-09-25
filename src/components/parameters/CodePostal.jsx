@@ -3,6 +3,7 @@ import Card from "../base/Card"
 import InputSelection from "../base/InputSelection"
 import SchoolData from "../../data/School"
 import { DataDispatchContext } from "../../contexts/DataContext"
+import Ivac from "../../data/Ivac"
 
 function CodePostal() {
     const dispatch = useContext(DataDispatchContext)
@@ -17,7 +18,6 @@ function CodePostal() {
         fetch(
             `https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records?where=code_postal%20%3D%20%22${postalCode}%22&limit=100`
         ).then(r => r.json()).then((data) => {
-            console.log("Results", data.results)
             let schools = data.results.map((result) => {
                 return new SchoolData(
                     result["identifiant_de_l_etablissement"],
@@ -40,7 +40,6 @@ function CodePostal() {
                 ) 
             })
             setSchools(schools)
-            console.log("Schools", schools)
 
             if (schools.length > 0) {
                 setSelectedSchool(schools[0])
@@ -51,6 +50,32 @@ function CodePostal() {
             console.log("Ya eu un souci", error)
         })
     }, [postalCode])
+
+    useEffect(() => {
+        if (selectedSchool == null || selectedSchool == undefined) { return }
+        if (selectedSchool.uai == null || selectedSchool.uai == undefined) { return }
+        if (selectedSchool.type != "Collège") { return }
+
+        const ipsFetch = fetch(`https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-ips-colleges-ap2022/records?where=uai%3D%22${selectedSchool.uai}%22&limit=20`)
+        const ivacFetch = fetch(`https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-indicateurs-valeur-ajoutee-colleges/records?where=uai%3D%22${selectedSchool.uai}%22&limit=20`)
+        Promise.all([ipsFetch, ivacFetch])
+            .then((rs) => Promise.all(rs.map((r) => r.json())))
+            .then((dataArray) => {
+                let ipsData = dataArray[0]?.results[0]
+                if (ipsData && ipsData.ips) {
+                    dispatch({ type: "ips", value: ipsData.ips })
+                }
+                let ivacData = dataArray[0]?.results[0]
+                if (ivacData) {
+                    let ivacObject = new Ivac(ivacData["session"], ivacData["nb_mentions_tb_g"], ivacData["nb_mentions_b_g"],ivacData["nb_mentions_ab_g"],ivacData["taux_de_reussite_g"])
+                    dispatch({ type: "ivac", value: ivacObject})
+                }
+
+            }).catch((error) => {
+                console.log("Ya eu un souci", error)
+            })
+
+    }, [selectedSchool])
     
     function generateOptions() {
         return schools.map((school, index) => {

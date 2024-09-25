@@ -11,8 +11,6 @@ function App() {
     DataServiceCompute(new InputData())
   )
 
-  console.log("DATA", data)
-
   return (
     <DataContext.Provider value={ data }>
       <DataDispatchContext.Provider value={ dispatch }>

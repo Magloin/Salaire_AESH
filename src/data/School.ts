@@ -16,13 +16,14 @@ class SchoolData {
     hasSegpaClass: boolean = true //"segpa":"1",
     isRep: boolean = true
     isRepPlus: boolean = false //"appartenance_education_prioritaire":"REP+",
-    nbStudents: number = 547 //"nombre_d_eleves":629,
+    nbStudents: number = 545 //"nombre_d_eleves":629,
+    ips: number | null = null //"ips":88.2,
+    
+    ivac: any | null
     
     
     
-    
-    
-    constructor ( uai:string="0760083C",name: string = "Collège Jean Charcot",type: string = "Collège",isPublic: boolean = true,adressLine1: string = "31 rue de l'amitié",adressLine2: string = "",postalCode: string = "76350",communeName: string = "Oissel", phoneNumber: string = "02 35 65 01 49",mailAdress: string = "ce.0760083c@ac-normandie.fr",webAdress: string ="http://jeancharcot-oissel.arsene76.fr/",hasRestaurant: boolean = true, hasUlisClass: boolean = true, hasSegpaClass: boolean = false, isRep: boolean = true, isRepPlus: boolean = false, nbStudents: number = 547)
+    constructor ( uai:string="0760083C",name: string = "Collège Jean Charcot",type: string = "Collège",isPublic: boolean = true,adressLine1: string = "31 rue de l'amitié",adressLine2: string = "",postalCode: string = "76350",communeName: string = "Oissel", phoneNumber: string = "02 35 65 01 49",mailAdress: string = "ce.0760083c@ac-normandie.fr",webAdress: string ="http://jeancharcot-oissel.arsene76.fr/",hasRestaurant: boolean = true, hasUlisClass: boolean = true, hasSegpaClass: boolean = false, isRep: boolean = true, isRepPlus: boolean = false, nbStudents: number = 547, ips = null)
     {this.uai = uai
         this.name = name
         this.type = type
@@ -40,6 +41,8 @@ class SchoolData {
         this.isRep = isRep
         this.isRepPlus = isRepPlus
         this.nbStudents = nbStudents
+        this.ips = ips
+        this.ivac = null
     }
     
 }

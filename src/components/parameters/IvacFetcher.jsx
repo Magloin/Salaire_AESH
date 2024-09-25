@@ -16,7 +16,6 @@ function IvacFetcher ({ uai }) {
     })
 
     let ivac = data?.sort((l, r) => r["session"] - l["session"])[0]
-    console.log("LAST IVAC", ivac)
 
     return <div>
         {uai}
