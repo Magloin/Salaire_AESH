@@ -58,6 +58,7 @@ function CodePostal() {
 
         const ipsFetch = fetch(`https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-ips-colleges-ap2022/records?where=uai%3D%22${selectedSchool.uai}%22&limit=20`)
         const ivacFetch = fetch(`https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-indicateurs-valeur-ajoutee-colleges/records?where=uai%3D%22${selectedSchool.uai}%22&limit=20`)
+        
         Promise.all([ipsFetch, ivacFetch])
             .then((rs) => Promise.all(rs.map((r) => r.json())))
             .then((dataArray) => {
@@ -65,14 +66,16 @@ function CodePostal() {
                 if (ipsData && ipsData.ips) {
                     dispatch({ type: "ips", value: ipsData.ips })
                 }
-                let ivacData = dataArray[0]?.results[0]
+
+                let ivacData = dataArray[1]?.results.sort((l, r) => r["session"] - l["session"])[0]
                 if (ivacData) {
-                    let ivacObject = new Ivac(ivacData["session"], ivacData["nb_mentions_tb_g"], ivacData["nb_mentions_b_g"],ivacData["nb_mentions_ab_g"],ivacData["taux_de_reussite_g"])
-                    dispatch({ type: "ivac", value: ivacObject})
+                    let ivacObject = new Ivac(ivacData["session"], ivacData["nb_mentions_tb_g"], ivacData["nb_mentions_b_g"], ivacData["nb_mentions_ab_g"],ivacData["taux_de_reussite_g"])
+                    dispatch({ type: "ivac", value: ivacObject })
                 }
 
             }).catch((error) => {
                 console.log("Ya eu un souci", error)
+                
             })
 
     }, [selectedSchool])

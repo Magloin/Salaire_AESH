@@ -1,12 +1,12 @@
 class Ivac {
-    session: string = "2023"
-    mentionTresBien: number = 29
-    mentionBien: number = 22
-    mentionAssezBien : number = 26
-    successRate : number = 85
+    session: string
+    mentionTresBien: number
+    mentionBien: number
+    mentionAssezBien : number
+    successRate : number
 
 
-    constructor(session: string = "2023", mentionTresBien : number =29, mentionBien : number = 22 , mentionAssezBien : number = 26, successRate : number = 85) {
+    constructor(session: string , mentionTresBien : number , mentionBien : number  , mentionAssezBien : number , successRate : number) {
         this.session = session
         this.mentionTresBien = mentionTresBien
         this.mentionBien = mentionBien

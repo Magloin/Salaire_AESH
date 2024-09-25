@@ -1,3 +1,5 @@
+import Ivac from "./Ivac"
+
 class SchoolData {
     
     uai:string = "0760083C" //"identifiant_de_l_etablissement":"0312198W"
@@ -19,7 +21,7 @@ class SchoolData {
     nbStudents: number = 545 //"nombre_d_eleves":629,
     ips: number | null = null //"ips":88.2,
     
-    ivac: any | null
+    ivac: Ivac | null = null
     
     
     
