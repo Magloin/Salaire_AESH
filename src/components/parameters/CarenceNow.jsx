@@ -10,22 +10,22 @@ function carenceActually () {
     
     return (<div className="Flex self-center">
         <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-2 rounded-tr-md">
-            <Card><p className="text-center text-Xl">Actuellement</p></Card>
+            <Card><p className="text-center text-2xl">Actuellement</p></Card>
             <Card>
                  <div className="text-center">
-                    <p>Votre salaire est de <span className="font-bold"> {data.output.aPercevoir.toFixed(2)} € </span> </p>      
+                    <p>Votre salaire est de <span className="font-bold"> {data.salaryOutput.aPercevoir.toFixed(2)} € </span> </p>      
                 </div>        
             </Card>
-            <Card><p className="text-center">Avec un seul <span className="font-bold">Jour</span> de carence, il sera retenu : </p></Card>
+            <Card><p className="text-center">Avec un seul <span className="font-bold">Jour</span> de carence, il sera retenu : {data.carenceOutput.oneDayCarence.toFixed(2)} € </p></Card>
             <Card>
                 <div className="flex grid grid-cols-2 justify-center text-center">
                 
                     <div className="text-center">
                             <p>Temps de service :  <span className="font-bold">{data.input.quotite}%</span> </p>
-                        <p><span className="font-bold">{data.output.workTime.toFixed(0)} h </span>d'accompagnement</p>
+                        <p><span className="font-bold">{data.salaryOutput.workTime.toFixed(0)} h </span>d'accompagnement</p>
                     </div>
                     <div className="text-center">
-                    <p> <span className="font-bold">{data.output.salaireBrut.toFixed(2)} € BRUT</span></p>
+                    <p> <span className="font-bold">{data.salaryOutput.salaireBrut.toFixed(2)} € BRUT</span></p>
                         <p>de salaire</p> 
                         
                     </div>

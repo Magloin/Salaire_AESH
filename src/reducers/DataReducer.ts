@@ -4,6 +4,8 @@ import DataServiceCompute from "../services/DataService";
 
 function dataReducer(data: Data, action) {
     const newInput = { ...data.input }
+
+    console.log("Data", data, "action", action)
     
     if (action.type === "coef") {
         let numberValue = Number(action.value)

@@ -1,16 +1,26 @@
+import CarenceOutputData from "./CarenceOutputData";
 import InputData from "./InputData";
 import LineData from "./LineData";
-import OutputData from "./OutputData";
+import SalaryOutputData from "./SalaryOutputData";
 
 
 class Data {
     input = new InputData()
-    output = new OutputData()
+
+    salaryOutput = new SalaryOutputData()
+    carenceOutput = new CarenceOutputData()
+
     lines: LineData[] = []
 
-    constructor(input: InputData = new InputData(), output: OutputData = new OutputData(), lines: LineData[] = []) {
+    constructor(
+        input: InputData = new InputData(), 
+        salaryOutput: SalaryOutputData = new SalaryOutputData(),
+        carenceOutput: CarenceOutputData = new CarenceOutputData(),
+        lines: LineData[] = []
+    ) {
         this.input = input
-        this.output = output
+        this.salaryOutput = salaryOutput
+        this.carenceOutput = carenceOutput
         this.lines = lines
     }
 }

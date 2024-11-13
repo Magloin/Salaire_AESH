@@ -1,4 +1,4 @@
-class OutputData {
+class SalaryOutputData {
     salaire : number = 0
     salaireBrut: number = 0
     indRes: number = 0
@@ -32,4 +32,4 @@ class OutputData {
     percentPatValue: number = 0
 }
 
-export default OutputData;
+export default SalaryOutputData;

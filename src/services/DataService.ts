@@ -1,7 +1,8 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import Data from "../data/Data";
 import InputData from "../data/InputData";
-import OutputData from "../data/OutputData";
+import SalaryOutputData from "../data/SalaryOutputData";
+import CarenceOutputData from "../data/CarenceOutputData";
 
 function DataServiceCompute(input: InputData): Data {
     const salaire = (input.indPoint * input.coef)
@@ -89,7 +90,7 @@ function DataServiceCompute(input: InputData): Data {
      const percentSalValue = (aDeduire / totalPercu) * 100
      const percentPatValue = (pourInfo / totalPercu) * 100
 
-    const newOutput: OutputData = {
+    const newSalaryOutput: SalaryOutputData = {
         salaire,
         salaireBrut,
         indRes,
@@ -123,7 +124,33 @@ function DataServiceCompute(input: InputData): Data {
         workTime,
     }
 
-    return new Data(input, newOutput, [])
+    // Calculs
+    //1 jour de Carence
+    const oneDayCarence = (1/30)*(salaireBrut+indRes +sft + indFonct + montantPrimRep)
+    const oneDayCarenceSalaireBrut = (salaireBrut + indRes+sft+montantPrimRep+ indFonct )-oneDayCarence
+        // // Cotisations Salariales
+
+     const oneDayCarenceCotSalViePla = oneDayCarenceSalaireBrut * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
+     const oneDayCarenceCsgNonDed = (oneDayCarenceSalaireBrut * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
+     const oneDayCarenceCsgDed = ((oneDayCarenceSalaireBrut * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
+     const OneDayCarenceCrds = ((oneDayCarenceSalaireBrut * (98.25 / 100)) * (0.5 / 100)) //CRDS
+     const oneDayCarenceCotSalVieDepla = oneDayCarenceSalaireBrut * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
+     const oneDayCarenceCotSalIrcTrA = oneDayCarenceSalaireBrut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+
+    const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA
+
+    const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation
+
+    console.log(oneDayCarenceSalaireBrut,oneDayCarenceRealSalary)
+    // Définition des valeurs finales
+    const newCarenceOutput : CarenceOutputData = {
+        oneDayCarence,
+        oneDayCarenceSalaireBrut,
+        oneDayCarenceRealSalary,
+    }
+    
+    return new Data(input, newSalaryOutput, newCarenceOutput, [])
 }
+
 
 export default DataServiceCompute
