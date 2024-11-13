@@ -1,22 +1,19 @@
-import { useReducer } from "react"
-import MainPage from "./components/base/MainPage"
-import dataReducer from "./reducers/DataReducer"
-import { DataContext, DataDispatchContext } from "./contexts/DataContext"
-import DataServiceCompute from "./services/DataService"
-import InputData from "./data/InputData"
+import SalarySimulator from "./components/SalarySimulator"
+import CarenceSimulator from "./components/CarenceSimulator"
+import Navbar from "./components/Navbar"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
-  const [data, dispatch] = useReducer(
-    dataReducer,
-    DataServiceCompute(new InputData())
-  )
-
   return (
-    <DataContext.Provider value={ data }>
-      <DataDispatchContext.Provider value={ dispatch }>
-        <MainPage />
-      </DataDispatchContext.Provider>
-    </DataContext.Provider>
+    <>
+    <Navbar/>
+      <div>
+        <Routes>        
+          <Route path="/" element={<SalarySimulator/>} />
+          <Route path="/carence" element={<CarenceSimulator />}/>
+        </Routes>
+      </div>
+    </>
   )
 }
 export default App

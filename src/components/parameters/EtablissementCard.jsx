@@ -10,13 +10,11 @@ function EtablissementCard () {
     const data = useContext(DataContext)
     const school = data.input.school
 
-    if (!school || !school.ivac) {
+    if (!school) {
         return
     }
 
-    console.log("SCHOOL", school)
-
-    const donutData = [
+    const donutData = school.ivac ? [
         {
           label: 'Taux de réussite',
           value: school.ivac.successRate,
@@ -26,7 +24,7 @@ function EtablissementCard () {
           value: 100 - school.ivac.successRate,
           isEmpty: true,
         },
-    ]
+    ] : []
 
     
 
@@ -71,38 +69,42 @@ function EtablissementCard () {
                 </div>
             </div>
             <AdressEtab/>
-            <div>
-                <h3 className="text-xl font-bold m-auto p-6">Taux de réussite au DNB</h3>
-                <div className="content-center flex flex-grid col-2  h-50">
-                    <div className="w-80 content-center">
-                        <div className="text-2xl font-bold flex flex-grid col-2 m-auto pb-2">
-                            <img src="Pictures/icons8-position-48.png"/>
-                            <span className="text-center pt-2">
-                                IPS : { school.ips ?? "-" }
-                            </span> 
+            {
+                school.ivac && school.ips &&
+                <div>
+                    <h3 className="text-xl font-bold m-auto p-6">Taux de réussite au DNB</h3>
+                    <div className="content-center flex flex-grid col-2  h-50">
+                        <div className="w-80 content-center">
+                            <div className="text-2xl font-bold flex flex-grid col-2 m-auto pb-2">
+                                <img src="Pictures/icons8-position-48.png"/>
+                                <span className="text-center pt-2">
+                                    IPS : { school.ips ?? "-" }
+                                </span> 
+                            </div>
+                            <div className="text-2xl font-bold flex flex-grid col-2 m-auto">
+                                <img src="Pictures/icons8-médaille-d'or-olympique-48.png"/>
+                                <span className="text-center pt-2">Mention Très Bien : {school.ivac.mentionTresBien}</span> 
+                            </div>
+                            <div className="text-2xl font-bold pt-2 flex flex-grid col-2 m-auto">
+                                <img src="Pictures/icons8-médaille-d'argent-olympique-64.png" className="w-12 h-12"/>
+                                <span className="text-center pt-2">Mention Bien : {school.ivac.mentionBien} </span>
+                            </div>
+                            <div className="text-2xl font-bold pt-2 flex flex-grid col-2 m-auto">
+                                <img src="Pictures/icons8-médaille-de-bronze-olympique-80.png"className="w-10 h-10"/>   
+                                <span className="text-center pt-2"> Mention assez Bien : {school.ivac.mentionAssezBien}</span> 
+                            </div>
                         </div>
-                        <div className="text-2xl font-bold flex flex-grid col-2 m-auto">
-                            <img src="Pictures/icons8-médaille-d'or-olympique-48.png"/>
-                            <span className="text-center pt-2">Mention Très Bien : {school.ivac.mentionTresBien}</span> 
-                        </div>
-                        <div className="text-2xl font-bold pt-2 flex flex-grid col-2 m-auto">
-                            <img src="Pictures/icons8-médaille-d'argent-olympique-64.png" className="w-12 h-12"/>
-                            <span className="text-center pt-2">Mention Bien : {school.ivac.mentionBien} </span>
-                        </div>
-                        <div className="text-2xl font-bold pt-2 flex flex-grid col-2 m-auto">
-                            <img src="Pictures/icons8-médaille-de-bronze-olympique-80.png"className="w-10 h-10"/>   
-                            <span className="text-center pt-2"> Mention assez Bien : {school.ivac.mentionAssezBien}</span> 
-                        </div>
-                     </div>
-                    <div className="w-1/2  mx-auto"> 
-                        Taux de réussite: {school.ivac.successRate} %
-                        <div className="justify-center flex">
-                            
-                            <DonutChart data={donutData} height={200} width={200} legend={false} interactive={false} />
+                        <div className="w-1/2  mx-auto"> 
+                            Taux de réussite: {school.ivac.successRate} %
+                            <div className="justify-center flex">
+                                
+                                <DonutChart data={donutData} height={200} width={200} legend={false} interactive={false} />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+            
          </div>
     </div>
 )
