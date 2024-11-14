@@ -16,6 +16,8 @@ import { DataContext } from "../../contexts/DataContext"
 import SalaryOutputData from "../../data/SalaryOutputData"
 import EtablissementCardLight from "../parameters/EtablissementCardLight"
 import CarenceNow from "../parameters/CarenceNow"
+import KasbarianCarence from "../parameters/KasbarianCarence"
+import HealDay from "../parameters/HealDay"
 
 
 
@@ -25,9 +27,10 @@ function MainPageCarence() {
   
 
   return (<div >
-      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal ">Simulateur de fiche de paie AESH</h1>
+      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal ">Simulateur de Jour de carence AESH</h1>
     <div className="flex h-full">
       <div className="overflow-scroll flex-col w-1/4">
+        <HealDay />
         <Coef />
         <QuotitePercent />
         <CodePostal />
@@ -42,15 +45,14 @@ function MainPageCarence() {
         
         <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
         <CarenceNow />
-        <DescriptionPoste />
-        
+        <KasbarianCarence />
         
         </div>
         
     
 
 
-          <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2">
+          <div className="relative overflow-x-auto sm:rounded-lg mt-2 ml-2 mr-2" >
                 <table className="w-full text-sm rtl:text-right text-black dark:text-gray-400">
                     <thead className=" text-center font-semibold text-gray-200 uppercase bg-gray-700 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
@@ -248,7 +250,7 @@ function MainPageCarence() {
                     </tbody>
                 </table>
             </div>
-            <div className="relative overflow-x-auto  mt-0.5 ml-2 mr-2 mb-2">
+            <div className="relative overflow-x-auto  mt-0.5 ml-2 mr-2 mb-2"hidden>
                 <table className="ml-auto text-black dark:text-gray-400">
                     <thead className="dark:bg-gray-700 dark:text-gray-400">
                         <tr className="text-white uppercase text-center font-semibold text-base">

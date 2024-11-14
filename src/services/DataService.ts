@@ -3,7 +3,7 @@ import Data from "../data/Data";
 import InputData from "../data/InputData";
 import SalaryOutputData from "../data/SalaryOutputData";
 import CarenceOutputData from "../data/CarenceOutputData";
-
+// "../data/CarenceOutputData"
 function DataServiceCompute(input: InputData): Data {
     const salaire = (input.indPoint * input.coef)
     const salaireBrut = salaire * (input.quotite / 100) //brut avec quotité
@@ -136,17 +136,28 @@ function DataServiceCompute(input: InputData): Data {
      const OneDayCarenceCrds = ((oneDayCarenceSalaireBrut * (98.25 / 100)) * (0.5 / 100)) //CRDS
      const oneDayCarenceCotSalVieDepla = oneDayCarenceSalaireBrut * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
      const oneDayCarenceCotSalIrcTrA = oneDayCarenceSalaireBrut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+     
 
     const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA
 
     const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation
+    const oneDayCarenceLost =Math.abs (((oneDayCarenceRealSalary-aPercevoir)/aPercevoir)*100)
+    
+    // 3 jours de Carence
+    const threeDayCarence = oneDayCarence * 3
+    const threeDayCarenceCotisation = oneDayCarenceCotisation * 3
+    const threeDayCarenceSalaireBrut = (salaireBrut + indRes+sft+montantPrimRep+ indFonct)- threeDayCarence
 
-    console.log(oneDayCarenceSalaireBrut,oneDayCarenceRealSalary)
+    console.log(threeDayCarence)
     // Définition des valeurs finales
     const newCarenceOutput : CarenceOutputData = {
         oneDayCarence,
         oneDayCarenceSalaireBrut,
         oneDayCarenceRealSalary,
+        psc,
+        oneDayCarenceLost,
+        threeDayCarence,
+        threeDayCarenceSalaireBrut
     }
     
     return new Data(input, newSalaryOutput, newCarenceOutput, [])
