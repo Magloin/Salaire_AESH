@@ -8,7 +8,7 @@ function QuotitePercent() {
     const data = useContext(DataContext)
     const dispatch = useContext(DataDispatchContext)
 
-    let values = [50, 52, 57, 60, 62, 66, 70, 80, 82,90, 100]
+    let values = [50, 52, 57, 60, 62, 66, 70,75,80, 82,90, 100]
     let defaultValue = data.input.quotite
       
 
