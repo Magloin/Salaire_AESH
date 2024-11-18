@@ -5,6 +5,7 @@ import SalaryOutputData from "../data/SalaryOutputData";
 import CarenceOutputData from "../data/CarenceOutputData";
 // "../data/CarenceOutputData"
 function DataServiceCompute(input: InputData): Data {
+    const heal = input.heal
     const salaire = (input.indPoint * input.coef)
     const salaireBrut = salaire * (input.quotite / 100) //brut avec quotité
     const indRes = salaireBrut * (1/100) // Indemnite de résidence
@@ -138,17 +139,38 @@ function DataServiceCompute(input: InputData): Data {
      const oneDayCarenceCotSalIrcTrA = oneDayCarenceSalaireBrut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
      
 
-    const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA
+    const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA // Calcul retenu carence 1 jour
 
-    const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation
-    const oneDayCarenceLost =Math.abs (((oneDayCarenceRealSalary-aPercevoir)/aPercevoir)*100)
-    
+    const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation //Calcul salaire Percu
+    const oneDayCarenceLost =Math.abs (((oneDayCarenceRealSalary-aPercevoir)/aPercevoir)*100) // calcul pourcentage de perte
+    const OneDayCarenceSalaryNetLost = aPercevoir-oneDayCarenceRealSalary // perte nette entre sans carence et avec carence
+
+
     // 3 jours de Carence
-    const threeDayCarence = oneDayCarence * 3
-    const threeDayCarenceCotisation = oneDayCarenceCotisation * 3
-    const threeDayCarenceSalaireBrut = (salaireBrut + indRes+sft+montantPrimRep+ indFonct)- threeDayCarence
+    const threeDayCarence = (3/30)*(salaireBrut +indRes + sft + indFonct + montantPrimRep ) // Calcul 3 jours de carence
+    const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-3) //10% de perte de slaaire par jour
+    const threeDayCarenceSalaireBut = (salaireBrut +indRes + sft + indFonct + montantPrimRep ) - threeDayCarence - threeDayTenPurcentLost
 
-    console.log(threeDayCarence)
+    // cotisations Salariale
+    const threeDayCarenceCotSalViePla = threeDayCarenceSalaireBut *(6.9/100) //cotisation Salaraile Viellesse plafonnée
+    const threeDayCarenceCsgNonDed = (threeDayCarenceSalaireBut * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
+    const threeDayCarenceCsgDed = ((threeDayCarenceSalaireBut * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
+    const threeDayCarenceCrds = ((threeDayCarenceSalaireBut * (98.25 / 100)) * (0.5 / 100)) //CRDS
+    const threeDayCarenceCotSalVieDepla = threeDayCarenceSalaireBut * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
+    const threeDayCarenceCotSalIrcTrA = threeDayCarenceSalaireBut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+
+    const threeDayCarenceCotisation = threeDayCarenceCotSalViePla + threeDayCarenceCsgNonDed + threeDayCarenceCsgDed + threeDayCarenceCrds + threeDayCarenceCotSalVieDepla + threeDayCarenceCotSalIrcTrA // calcul retenue carence 3 jours
+    
+    const threeDayCarenceRealSalary = threeDayCarenceSalaireBut - threeDayCarenceCotisation
+    const threeDayCarenceSalaryNetLost = aPercevoir - threeDayCarenceRealSalary
+    const TreeDayCarenceLost =Math.abs (((threeDayCarenceRealSalary-aPercevoir)/aPercevoir)*100)
+
+    console.log("Perte",threeDayCarenceSalaryNetLost, "Saalire à percevoir",threeDayCarenceRealSalary, "% perdu", TreeDayCarenceLost )
+
+
+
+    
+
     // Définition des valeurs finales
     const newCarenceOutput : CarenceOutputData = {
         oneDayCarence,
@@ -157,7 +179,10 @@ function DataServiceCompute(input: InputData): Data {
         psc,
         oneDayCarenceLost,
         threeDayCarence,
-        threeDayCarenceSalaireBrut
+        OneDayCarenceSalaryNetLost,
+        TreeDayCarenceLost,
+        threeDayCarenceSalaryNetLost,
+        threeDayCarenceRealSalary,
     }
     
     return new Data(input, newSalaryOutput, newCarenceOutput, [])

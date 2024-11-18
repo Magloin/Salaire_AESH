@@ -1,5 +1,5 @@
 function Card(props) {
-    return (<div className="m-2">
+    return (<div className="m-2 max-sm:text-lg">
     <div className="bg-white border-solid border-4 border-gray-600 h-auto mr-2 ml-2 shadow-lg rounded-tr-lg rounded-bl-lg hover:border-green-400">
         {props.children}
     </div>

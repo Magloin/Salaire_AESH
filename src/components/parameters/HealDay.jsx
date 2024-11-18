@@ -18,9 +18,9 @@ function HealDay() {
     }
 
     return (<Card>
-        <h2 className=" text-center font-extrabold">Nombre de jours d'arrêts</h2>
+        <h2 className=" text-center font-extrabold max-sm:text-lg">Nombre de jours d'arrêts</h2>
         <div className="text-center pt-1 w-30"> 
-            <select onChange={e => setNewheal(e.target.value)} name="heal" id="coefEchSelect" defaultValue={defaultValue} className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
+            <select onChange={e => setNewheal(e.target.value)} name="heal" id="healSelect" defaultValue={defaultValue} className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
                 {
                     options
                 }

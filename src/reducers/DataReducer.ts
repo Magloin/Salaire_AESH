@@ -42,7 +42,10 @@ function dataReducer(data: Data, action) {
         let numberValue = Number(action.value)
         newInput.childNbUnder20 = numberValue
     }
-
+    if (action.type === "heal") {
+        let numberValue = Number(action.value)
+        newInput.heal = numberValue
+    }
     return DataServiceCompute(newInput)
 }
 
