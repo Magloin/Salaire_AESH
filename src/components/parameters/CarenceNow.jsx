@@ -9,24 +9,24 @@ function CarenceNow() {
     const school = data.input.school
     const output = data.carenceOutput
 
-    return (<div className="Flex self-center">
-        <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-2 rounded-tr-md">
-            <Card><p className="text-center text-3xl max-sm:text-lg max-sm:font-bold">Actuellement</p></Card>
+    return (<div className="Flex self-center max-sm:pb-72 max-sm:pt-1 ">
+        <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-2 rounded-tr-md max-sm:flex-row">
+            <Card><p className="text-center text-3xl max-sm:text-xs max-sm:font-bold bg-purple-500 text-yellow-100">Actuellement</p></Card>
             <Card>
-                 <div className="text-center max-sm:text-lg">
+                 <div className="text-center max-sm:text-xs">
                     <p>Votre salaire est de <span className="font-bold"> {data.salaryOutput.aPercevoir.toFixed(2)} € </span> (<span className="text-red-500 font-bold">sans jour de carence</span>) </p>      
                 </div>        
             </Card>
-            <Card><p className="text-center">Avec un seul <span className="font-bold">Jour</span> de carence</p></Card>
+            <Card><p className="text-center max-sm:text-xs">Avec un seul <span className="font-bold">Jour</span> de carence</p></Card>
             <Card>
-                <div className=" text-center max-sm:text-lg">
+                <div className=" text-center max-sm:text-xs">
                     <div >
                         <p className="text-center">il sera retenu : <span className="font-bold">{output.OneDayCarenceSalaryNetLost.toFixed(2)} €</span> </p>  
                     </div>
                 </div>
             </Card>
-            <Card><p className="text-center max-sm:text-lg"> Votre salaire perçu sera de <span className="font-bold text-red-500">{output.oneDayCarenceRealSalary.toFixed(2)}</span> €  </p></Card>
-            <Card> <p className="text-center max-sm:text-lg">Soit une perte de revenue de <span className="font-bold text-red-500">{output.oneDayCarenceLost.toFixed(1)}</span> % </p> </Card>
+            <Card><p className="text-center max-sm:text-xs"> Votre salaire perçu sera de <span className="font-bold text-red-500">{output.oneDayCarenceRealSalary.toFixed(2)}</span> €  </p></Card>
+            <Card> <p className="text-center max-sm:text-xs">Soit une perte de revenue de <span className="font-bold text-red-500">{output.oneDayCarenceLost.toFixed(1)}</span> % </p> </Card>
             
         </div>
     </div>)

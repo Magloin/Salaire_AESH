@@ -17,7 +17,7 @@ function Psc () {
 
     return (
         <Card >
-            <h2 className="text-lg text-center font-extrabold">Perception de la PSC</h2>
+            <h2 className="text-lg text-center font-extrabold max-sm:text-xs">Perception de la PSC</h2>
             <Checkbox leftValue={leftValue} rightValue={rightValue} defaultValue={hasPsc} setNewValue={setHasPscNewValue} />
         </Card>
     )

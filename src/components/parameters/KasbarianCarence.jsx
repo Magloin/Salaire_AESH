@@ -12,11 +12,11 @@ function KasbarianCarence() {
     const heal = data.input.heal
     const output = data.carenceOutput
 
-    return (<div className="Flex self-center max-sm:text-lg">
+    return (<div className="Flex self-center max-sm:text-xs max-sm:pb-64">
         <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-2 rounded-tr-md">
-            <Card><p className="text-center text-3xl max-sm:text-lg">Avec la reforme de Guillaume Kasbarian</p></Card>
+            <Card><p className="text-center text-3xl max-sm:text-xs">Avec la réforme de Guillaume Kasbarian</p></Card>
             <Card><div>
-                <ul className="text-center">
+                <ul className="text-center max-sm:text-xs">
                     <li> 3 jours de carence</li>
                     <li> 90% du traitement au delà des 3 jours carence</li>
                 </ul> 

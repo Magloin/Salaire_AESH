@@ -24,7 +24,7 @@ function Sft() {
     }
 
     return ( <Card>
-        <h2 className="text-lg text-center font-extrabold">Perception de la SFT</h2>
+        <h2 className="text-lg text-center font-extrabold max-sm:text-xs">Perception de la SFT</h2>
         <Checkbox leftValue={"Non"} rightValue={"Oui"} defaultValue={hasSft} setNewValue={sethasSftNewValue}/>
             { hasSft &&
                 <div>

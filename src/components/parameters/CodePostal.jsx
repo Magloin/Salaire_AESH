@@ -93,12 +93,12 @@ function CodePostal() {
     } 
 
     return (<Card>
-            <h2 className=" text-center font-extrabold mb-2">Selection des Informations</h2>
-            <div className="text-center text-2xl mb-2 pb-1">
-            <InputSelection  textValue={postalCode} updateText={setPostalCode} className="mb-2" />
+            <h2 className=" text-center font-extrabold mb-2 max-sm:text-xs">Selection des Informations</h2>
+            <div className="text-center text-2xl mb-2 pb-1 max-sm:text-xs max-sm:mb-0">
+            <InputSelection  textValue={postalCode} updateText={setPostalCode} className="mb-2 max-sm:mb-0 max-sm:pb-0" />
             </div>
             <div className="text-center">
-            <select onChange={e => findSelectedSchool(e.target.value) } name="school" id="schoolSelect" className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400">
+            <select onChange={e => findSelectedSchool(e.target.value) } name="school" id="schoolSelect" className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400 max-sm:text-xs max-sm:mb-0 ">
                 {
                     generateOptions()
                 }
