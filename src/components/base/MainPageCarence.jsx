@@ -27,31 +27,33 @@ function MainPageCarence() {
   
 
   return (<div >
-      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal max-sm:text-lg max-sm:h-4 max-sm:mx-0 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-10 ">Simulateur de Jour de carence AESH</h1>
-    <div className="flex h-ful max-sm:m-0">
-      <div className=" w-1/4 max-sm:w-2/5 max-sm:m-0">
-        <div className="">
-          <HealDay />
-          <Coef />
-          <QuotitePercent />
-          <CodePostal />
-          <PrimeDeRes/>
-          <Psc/>
-          <Sft/>
-          <BuyCoffee/>
-          <UseFetch />
+      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal max-sm:text-lg max-sm:h-4 max-sm:mx-0 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-10 max-sm:rounded-md">Jour de carence AESH</h1>
+    <div className="w-full">
+      <div className="flex h-ful max-sm:m-0">
+        <div className="flex w-1/4 max-sm:w-2/5 max-sm:m-0">
+          <div className="">
+            <HealDay />
+            <Coef />
+            <QuotitePercent />
+            <CodePostal />
+            <PrimeDeRes/>
+            <Psc/>
+            <Sft/>
+            <BuyCoffee/>
+            <UseFetch />
+          </div>
+        </div>
+          <div className="bg-gray-00 border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit mt-2 mr-2 rounded-tr-2xl rounded-bl-2xl max-sm:mt-1.5 max-sm:mr-2">
+        
+          <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5">
+            <CarenceNow />
+            <KasbarianCarence />
+          </div>  
         </div>
       </div>
-      <div className="bg-gray-00 border-gray-700 border-solid border-4 w-auto h-fit m-0 rounded-tr-2xl rounded-bl-2xl max-sm:m-0">
-        
-        <div className="flex flex-row gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0  max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5">
-          <CarenceNow />
-          <KasbarianCarence />
-        </div>  
-      </div>
-      
     </div>
   </div>)
+  
 }
 
-export default MainPageCarence;
+export default MainPageCarence
