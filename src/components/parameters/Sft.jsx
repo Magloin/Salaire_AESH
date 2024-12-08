@@ -24,13 +24,13 @@ function Sft() {
     }
 
     return ( <Card>
-        <h2 className="text-lg text-center font-extrabold max-sm:text-xs">Perception de la SFT</h2>
+        <h2 className="text-lg text-center font-extrabold max-sm:text-xs md:text-sm md:text-sm lg:text-2xl">Perception de la SFT</h2>
         <Checkbox leftValue={"Non"} rightValue={"Oui"} defaultValue={hasSft} setNewValue={sethasSftNewValue}/>
             { hasSft &&
                 <div>
                    
                     <Card>
-                        <h2 className="text-lg text-center font-bold">Nb d'enfant de moins de 20 ans</h2>
+                        <h2 className="text-lg text-center font-bold md:text-sm">Nb d'enfant de moins de 20 ans</h2>
                         <ChildNb handleZero={true} defaultValue={nbChildUnder20DefaultValue} handleChange={setChildUnder20} />
                     </Card>
                 </div>

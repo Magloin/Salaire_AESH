@@ -18,7 +18,7 @@ function Coef() {
     }
 
     return (<Card>
-        <h2 className=" text-center font-extrabold max-sm:text-xs">Echelon et Coefficient</h2>
+        <h2 className=" text-center font-extrabold max-sm:text-xs md:text-sm lg:text-2xl">Echelon et Coefficient</h2>
         <div className="text-center pt-1 w-30 max-sm:text-sm"> 
             <select onChange={e => setNewCoef(e.target.value)} name="coef" id="coefEchSelect" defaultValue={defaultValue} className="bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400 max-sm:text-xs">
                 {

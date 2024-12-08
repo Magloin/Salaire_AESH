@@ -27,11 +27,11 @@ function MainPageCarence() {
   
 
   return (<div >
-      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal max-sm:text-lg max-sm:h-4 max-sm:mx-0 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-10 max-sm:rounded-md">Jour de carence AESH</h1>
+      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-22 my-2 mr-6 rounded-lg leading-normal p-2 max-sm:text-lg max-sm:h-6  max-sm:pt-0.5 max-sm:mr-1 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-12 max-sm:rounded-md lg:text-7xl md:h-32 md:pt-6 md:ml-4 md:mr-3">Jour de carence AESH</h1>
     <div className="w-full">
-      <div className="flex h-ful max-sm:m-0">
+      <div className="flex h-full max-sm:m-0">
         <div className="flex w-1/4 max-sm:w-2/5 max-sm:m-0">
-          <div className="">
+          <div className="max-sm:pl-0.5">
             <HealDay />
             <Coef />
             <QuotitePercent />
@@ -43,13 +43,12 @@ function MainPageCarence() {
             <UseFetch />
           </div>
         </div>
-          <div className="bg-gray-00 border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit mt-2 mr-2 rounded-tr-2xl rounded-bl-2xl max-sm:mt-1.5 max-sm:mr-2">
-        
-          <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5">
-            <CarenceNow />
-            <KasbarianCarence />
-          </div>  
-        </div>
+          <div className="bg-gray-00 border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit pr-2 mr-6 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
+            <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
+              <CarenceNow />
+              <KasbarianCarence />
+            </div>  
+          </div>
       </div>
     </div>
   </div>)
