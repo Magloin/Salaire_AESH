@@ -20,7 +20,7 @@ import EtablissementCardLight from "../parameters/EtablissementCardLight"
 
 function MainPage() {
   const data = useContext(DataContext)
-  const salaireBrut = data.salaryOutput.salaireBrut
+
 
   return (<div >
       <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-20 mx-2 mt-4 rounded-lg leading-normal ">Simulateur de fiche de paie AESH</h1>
@@ -36,7 +36,7 @@ function MainPage() {
         <UseFetch />
       </div>
       
-      <div className="bg-gray-00 border-gray-700 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
+      <div className="bg-gray-50 border-gray-700 border-solid border-4 w-full h-fit m-2  gap-y-96 rounded-tr-2xl rounded-bl-2xl">
         
         <div className="flex grid grid-cols-2 m-2 p-2 justify-center">
         <DescriptionPoste />

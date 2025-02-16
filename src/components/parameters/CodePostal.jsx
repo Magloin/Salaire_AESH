@@ -93,7 +93,7 @@ function CodePostal() {
     } 
 
     return (<Card>
-            <h2 className=" text-center font-extrabold mb-2 max-sm:text-xs md:text-sm lg:text-2xl lg:px-2">Selection des Informations</h2>
+            <h2 className=" text-left pl-1.5 font-extrabold mb-1 max-sm:text-xs md:text-sm lg:text-2xl lg:px-2">Selection des Informations</h2>
             <div className="text-center mb-2 pb-1 max-sm:text-xs max-sm:mb-0 ">
             <InputSelection  textValue={postalCode} updateText={setPostalCode} className="mb-2 max-sm:mb-0 max-sm:pb-0 lg:text-6xl" />
             </div>

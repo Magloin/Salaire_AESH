@@ -5,12 +5,13 @@ import { DataContext, DataDispatchContext } from "../../contexts/DataContext"
 function HealDay() {
     const data = useContext(DataContext)
     const dispatch = useContext(DataDispatchContext)
+    
 
     let values = data.input.healDayValues
     let defaultValue = data.input.heal
 
     let options = values.map((value, index) => {
-        return <option key={value} className="text-center" value={value}>  {value} jours d'arrêts</option>
+        return <option key={value} className="text-left" value={value}>  {value} jours d'arrêts</option>
     })
 
     function setNewheal(newValue) {
@@ -18,7 +19,7 @@ function HealDay() {
     }
 
     return (<Card>
-        <h2 className=" text-center font-extrabold max-sm:text-xs md:text-sm lg:text-2xl">Nombre de jours d'arrêts</h2>
+        <h2 className=" text-left font-extrabold max-sm:text-xs md:text-sm lg:text-2xl pl-1.5">Nombre de jours d'arrêts</h2>
         <div className="text-center pt-1 w-30"> 
             <select onChange={e => setNewheal(e.target.value)} name="heal" id="healSelect" defaultValue={defaultValue} className="max-sm:text-xs bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400 max-sm:ml-0">
                 {
