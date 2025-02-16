@@ -146,9 +146,9 @@ function DataServiceCompute(input: InputData): Data {
     const OneDayCarenceSalaryNetLost = aPercevoir-oneDayCarenceRealSalary // perte nette entre sans carence et avec carence
 
 
-    // 3 jours de Carence
-    const threeDayCarence = (3/30)*(salaireBrut +indRes + sft + indFonct + montantPrimRep ) // Calcul 3 jours de carence
-    const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-3) //10% de perte de slaaire par jour
+    // Ancien 3 jours de Carence qui repasse à 1
+    const threeDayCarence = (1/30)*(salaireBrut +indRes + sft + indFonct + montantPrimRep ) // Calcul 3 jours de carence
+    const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-1) //10% de perte de slaaire par jour
     const threeDayCarenceSalaireBut = (salaireBrut +indRes + sft + indFonct + montantPrimRep ) - threeDayCarence - threeDayTenPurcentLost
 
     // cotisations Salariale

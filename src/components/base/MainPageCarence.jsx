@@ -24,8 +24,8 @@ import HealDay from "../parameters/HealDay"
 function MainPageCarence() {
   const data = useContext(DataContext)
   const heal = data.input.heal
-  
-  
+  const carenceOutput = data.carenceOutput
+  const diffRetenues = carenceOutput.threeDayCarenceSalaryNetLost - carenceOutput.OneDayCarenceSalaryNetLost
   
   return (<div >
    <div className="flex justify-center items-center">
@@ -49,26 +49,28 @@ function MainPageCarence() {
           </div>
           {/* Cadre de visualisation de données */}
           
-          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit pr-2 mr-6 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
+          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit ml-7 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
           
             <Card>
-              <div className=" bg-gray-700/30 max-sm:text-xs md:text-xl">
-                <p className=" text-center font-bold text-red-700"> Pour {heal} jours de maladie :</p>
+              <div className=" bg-gray-700/30 max-sm:text-xs md:text-xl lg:text-2xl">
+                <p className=" text-center font-bold text-red-700 py-6 text-lg md:text-2xl "> Pour {heal} jours de maladie</p>
               </div>
             </Card>
-            <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
+            <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
               <CarenceNow />
               <KasbarianCarence />
             </div>
             {/*-- cadre recapitulatif --*/}
+            
             <Card>
-              <div className="flex flex-row gap-x-2 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-2 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full">
+            <div className="bg-gray-300">
+              <div className="flex flex-row gap-x-2 m-0 p-0 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full">
               
                 <div className="w-1/2">
                 <Card>
                   
                     <div className="bg-yellow-600 text-left pl-.5">
-                      <p className="font-bold">Perte salaire :</p> 
+                      <p className="font-medium font-medium text-slate-100 text-center">Perte salaire</p> 
                     </div>
                     <div className="bg-yellow-600/30 text-right pr-1">
                       <p className="text-yellow-600 font-extrabold">{data.carenceOutput.oneDayCarenceLost.toFixed(2)} %</p> 
@@ -76,22 +78,22 @@ function MainPageCarence() {
                   </Card>
                   </div>
                   <div className="w-1/2 pr-1">
-                  <Card>
-                    <div className="bg-yellow-600 text-left pl-.5">
-                      <p className="font-bold">Perte salaire :</p>
-                    </div>
-                  
-                    <div className="bg-yellow-600/30 text-right pr-1">
-                      <p className="text-yellow-600 font-extrabold">{data.carenceOutput.TreeDayCarenceLost.toFixed(2)} %</p> 
-                    </div>
-                  </Card>
+                    <Card>
+                      <div className="bg-yellow-600 text-left pl-.5">
+                        <p className="font-medium text-slate-100 text-center">Perte salaire</p>
+                      </div>
+                      <div className="bg-yellow-600/30 text-right pr-1">
+                        <p className="text-yellow-600 font-extrabold">{data.carenceOutput.TreeDayCarenceLost.toFixed(2)} %</p> 
+                      </div>
+                    </Card>
                   </div>
-              
-
               </div> 
-              <p className=" text-left font-black pl-1 text-lg">Soit <span className="text-red-900">XX €</span> pour {heal} jours de maladie</p> 
+              <p className=" text-left font-black pl-1 text-lg">Soit <span className="text-red-900">{diffRetenues.toFixed(2)} €</span> pour {heal} jours de maladie  </p> 
+              </div>
             </Card>
-          </div>
+
+            </div>
+          
         </div>
       </div>
     </div>)  

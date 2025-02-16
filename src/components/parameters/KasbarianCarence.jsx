@@ -6,67 +6,67 @@ import { DataContext } from "../../contexts/DataContext"
 function KasbarianCarence() {
     const data = useContext(DataContext)
     const output = data.carenceOutput
-    const computedHthreeealDays = data.input.heal - 3
+    const computedHthreeealDays = data.input.heal - 1
 
-    return (<div className="Flex self-start max-sm:text-xs w-3/5 pr-1">
-        <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-3 rounded-tr-md max-sm:pl-0.5 max-sm:pr-0">
-            <Card>
-                <div className="text-3xl max-sm:text-xs md:text-xl">
-                    <p className="text-left pl-1 ">Réforme </p>
+    return (<div className="Flex self-start max-sm:text-xs w-3/5">
+        <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-0 rounded-tr-md max-sm:pl-0.5 max-sm:pr-0">
+        <Card>
+                <div class="flex justify-center items-center  xl:py-3.5 md:py-3 py-2">
+                    <div>   
+                        <p className="text-center text-xl max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold  ">Demain</p>
+                    </div>
                 </div>
-                <div className="text-right pr-1">
-                    <span className="font-bold">MARCANGELI</span>
-                </div>        
             </Card>
             <Card>
-                 <div className="">
-                    <p className="md:text-xl text-left pl-1">Salaire :</p>
-                    <div className="text-right pr-1">
-                        <span className="font-bold max-sm:text-xs"> {data.salaryOutput.aPercevoir.toFixed(2)}€ </span> 
+                 <div className="max-sm:text-xs max-md:text-xl">
+                    <p className="text-left pl-1 underline font-extrabold">Salaire</p>
+                    <div className="text-right">
+                        <span className="font-bold pr-1"> {data.salaryOutput.aPercevoir.toFixed(2)}€ </span> 
                     </div>       
                 </div>        
             </Card>
             <Card>
-                <div className="">
-                    <p className="text-left pl-1">Carence :</p>
+                <div className="max-sm:text-xs md:text-lg align-middle">
+                    <p className="underline font-extrabold">Carence</p>
                 </div>
-                 <div className=" text-right pr-1">
-                     <span className="font-bold">3 Jours</span>
+                 <div className="text-right pr-1">
+                     <span className="font-bold pl-1">1 Jours</span>
                  </div>
                   <div >
-                    <p className="text-left pl-1 ">Salaire 90%</p>
+                    <p className="text-left pl-1 underline font-extrabold md:text-base">Salaire 90%</p>
                     </div>
                     <div className="text-right pr-1">
-                    <span className=" font-bold text-right pr-1">{computedHthreeealDays} jours</span> 
+                    <span className="md:text-base font-bold text-right pr-1">{computedHthreeealDays} jours</span> 
                  </div>
                 {/* <p className="text-center md:text-xl"> Arrêt maladie :<br/> <span  className="font-bold">{input.heal} jours </span></p> */}
             </Card>
             <Card>
-                    <div >
+                    <div className="bg-yellow-400/30 max-sm:text-xs max-md:text-xl">
                         {/*<p className="text-center pl-2 pr-2 pt-1 pb-1 md:text-xl">{input.heal} jours de maladie  :<br/> </p>*/}
-                        <div className="text-left pl-1">
-                            <p>Retenu</p>
+                        <div className=" bg-yellow-400 text-left pl-1">
+                            <p className="font-extrabold md:font-medium underline">Retenu</p>
                         </div>
                         <div className="text-right pr-1">
-                            <span className="font-bold text-yellow-400 ">{output.threeDayCarenceSalaryNetLost.toFixed(2)} €</span>
+                            <span className="italic font-extrabold">{output.threeDayCarenceSalaryNetLost.toFixed(2)} €</span>
                         </div>     
                     </div>
             </Card>
             <Card>
-                <div className=" text-left pl-1">
-                    <p className="text-center">Salaire perçu :</p>
+                <div className="bg-red-700/30 max-sm:text-xs max-md:text-xl">
+                    <div className="bg-red-700 text-left">
+                        <p className="font-extrabold underline md:font-medium">Salaire perçu</p>
+                    </div>
+                    <div className="text-right pr-1">
+                        <span className="font-extrabold text-red-700 italic">{output.threeDayCarenceRealSalary.toFixed(2)} €</span> 
+                    </div>
                 </div>
-                <div className="text-right pr-1">
-                    <span className="font-extrabold text-red-700">{output.threeDayCarenceRealSalary.toFixed(2)} €</span> 
-                </div>
-                
             </Card>
             <Card>
-                <div>
-                    <p className="text-left pl-1">Perte salaire :</p>
+                <div className=" max-sm:text-xs max-md:text-xl">
+                    <p className="bg-yellow-600 text-left font-extrabold underline md:font-medium">Perte salaire</p>
                 </div>
-                <div className="text-right pr-1">
-                    <span className="font-bold text-yellow-600">{output.TreeDayCarenceLost.toFixed(2)} %</span> 
+                <div className="text-right pr-1 bg-yellow-600/30">
+                    <span className="font-extrabold text-yellow-600 italic">{output.TreeDayCarenceLost.toFixed(2)} %</span> 
                 </div> 
             </Card>
             

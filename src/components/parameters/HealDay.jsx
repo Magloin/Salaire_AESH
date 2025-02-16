@@ -11,7 +11,7 @@ function HealDay() {
     let defaultValue = data.input.heal
 
     let options = values.map((value, index) => {
-        return <option key={value} className="text-left" value={value}>  {value} jours d'arrêts</option>
+        return <option key={value} className="text-center" value={value}>  {value} jours d'arrêts</option>
     })
 
     function setNewheal(newValue) {
