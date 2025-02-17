@@ -4,7 +4,7 @@ function Checkbox({ leftValue, rightValue, defaultValue, setNewValue }) {
         setNewValue(e.target.checked)
     }
 
-    return (<div className="text-center hover:font-bold flex-col"> 
+    return (<div className="text-center hover:font-bold flex-col px-1"> 
         <div className="text-center hover:font-bold flex-col max-sm:text-xs" > 
             <div className="m-auto mb-2 ">
                 <label className="inline-flex items-center cursor-pointer">

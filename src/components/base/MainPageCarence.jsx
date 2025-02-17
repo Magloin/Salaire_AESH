@@ -29,7 +29,7 @@ function MainPageCarence() {
   
   return (<div >
    <div className="flex justify-center items-center">
-      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-22 my-2 mr-6 rounded-lg leading-normal p-2 max-sm:text-lg max-sm:h-6  max-sm:pt-0.5 max-sm:mr-1 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-12 max-sm:rounded-md lg:text-7xl md:h-32 md:pt-6 md:ml-4 md:mr-3 md:text-6xl sm:text-2xl w-full">Jour de carence AESH</h1>
+      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold h-22 my-2 mr-6 rounded-lg leading-normal p-2 max-sm:text-lg max-sm:h-6  max-sm:pt-0.5 max-sm:mr-1 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-12 max-sm:rounded-md lg:text-7xl md:h-32 md:pt-6 md:ml-4 md:mr-3 md:text-6xl sm:text-2xl w-full lg:texte-2xl">Jour de carence AESH</h1>
     </div> 
     {/*-- Cadre de selection des informations */}
       <div className="w-full">
@@ -49,11 +49,11 @@ function MainPageCarence() {
           </div>
           {/* Cadre de visualisation de données */}
           
-          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit ml-7 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
+          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit my-1 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
           
             <Card>
-              <div className=" bg-gray-700/30 max-sm:text-xs md:text-xl lg:text-2xl">
-                <p className=" text-center font-bold text-red-700 py-6 text-lg md:text-2xl "> Pour {heal} jours de maladie</p>
+              <div className=" bg-gray-700/30 max-sm:text-base text-lg">
+                <p className=" text-center  font-bold text-red-700 py-6 xl:text-4xl xl:py-4 "> Pour {heal} jours de maladie</p>
               </div>
             </Card>
             <div className="flex  gap-x-5 m-2 p-2 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
@@ -64,7 +64,7 @@ function MainPageCarence() {
             
             <Card>
             <div className="bg-gray-300">
-              <div className="flex flex-row gap-x-2 m-0 p-0 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full">
+              <div className="flex flex-row gap-x-2 mt-3 p-0 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full">
               
                 <div className="w-1/2">
                 <Card>
@@ -88,12 +88,10 @@ function MainPageCarence() {
                     </Card>
                   </div>
               </div> 
-              <p className=" text-left font-black pl-1 text-lg">Soit <span className="text-red-900">{diffRetenues.toFixed(2)} €</span> pour {heal} jours de maladie  </p> 
+                <p className=" text-left font-black px-1 text-base">Une retenue en sus de <span className="text-red-900">{diffRetenues.toFixed(2)} €</span>  pour {heal} jours de maladie.</p> 
               </div>
             </Card>
-
-            </div>
-          
+          </div> 
         </div>
       </div>
     </div>)  
