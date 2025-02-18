@@ -19,7 +19,7 @@ function HealDay() {
     }
 
     return (<Card>
-        <h2 className=" text-left font-extrabold max-sm:text-xs md:text-sm lg:text-2xl pl-1.5 xl:text-3xl xl:pl-3">Nombre de jours d'arrêts</h2>
+        <h2 className=" text-left font-bold max-sm:text-xs md:text-sm lg:text-xl pl-1.5 xl:text-2xl xl:pl-3">Nombre de jours d'arrêts</h2>
         <div className="text-center pt-1 w-30"> 
             <select onChange={e => setNewheal(e.target.value)} name="heal" id="healSelect" defaultValue={defaultValue} className="max-sm:text-xs bg-zinc-200 h-auto mb-2 w-5/6 rounded-lg  hover:bg-green-400 max-sm:ml-0 xl:text-2xl">
                 {

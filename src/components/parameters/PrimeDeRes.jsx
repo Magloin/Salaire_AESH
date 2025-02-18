@@ -22,7 +22,7 @@ function PrimeDeRes() {
     }
 
     return (<Card>
-        <h2 className=" text-lg text-left pl-1.5 font-bold max-sm:text-xs md:text-sm lg:text-2xl">Indemnité de résidence</h2>
+        <h2 className=" text-lg text-left pl-1.5 font-bold max-sm:text-xs md:text-sm lg:text-xl xl:text-2xl xl:pl-3">Indemnité de résidence</h2>
         <Checkbox leftValue={`${leftValue}`} rightValue={`${rightValue}`} defaultValue={hasRes} setNewValue={setNewHasResidenceValue} />
         {
             hasRes &&
