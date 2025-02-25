@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar=()=>{
-    return (    
+    return (<div></div>)
+    /*return (   
         <nav className="bg-gray-00 border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 max-sm:p-2">
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -17,7 +18,7 @@ const Navbar=()=>{
                 </div>
             </div>
         </nav>
-    )
+    )*/
 }
 
 export default Navbar;

@@ -28,9 +28,10 @@ function MainPageCarence() {
   const diffRetenues = carenceOutput.threeDayCarenceSalaryNetLost - carenceOutput.OneDayCarenceSalaryNetLost
   
   return (<div >
-   <div className="flex  ">
-      <h1 className="bg-black text-indigo-400 text-center text-6xl font-bold rounded-lg leading-normal max-sm:text-lg max-sm:h-6  max-sm:pt-0.5 max-sm:mr-1 max-sm:mt-0 max-sm:leading-none md:text-4xl md:h-12 max-sm:rounded-md lg:text-7xl md:h-32 md:pt-6 md:ml-4 md:mr-3 md:text-6xl sm:text-2xl w-full lg:texte-2xl">Jour de carence AESH</h1>
-    </div> 
+   
+    <div className="">
+    <h1 className=" text-center text-3xl text-indigo-400 bg-black/60 font-bold h-12 py-1 rounded-lg mx-1 lg:h-20 lg:text-5xl lg:py-4 lg:mx-4 xl:text-7xl xl:h-28 xl:py-4 xl:mx-4">Jour de carence AESH</h1>
+    </div>
     {/*-- Cadre de selection des informations */}
       <div className="w-full">
         <div className="flex h-full max-sm:m-0 pt-2">
@@ -49,14 +50,14 @@ function MainPageCarence() {
           </div>
           {/* Cadre de visualisation de données */}
           
-          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit my-1 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0  ">
+          <div className=" border-gray-700 border-solid border-4 w-auto max-md:h-max max-sm:h-fit my-1 mt-2.5 rounded-tr-2xl rounded-bl-2xl max-sm:mt-0 max-sm:mr-2 w-3/4 max-sm:border-none max-sm:pt-0 ">
           
             <Card>
-              <div className=" bg-gray-700/30 max-sm:text-base text-lg py-4">
-                <p className=" text-center  font-bold text-red-700 py-1 lg:text-4xl xl:text-4xl xl:py-1 sm:py-2"> Pour {heal} jours de maladie</p>
+              <div className=" bg-gray-700/30 max-sm:text-base  text-lg">
+                <p className=" text-center md:text-3xl md:py-1 font-bold text-indigo-600 lg:text-4xl xl:text-5xl md:py-3 xl:py-2 py-1.5"> Pour {heal} jours de maladie</p>
               </div>
             </Card>
-            <div className="flex  gap-x-5 mx-1 px-2.5 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
+            <div className="flex  gap-x-2 mx-1 px-3 justify-center max-sm:flex-row max-sm:gap-x-0.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 ">
               <CarenceNow />
               <KasbarianCarence />
             </div>
@@ -64,7 +65,7 @@ function MainPageCarence() {
             
             <Card>
             <div className="bg-gray-300">
-              <div className="flex flex-row gap-x-2 mt-3 xl:mt-0 p-0 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full lg:mt-0">
+              <div className="flex flex-row gap-x-2 md:mt-0 mt-3 xl:mt-0 p-0 justify-center max-sm:flex-row max-sm:gap-x-3.5 max-sm:p-0 max-sm:mt-0 max-sm:mr-0 max-sm:ml-0.5 max-md:pt-4 text-xl w-full lg:mt-0">
               
                 <div className="w-1/2">
                 <Card>
@@ -88,7 +89,7 @@ function MainPageCarence() {
                     </Card>
                   </div>
               </div> 
-                <p className=" text-left font-black px-1 text-base lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3 pb-1">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} €</span>  pour {heal} jours de maladie.</p> 
+                <p className="font-black px-1 text-base md:text-lg lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} €</span>  pour {heal} jours de maladie.</p> 
               </div>
             </Card>
           </div> 

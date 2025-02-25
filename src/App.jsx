@@ -22,8 +22,8 @@ function App() {
       <DataContext.Provider value={ data }>
         <DataDispatchContext.Provider value={ dispatch }>
           <Routes>        
-          <Route path="/" element={<SalarySimulator/>} />
-          <Route path="/carence" element={<CarenceSimulator />}/>
+          {/*<Route path="/" element={<SalarySimulator/>} />*/}
+          <Route path="/" element={<CarenceSimulator />}/>
         </Routes>
         </DataDispatchContext.Provider>
       </DataContext.Provider>
