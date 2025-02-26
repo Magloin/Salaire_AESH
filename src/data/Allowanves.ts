@@ -1160,7 +1160,11 @@ const allowances = [
 
 
 
-{/*--*/}
+{/*--
+    lien chatGPT : https://chatgpt.com/c/67bf360d-a5f8-800d-9039-82a8d257e749  
+
+    lien google sheet : https://docs.google.com/spreadsheets/d/1F64bYRQn4zRpVAkGjStYfVoA13mm47ypaU3BjPHxL2k/edit?gid=1503638194#gid=1503638194
+    */}
 
 
 
