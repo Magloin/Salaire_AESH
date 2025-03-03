@@ -37,23 +37,3 @@ function PrimeDeRes() {
     </div>)
 }
 export default PrimeDeRes
-
-
-[
-    {
-        "AIN (01)": [
-            {
-                "city": "Beynost",
-                "allowance": 2
-            },
-            {
-                "city": "La Boisse",
-                "allowance": 2
-            },
-            {
-                "city": "Autres communes",
-                "allowance": 3
-            }
-        ]
-    }
-]

@@ -1,4 +1,4 @@
-const allowances = [
+/*const allowances = [
     {
         "AIN (01)": [
             {
@@ -1155,7 +1155,7 @@ const allowances = [
             }
         ]
     }
-]
+]*/
 
 
 

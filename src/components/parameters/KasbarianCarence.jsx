@@ -11,7 +11,7 @@ function KasbarianCarence() {
     return (<div className="Flex self-start max-sm:text-xs w-3/5">
         <div className="text-xl bg-zinc-300 border-solid border-4 border-gray-600  pl-0 rounded-tr-md max-sm:pl-0.5 max-sm:pr- mt-1">
         <Card>
-                <div class="flex justify-center items-center  xl:py-1 md:py-3 py-2">
+                <div className="flex justify-center items-center  xl:py-1 md:py-3 py-2">
                     <div>   
                         <p className="text-center text-xl max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-3xl xl:text-4xl xl:font-semibold ">Demain</p>
                     </div>
