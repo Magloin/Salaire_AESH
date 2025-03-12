@@ -44,7 +44,7 @@ function MainPageCarence() {
               <CodePostal />
               <PrimeDeRes/>
               <Psc/>
-              <Card> 
+              <Card hidden> 
               <h2 className="text-lg text-left pl-1.5 font-extrabold max-sm:text-xs md:text-sm lg:text-xl xl:text-2xl xl:pl-3">SFT</h2>
                <h3 className="px-1.5 py-1  text-left text-xs  italic text-red-700/80 min-md:text-sm lg:text-sm xl:text-base"> "En cas de congé de maladie, de longue maladie ou de longue durée et de grève, le SFT est maintenu en totalité."</h3>
               </Card>
