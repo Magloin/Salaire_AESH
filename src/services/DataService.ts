@@ -127,8 +127,8 @@ function DataServiceCompute(input: InputData): Data {
 
     // Calculs
     //1 jour de Carence
-    const oneDayCarence = (1/30)*(salaireBrut+indRes +sft + indFonct + montantPrimRep)
-    const oneDayCarenceSalaireBrut = (salaireBrut + indRes+sft+montantPrimRep+ indFonct )-oneDayCarence
+    const oneDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep)
+    const oneDayCarenceSalaireBrut = (salaireBrut +montantPrimRep+ indFonct )-oneDayCarence
         // // Cotisations Salariales
 
      const oneDayCarenceCotSalViePla = oneDayCarenceSalaireBrut * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
@@ -147,9 +147,9 @@ function DataServiceCompute(input: InputData): Data {
 
 
     // Ancien 3 jours de Carence qui repasse à 1
-    const threeDayCarence = (1/30)*(salaireBrut +indRes + sft + indFonct + montantPrimRep ) // Calcul 3 jours de carence
+    const threeDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep ) // Calcul 3 jours de carence
     const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-1) //10% de perte de slaaire par jour
-    const threeDayCarenceSalaireBut = (salaireBrut +indRes + sft + indFonct + montantPrimRep ) - threeDayCarence - threeDayTenPurcentLost
+    const threeDayCarenceSalaireBut = (salaireBrut + indFonct + montantPrimRep ) - threeDayCarence - threeDayTenPurcentLost
 
     // cotisations Salariale
     const threeDayCarenceCotSalViePla = threeDayCarenceSalaireBut *(6.9/100) //cotisation Salaraile Viellesse plafonnée
@@ -165,7 +165,7 @@ function DataServiceCompute(input: InputData): Data {
     const threeDayCarenceSalaryNetLost = aPercevoir - threeDayCarenceRealSalary
     const TreeDayCarenceLost =Math.abs (((threeDayCarenceRealSalary-aPercevoir)/aPercevoir)*100)
 
-    console.log("Perte",threeDayCarenceSalaryNetLost, "Saalire à percevoir",threeDayCarenceRealSalary, "% perdu", TreeDayCarenceLost )
+    console.log("Perte",threeDayCarenceSalaryNetLost, "Salaire à percevoir",threeDayCarenceRealSalary, "% perdu", TreeDayCarenceLost )
 
 
 

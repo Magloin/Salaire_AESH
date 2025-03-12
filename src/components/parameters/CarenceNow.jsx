@@ -17,7 +17,7 @@ function CarenceNow() {
             <Card>
                 <div className="flex justify-center bg-purple-500 xl:py-1 md:py-3 py-2">
                     <div>   
-                        <p className="text-center text-xl max-sm:text-xs max-sm:font-bold bg-purple-500 text-yellow-100 px-0.5 max-md:text-xl lg:text-xl xl:text-4xl ">Actuellement</p>
+                        <p className="text-center text-xl max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-3xl xl:text-4xl xl:font-semibold ">Actuellement</p>
                     </div>
                 </div>
             </Card>
