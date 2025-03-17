@@ -13,7 +13,7 @@ function KasbarianCarence() {
         <Card>
                 <div className="flex justify-center items-center  xl:py-1 md:py-3 py-2">
                     <div>   
-                        <p className="text-center text-xl max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-3xl xl:text-4xl xl:font-semibold ">Demain</p>
+                        <p className="text-center text-lg max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-xl xl:text-3xl xl:font-bold ">Depuis le 1<span className="ordinal">er</span> mars 2025</p>
                     </div>
                 </div>
             </Card>
@@ -27,7 +27,7 @@ function KasbarianCarence() {
             </Card>
             <Card>
                  <div className="max-sm:text-xs max-md:text-xl font-extrabold lg:text-2xl xl:text-2xl xl:font-semibold">
-                    <p className="text-left pl-1 underline">Salaire</p>
+                    <p className="text-left pl-1 underline">Salaire attendu</p>
                     <div className="text-right">
                         <span className="font-bold pr-1"> {data.salaryOutput.aPercevoir.toFixed(2)}€ </span> 
                     </div>       

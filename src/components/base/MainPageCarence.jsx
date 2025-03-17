@@ -94,7 +94,7 @@ function MainPageCarence() {
                     </Card>
                   </div>
               </div> 
-                <p className="font-black px-1 text-base md:text-lg lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} €</span>  pour {heal} jours de maladie.</p> 
+                <p className="font-black px-1 text-base md:text-lg lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} € </span> net  pour {heal} jours de maladie.</p> 
               </div>
             </Card>
           </div> 

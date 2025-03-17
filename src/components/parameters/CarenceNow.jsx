@@ -17,7 +17,7 @@ function CarenceNow() {
             <Card>
                 <div className="flex justify-center bg-purple-500 xl:py-1 md:py-3 py-2">
                     <div>   
-                        <p className="text-center text-xl max-sm:text-xs max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-3xl xl:text-4xl xl:font-semibold ">Actuellement</p>
+                        <p className="text-center text-xl max-sm:text-sm max-sm:py-1.5 max-sm:font-bold px-0.5 max-md:text-xl font-extrabold lg:text-2xl xl:text-3xl xl:font-bold ">Avant</p>
                     </div>
                 </div>
             </Card>
@@ -31,7 +31,7 @@ function CarenceNow() {
             </Card>
             <Card>
                  <div className="max-sm:text-xs max-md:text-xl">
-                    <p className="text-left pl-1 underline font-extrabold lg:text-2xl xl:font-semibold xl:text-2xl">Salaire</p>
+                    <p className="text-left pl-1 underline font-extrabold lg:text-2xl xl:font-semibold xl:text-2xl max-md:text-xs">Salaire attendu</p>
                     <div className="text-right">
                         <span className="font-bold pr-1 lg:text-2xl xl:text-2xl xl:font-semibold"> {data.salaryOutput.aPercevoir.toFixed(2)} € </span>  
                     </div>      
