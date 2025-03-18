@@ -2,19 +2,12 @@ import Coef from "../parameters/Coef"
 import PrimeDeRes from "../parameters/PrimeDeRes"
 import QuotitePercent from "../parameters/QuotitePercent"
 import Psc from "../parameters/Psc"
-import Sft from "../parameters/Sft"
 import BuyCoffee from "../parameters/BuyCoffee"
-import TableRow from "../base/TableRow"
 import UseFetch from "../parameters/SchoolFetcher"
 import CodePostal from "../parameters/CodePostal"
 import Card from "../base/Card"
-import EtablissementCard from "../parameters/EtablissementCard"
-import DescriptionPoste from "../parameters/DescriptionPoste"
-import AdressEtab from "../base/AdressEtab"
 import { useContext } from "react"
 import { DataContext } from "../../contexts/DataContext"
-import SalaryOutputData from "../../data/SalaryOutputData"
-import EtablissementCardLight from "../parameters/EtablissementCardLight"
 import CarenceNow from "../parameters/CarenceNow"
 import KasbarianCarence from "../parameters/KasbarianCarence"
 import HealDay from "../parameters/HealDay"
@@ -44,7 +37,7 @@ function MainPageCarence() {
               <CodePostal />
               <PrimeDeRes/>
               <Psc/>
-              <Card hidden> 
+              <Card> 
               <h2 className="text-lg text-left pl-1.5 font-extrabold max-sm:text-xs md:text-sm lg:text-xl xl:text-2xl xl:pl-3">SFT</h2>
                <h3 className="px-1.5 py-1  text-left text-xs  italic text-red-700/80 min-md:text-sm lg:text-sm xl:text-base"> "En cas de congé de maladie, de longue maladie ou de longue durée et de grève, le SFT est maintenu en totalité."</h3>
               </Card>
@@ -94,7 +87,7 @@ function MainPageCarence() {
                     </Card>
                   </div>
               </div> 
-                <p className="font-black px-1 text-base md:text-lg lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} € </span> net  pour {heal} jours de maladie.</p> 
+                <p className="font-black px-1 text-base max-md:text-sm lg:text-3xl lg:py-1.5 xl:text-3xl xl:font-bold xl:mx-3">Une retenue en sus de <span className="text-red-600">{diffRetenues.toFixed(2)} € </span> net  pour {heal} jours de maladie.</p> 
               </div>
             </Card>
           </div> 
