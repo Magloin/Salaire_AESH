@@ -58,7 +58,7 @@ function DataServiceCompute(input: InputData): Data {
 
 
 
-     const totalPercu = salaireBrut + indRes + indFonct + psc + montantPrimRep + sft
+     const totalPercu = salaireBrut + indRes + indFonct + psc + montantPrimRep
 
      // Cotisations Salariales
 
@@ -127,8 +127,8 @@ function DataServiceCompute(input: InputData): Data {
 
     // Calculs
     //1 jour de Carence
-    const oneDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep)
-    const oneDayCarenceSalaireBrut = (salaireBrut +montantPrimRep+ indFonct )-oneDayCarence
+    const oneDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep + indRes )
+    const oneDayCarenceSalaireBrut = (salaireBrut +montantPrimRep+ indFonct+ indRes )-oneDayCarence
         // // Cotisations Salariales
 
      const oneDayCarenceCotSalViePla = oneDayCarenceSalaireBrut * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
@@ -140,16 +140,16 @@ function DataServiceCompute(input: InputData): Data {
      
 
     const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA // Calcul retenu carence 1 jour
-
+    console.log ('perte traitement',oneDayCarence, 'Cotisation', oneDayCarenceCotisation)
     const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation //Calcul salaire Percu
     const oneDayCarenceLost =Math.abs (((oneDayCarenceRealSalary-aPercevoir)/aPercevoir)*100) // calcul pourcentage de perte
     const OneDayCarenceSalaryNetLost = aPercevoir-oneDayCarenceRealSalary // perte nette entre sans carence et avec carence
 
 
     // Ancien 3 jours de Carence qui repasse à 1
-    const threeDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep ) // Calcul 3 jours de carence
+    const threeDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep + indRes ) // Calcul 3 jours de carence
     const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-1) //10% de perte de slaaire par jour
-    const threeDayCarenceSalaireBut = (salaireBrut + indFonct + montantPrimRep ) - threeDayCarence - threeDayTenPurcentLost
+    const threeDayCarenceSalaireBut = (salaireBrut + indFonct + montantPrimRep + indRes ) - threeDayCarence - threeDayTenPurcentLost
 
     // cotisations Salariale
     const threeDayCarenceCotSalViePla = threeDayCarenceSalaireBut *(6.9/100) //cotisation Salaraile Viellesse plafonnée
