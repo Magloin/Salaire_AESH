@@ -58,36 +58,40 @@ function DataServiceCompute(input: InputData): Data {
 
 
 
-     const totalPercu = salaireBrut + indRes + indFonct + psc + montantPrimRep
-
+     const totalPercu = salaireBrut + indRes + indFonct + psc + montantPrimRep // ok
+     //console.log('salaire psc',totalPercu)
+     const totalPercuMoinsPsc = totalPercu-psc //ok
+    //console.log ('slaire - psc',totalPercuMoinsPsc)
      // Cotisations Salariales
 
-     const cotSalViePla = totalPercu * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
+     const cotSalViePla = totalPercuMoinsPsc * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
      const csgNonDed = (totalPercu * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
      const csgDed = ((totalPercu * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
      const crds = ((totalPercu * (98.25 / 100)) * (0.5 / 100)) //CRDS
-     const cotSalVieDepla = totalPercu * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
-     const cotSalIrcTrA = totalPercu * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+     const cotSalVieDepla = totalPercuMoinsPsc * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
+     const cotSalIrcTrA = totalPercuMoinsPsc * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+
+     const aDeduire = cotSalViePla + csgNonDed + csgDed + crds + cotSalVieDepla + cotSalIrcTrA //OK
      
-     const aDeduire = cotSalViePla + csgNonDed + csgDed + crds + cotSalVieDepla + cotSalIrcTrA
     // Cotisations patronnales 
-     const cotPatAlloFam = totalPercu * (3.45 / 100) // cotisation patronnale allocation familliale X
-     const cotPatAlMaj = totalPercu * (1.8 / 100) // cotisation patronnale allocation majoré X
-     const cotPatAccTra = totalPercu * (0.88 / 100) // cotisation patronnale accident du travail X
-     const cotPatFnalDepl = totalPercu * (0.5 / 100) //cotisation patronnale FNAL déplafonnée X
-     const cotPatViePlaf = totalPercu * (8.55 / 100) // cotisation Patronnale Viellesse Plafonnée X
-     const cotPatVieDepl = totalPercu * (2.02 / 100) // cotisation Patronnale Viellesse Déplafonnée X
-     const cotSolAuto = totalPercu * (0.3 / 100) // contribution solidarité autonomie X
-     const cotPatMalDepla = totalPercu * (7 / 100) // cotisation patronnale Maladie Deplafonée X
-     const cotPatMalMaj = totalPercu * (6 / 100) // cotisation patronalle Maladie Majorée X
-     const cotPatIrcTraA = totalPercu * (4.2 / 100) // cotisation patronnale Ircantec Tranche A X
-     const cotPatVstMob = totalPercu * (2 / 100) // cotisation patronnale VST Mobilité X
+     const cotPatAlloFam = totalPercuMoinsPsc * (3.45 / 100) // cotisation patronnale allocation familliale X
+     const cotPatAlMaj = totalPercuMoinsPsc * (1.8 / 100) // cotisation patronnale allocation majoré X
+     const cotPatAccTra = totalPercuMoinsPsc * (0.88 / 100) // cotisation patronnale accident du travail X
+     const cotPatFnalDepl = totalPercuMoinsPsc * (0.5 / 100) //cotisation patronnale FNAL déplafonnée X
+     const cotPatViePlaf = totalPercuMoinsPsc * (8.55 / 100) // cotisation Patronnale Viellesse Plafonnée X
+     const cotPatVieDepl = totalPercuMoinsPsc * (2.02 / 100) // cotisation Patronnale Viellesse Déplafonnée X
+     const cotSolAuto = totalPercuMoinsPsc * (0.3 / 100) // contribution solidarité autonomie X
+     const cotPatMalDepla = totalPercuMoinsPsc * (7 / 100) // cotisation patronnale Maladie Deplafonée X
+     const cotPatMalMaj = totalPercuMoinsPsc * (6 / 100) // cotisation patronalle Maladie Majorée X
+     const cotPatIrcTraA = totalPercuMoinsPsc * (4.2 / 100) // cotisation patronnale Ircantec Tranche A X
+     const cotPatVstMob = totalPercuMoinsPsc * (2 / 100) // cotisation patronnale VST Mobilité X
+     const forfaitSocial = psc * (8 / 100) // participation à la PSC
 
+     const pourInfo = cotPatAlloFam + cotPatAlMaj + cotPatAccTra+ cotPatFnalDepl + cotPatViePlaf + cotPatVieDepl + cotSolAuto + cotPatMalDepla + cotPatMalMaj + cotPatIrcTraA + cotPatVstMob + forfaitSocial
 
-     const pourInfo = cotPatAlloFam + cotPatAlMaj + cotPatAccTra+ cotPatFnalDepl + cotPatViePlaf + cotPatVieDepl + cotSolAuto + cotPatMalDepla + cotPatMalMaj + cotPatIrcTraA + cotPatVstMob
+       
 
-
-     const aPercevoir = totalPercu - aDeduire
+     const aPercevoir = totalPercu - aDeduire //net à payer
      const percentSalValue = (aDeduire / totalPercu) * 100
      const percentPatValue = (pourInfo / totalPercu) * 100
 
@@ -127,45 +131,116 @@ function DataServiceCompute(input: InputData): Data {
 
     // Calculs
     //1 jour de Carence
-    const oneDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep + indRes )
-    const oneDayCarenceSalaireBrut = (salaireBrut +montantPrimRep+ indFonct+ indRes )-oneDayCarence
+    const oneDayCarence = (1/30)* totalPercuMoinsPsc
+    console.log ('Jour de carence',oneDayCarence)
+    const oneDayCarenceSalaireBrut = (totalPercu )-oneDayCarence //OK
+    
         // // Cotisations Salariales
 
-     const oneDayCarenceCotSalViePla = oneDayCarenceSalaireBrut * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
-     const oneDayCarenceCsgNonDed = (oneDayCarenceSalaireBrut * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
-     const oneDayCarenceCsgDed = ((oneDayCarenceSalaireBrut * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
-     const OneDayCarenceCrds = ((oneDayCarenceSalaireBrut * (98.25 / 100)) * (0.5 / 100)) //CRDS
-     const oneDayCarenceCotSalVieDepla = oneDayCarenceSalaireBrut * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
-     const oneDayCarenceCotSalIrcTrA = oneDayCarenceSalaireBrut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+     const oneDayCarenceCotSalViePla = totalPercuMoinsPsc * (6.9 / 100) // cotisation Salaraile Viellesse plafonnée
+     const trentiemeOneDayCarenceCotSalViePla = (1/30)*oneDayCarenceCotSalViePla // 30 eme retenu cotisation Salaraile Viellesse plafonnée
+    
+     const oneDayCarenceCsgNonDed = (totalPercu * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
+     const trentiemeOneDayCarenceCsgNonDed = (1/30) * oneDayCarenceCsgNonDed // 30 eme retenu CSG Non Déductible
      
 
-    const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + OneDayCarenceCrds + oneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA // Calcul retenu carence 1 jour
-    console.log ('perte traitement',oneDayCarence, 'Cotisation', oneDayCarenceCotisation)
-    const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut - oneDayCarenceCotisation //Calcul salaire Percu
+     const oneDayCarenceCsgDed = ((totalPercu * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
+     const trentiemeOneDayCarenceCsgDed = (1/30) * oneDayCarenceCsgDed // 30 eme retenu CSG déductible
+     
+     const oneDayCarenceCrds = ((totalPercu * (98.25 / 100)) * (0.5 / 100)) //CRDS retenu
+     const trentiemeOneDayCarnceCrds = (1/30) * oneDayCarenceCrds //30 eme CRDS retenu
+     
+     const OneDayCarenceCotSalVieDepla = totalPercuMoinsPsc * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
+     const trentiemeOneDayCarenceCotSalViedepla = (1/30) * OneDayCarenceCotSalVieDepla //30 eme retenu Cotisation Salariale Viellesse Déplafonnée
+     
+
+     const oneDayCarenceCotSalIrcTrA = totalPercuMoinsPsc * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+     const trentiemeOneDayCarenceCotSalIrcTrA = (1/30) * oneDayCarenceCotSalIrcTrA //30 eme retenue Ircantec
+     
+
+    const oneDayCarenceCotisation = oneDayCarenceCotSalViePla + oneDayCarenceCsgNonDed + oneDayCarenceCsgDed + oneDayCarenceCrds + OneDayCarenceCotSalVieDepla + oneDayCarenceCotSalIrcTrA // Calcul retenu carence 1 jour
+
+    
+
+    const totalTrentiemeRetenu = trentiemeOneDayCarenceCotSalViePla + trentiemeOneDayCarenceCsgNonDed + trentiemeOneDayCarenceCsgDed +trentiemeOneDayCarenceCotSalViedepla + trentiemeOneDayCarnceCrds + trentiemeOneDayCarenceCotSalIrcTrA //calcul 30 eme retenu
+    
+
+    const oneDayCarenceRealSalary = oneDayCarenceSalaireBrut-(oneDayCarenceCotisation - totalTrentiemeRetenu) //Calcul salaire Percu
+    
     const oneDayCarenceLost =Math.abs (((oneDayCarenceRealSalary-aPercevoir)/aPercevoir)*100) // calcul pourcentage de perte
     const OneDayCarenceSalaryNetLost = aPercevoir-oneDayCarenceRealSalary // perte nette entre sans carence et avec carence
 
 
     // Ancien 3 jours de Carence qui repasse à 1
-    const threeDayCarence = (1/30)*(salaireBrut + indFonct + montantPrimRep + indRes ) // Calcul 3 jours de carence
-    const threeDayTenPurcentLost = (totalPercu/30)*(10/100)*(heal-1) //10% de perte de slaaire par jour
-    const threeDayCarenceSalaireBut = (salaireBrut + indFonct + montantPrimRep + indRes ) - threeDayCarence - threeDayTenPurcentLost
+    const threeDayCarence =  totalPercuMoinsPsc / 30 // Calcul  jours de carence
+    //console.log('calcul retenu carence',threeDayCarence)
 
-    // cotisations Salariale
-    const threeDayCarenceCotSalViePla = threeDayCarenceSalaireBut *(6.9/100) //cotisation Salaraile Viellesse plafonnée
-    const threeDayCarenceCsgNonDed = (threeDayCarenceSalaireBut * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
-    const threeDayCarenceCsgDed = ((threeDayCarenceSalaireBut * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
-    const threeDayCarenceCrds = ((threeDayCarenceSalaireBut * (98.25 / 100)) * (0.5 / 100)) //CRDS
-    const threeDayCarenceCotSalVieDepla = threeDayCarenceSalaireBut * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
-    const threeDayCarenceCotSalIrcTrA = threeDayCarenceSalaireBut * (2.8 / 100) //cotisation salarial Ircantec Tranche A
-
-    const threeDayCarenceCotisation = threeDayCarenceCotSalViePla + threeDayCarenceCsgNonDed + threeDayCarenceCsgDed + threeDayCarenceCrds + threeDayCarenceCotSalVieDepla + threeDayCarenceCotSalIrcTrA // calcul retenue carence 3 jours
+    const threeDayTenPurcentLost = threeDayCarence * (10/100)*(heal-1) //10% de perte de salaire par jour
+    //console.log('Cout jour de carence',threeDayCarence ,'perte 10 poucent de salaire / jour', threeDayTenPurcentLost)
+    const threeDayCarenceSalaireBut = totalPercuMoinsPsc - threeDayCarence - threeDayTenPurcentLost + psc
+    console.log('Salaire Brut',threeDayCarenceSalaireBut )
     
-    const threeDayCarenceRealSalary = threeDayCarenceSalaireBut - threeDayCarenceCotisation
+    
+    // cotisations Salariale
+    const threeDayCarenceCotSalViePla = (totalPercuMoinsPsc) *(6.9/100) //cotisation Salaraile Viellesse plafonnée
+    const trentiemeThreeDayCarenceSalViePla = threeDayCarenceCotSalViePla / 30
+    const dixPurcentCarenceSalViePla = trentiemeThreeDayCarenceSalViePla / 10
+    //console.log('Carence Cot Sal Vie Pla',threeDayCarenceCotSalViePla,'30 eme vie pla',trentiemeThreeDayCarenceSalViePla,'10 poucent retenue',dixPurcentCarenceSalViePla )
+    
+    const threeDayCarenceCsgNonDed = (totalPercu * (98.25 / 100) * (2.4 / 100)) // CSG Non Déductible
+    const trentiemeThreeDayCarenceCsgNonDed = threeDayCarenceCsgNonDed / 30
+    const dixPurcentCarenceCsgNonDed = trentiemeThreeDayCarenceCsgNonDed / 10
+    //console.log('Carence Cot Csg Non Ded',threeDayCarenceCsgNonDed,'30 eme Csg Non Ded',trentiemeThreeDayCarenceCsgNonDed,'10 poucent retenue',dixPurcentCarenceCsgNonDed ) 
+    
+    const threeDayCarenceCsgDed = ((totalPercu * (98.25 / 100)) * (6.8 / 100)) // CSG Déductible
+    const trentiemeThreeDayCarenceCsgDed = threeDayCarenceCsgDed / 30
+    const dixPurcentCarenceCsgDed = trentiemeThreeDayCarenceCsgDed / 10
+    //console.log('Carence Cot Csg  Ded',threeDayCarenceCsgDed,'30 eme Csg Non Ded',trentiemeThreeDayCarenceCsgDed,'10 poucent retenue',dixPurcentCarenceCsgDed )
+
+
+    const threeDayCarenceCrds = ((totalPercu * (98.25 / 100)) * (0.5 / 100)) //CRDS
+    const trentiemeThreeDayCarenceCrds = threeDayCarenceCrds /30
+    const dixPurcentCarenceCrds = trentiemeThreeDayCarenceCrds / 10
+    //console.log('Carence Crds',threeDayCarenceCrds,'30 eme Crds',trentiemeThreeDayCarenceCrds,'10 poucent retenue crds',dixPurcentCarenceCrds )
+
+    const threeDayCarenceCotSalVieDepla = totalPercuMoinsPsc * (0.4 / 100) // Cotisation Salariale Viellesse Déplafonnée
+    const trentiemeThreeDayCarenceCotSalVieDepla = threeDayCarenceCotSalVieDepla / 30
+    const dixPurcentCarenceCotSalVieDepla = trentiemeThreeDayCarenceCotSalVieDepla / 10
+    //console.log('Carence Cot Sal Vie Depla',threeDayCarenceCotSalVieDepla,'30 eme Csg Non Ded',trentiemeThreeDayCarenceCotSalVieDepla,'10 poucent retenue',dixPurcentCarenceCotSalVieDepla )
+
+    const threeDayCarenceCotSalIrcTrA = totalPercuMoinsPsc * (2.8 / 100) //cotisation salarial Ircantec Tranche A
+    const trentiemeThreeDayCarenceCotSalIrcTrA = threeDayCarenceCotSalIrcTrA / 30
+    const dixPurcentCarenceCotSalIrcTrA = trentiemeThreeDayCarenceCotSalIrcTrA / 10
+    //console.log('Carence Cot Sal Irc TrA',threeDayCarenceCotSalIrcTrA,'30 eme Cot Sal Irc TrA',trentiemeThreeDayCarenceCotSalIrcTrA,'10 poucent retenue',dixPurcentCarenceCotSalIrcTrA )
+
+    const cotisationSalariale = threeDayCarenceCotSalViePla + threeDayCarenceCsgNonDed + threeDayCarenceCsgDed + threeDayCarenceCrds + threeDayCarenceCotSalVieDepla + threeDayCarenceCotSalIrcTrA // calcul retenue carence 3 jours
+
+    console.log('3 jourde arence', cotisationSalariale)
+
+
+    const CarenceCotSalariale= trentiemeThreeDayCarenceSalViePla + trentiemeThreeDayCarenceCsgNonDed + trentiemeThreeDayCarenceCsgDed + trentiemeThreeDayCarenceCrds + trentiemeThreeDayCarenceCotSalVieDepla + trentiemeThreeDayCarenceCotSalIrcTrA
+    //console.log(trentiemeThreeDayCarenceSalViePla,trentiemeThreeDayCarenceCsgNonDed , trentiemeThreeDayCarenceCsgDed , trentiemeThreeDayCarenceCrds , trentiemeThreeDayCarenceCotSalVieDepla ,trentiemeThreeDayCarenceCotSalIrcTrA)
+    
+    
+    //console.log('retenu jour de carence',CarenceCotSalariale)
+
+
+    const tenPurcentRetenue = (heal-1)*(dixPurcentCarenceSalViePla+dixPurcentCarenceCsgNonDed+dixPurcentCarenceCsgDed+dixPurcentCarenceCrds+dixPurcentCarenceCotSalVieDepla+dixPurcentCarenceCotSalIrcTrA)
+    console.log('10 % de retenue cotisation',tenPurcentRetenue)
+
+    const cotisationSalarialeTotale= cotisationSalariale - CarenceCotSalariale - tenPurcentRetenue
+    
+    console.log('total cotiasation salarial',cotisationSalariale)
+    console.log('Carence Salariale',CarenceCotSalariale)
+    console.log('10 pourcent de retenue',tenPurcentRetenue)
+    console.log('Total cotisation socila',cotisationSalarialeTotale)
+    
+    const threeDayCarenceRealSalary = totalPercu - cotisationSalarialeTotale - oneDayCarence - threeDayTenPurcentLost
+    console.log('percu',threeDayCarenceRealSalary,totalPercu)
     const threeDayCarenceSalaryNetLost = aPercevoir - threeDayCarenceRealSalary
     const TreeDayCarenceLost =Math.abs (((threeDayCarenceRealSalary-aPercevoir)/aPercevoir)*100)
 
-    console.log("Perte",threeDayCarenceSalaryNetLost, "Salaire à percevoir",threeDayCarenceRealSalary, "% perdu", TreeDayCarenceLost )
+ 
 
 
 
